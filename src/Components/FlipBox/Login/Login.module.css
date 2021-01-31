@@ -30,6 +30,11 @@
 	border-width: 2px;
 	font-size: 1vw;
 }
+
+.buttonTemp{
+	visibility: hidden;
+	font-size: 10px;
+}
 /* right side */
 .form {
 	display: flex;
@@ -50,8 +55,6 @@
 }
 
 .containerMain {
-	width: 50vw;
-	height: 75vh;
 	border-radius: 30px;
 	box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.75);
 }
@@ -82,4 +85,34 @@ input:focus {outline:0;}
 .rightHeader {
 	margin-bottom: 7vh;
 	margin-top: 12vh;
+}
+
+@media (max-width : 600px){
+	.containerLeft{
+		display: none;
+	}
+	.containerRight{
+		width: 70vw;
+		border-radius: 30px;
+	}
+	.leftPara{
+		opacity: 0;
+	}
+	.buttonContainer{
+		opacity: 0;
+	}
+	.button{
+		display: none;
+	}
+	.buttonTemp{
+		height: 5vh;
+		width: 60%;
+		font-size: 20px;
+		visibility: visible;
+		height: 4vh;
+		border-radius: 7px;
+		margin-bottom: 20px;
+		font-size: 1.3vw;
+		box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.75);
+	}
 }
