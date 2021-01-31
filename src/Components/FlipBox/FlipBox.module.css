@@ -1,0 +1,46 @@
+.main {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center; 
+}
+
+.button{
+	height: 5vh;
+	width: 7vw;
+	border-radius: 7px;
+	margin-bottom: 20px;
+	background-color: #ffffff;
+	border-color: #343f45;
+	font-size: medium;
+	color: 343f45;
+}
+
+button:focus {outline:0;}
+
+.containerMain {
+	width: 50vw;
+	height: 75vh;
+	border-radius: 30px;
+	box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.75);
+}
+
+.containerLeft {
+	width: 20vw;
+	float: left;
+	background-color: #343f45;
+	height: 75vh;
+	border-radius: 30px 0 0 30px;
+	color: #ffffff;
+	text-align: center;
+}
+
+.containerRight {
+	width: 30vw;
+	height: 75vh;
+	float: left;
+	background-color: #f8f8ff;
+	border-radius: 0 30px 30px 0;
+}
+
+
