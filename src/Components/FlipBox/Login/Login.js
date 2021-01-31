@@ -3,6 +3,7 @@ import styles from "./Login.module.css";
 import {authScreenParagraph} from '../../../utils/constants';
 import colors from '../../../utils/colors';
 
+
 class Login extends PureComponent {
 	constructor() {
 		super()
@@ -24,6 +25,20 @@ class Login extends PureComponent {
 		return(
 			<button onClick={this.props.handleFlip}
 				className={styles.button} 
+				style={{
+						backgroundColor: colors.dark, 
+						borderColor: colors.white, 
+						color: colors.white
+						}}>
+				To SignUp
+			</button>
+		)
+	}
+
+	renderViewChangingButtonTemp = () => {
+		return(
+			<button onClick={this.props.handleFlip}
+				className={styles.buttonTemp} 
 				style={{
 						backgroundColor: colors.dark, 
 						borderColor: colors.white, 
@@ -80,7 +95,7 @@ class Login extends PureComponent {
 			<div className={styles.containerRight} style={{backgroundColor: colors.white}}>
 				<h1 className={styles.rightHeader} style={{color: colors.dark}}>Log In</h1>
 				{this.renderForm()}
-				{/* {this.renderViewChangingButton()} */}
+				{this.renderViewChangingButtonTemp()}
 			</div>
 		)
 	}
