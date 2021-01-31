@@ -1,7 +1,7 @@
 import './App.css';
 import { Switch,Route} from 'react-router-dom'
-import Aux from './Hoc/Auxiliary';
-import HomeScreen from './Containers/HomeScreen/HomeScreen'
+import Aux from '../Hoc/Auxiliary';
+import Authentication from '../Containers/Authentication/Authentication'
 import { Component } from 'react';
 class App extends Component{
 	render(){
@@ -9,7 +9,7 @@ class App extends Component{
 			<div>
 				<Aux>
 					<Switch>
-						<Route path="/" component={HomeScreen}></Route>
+						<Route path="/" component={Authentication}></Route>
 					</Switch>	
 				</Aux>
 			</div>
