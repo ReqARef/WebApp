@@ -35,13 +35,12 @@ class Login extends PureComponent {
 		)
 	}
 
-	renderViewChangingButtonTemp = () => {
+	renderViewChangingButtonHidden = () => {
 		return(
 			<button onClick={this.props.handleFlip}
 				className={styles.buttonTemp} 
 				style={{
 						backgroundColor: colors.dark, 
-						borderColor: colors.white, 
 						color: colors.white
 						}}>
 				To SignUp
@@ -95,7 +94,7 @@ class Login extends PureComponent {
 			<div className={styles.containerRight} style={{backgroundColor: colors.white}}>
 				<h1 className={styles.rightHeader} style={{color: colors.dark}}>Log In</h1>
 				{this.renderForm()}
-				{this.renderViewChangingButtonTemp()}
+				{this.renderViewChangingButtonHidden()}
 			</div>
 		)
 	}

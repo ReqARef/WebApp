@@ -7,9 +7,21 @@ class Signup extends PureComponent {
 	constructor() {
 		super()
 		this.state = {
+			firstName: '',
+			lastName: '',
 			email: '',
-			password: ''
+			password: '',
+			otp: '',
+			showOtp: false
 		}
+	}
+
+	handleFirstName = (e) => {
+		this.setState({firstName: e.target.value})
+	}
+
+	handleLastName = (e) => {
+		this.setState({lastName: e.target.value})
 	}
 
 	handleemail = (e) => {
@@ -20,6 +32,10 @@ class Signup extends PureComponent {
 		this.setState({password: e.target.value})
 	}
 
+	handleOTP = (e) => {
+		this.setState({otp: e.target.value})
+	}
+
 	renderViewChangingButton = () => {
 		return(
 			<button onClick={this.props.handleFlip}
@@ -27,6 +43,19 @@ class Signup extends PureComponent {
 				style={{
 						backgroundColor: colors.dark, 
 						borderColor: colors.white, 
+						color: colors.white
+						}}>
+				To Login
+			</button>
+		)
+	}
+
+	renderViewChangingButtonHidden = () => {
+		return(
+			<button onClick={this.props.handleFlip}
+				className={styles.buttonTemp} 
+				style={{
+						backgroundColor: colors.dark, 
 						color: colors.white
 						}}>
 				To Login
@@ -48,11 +77,30 @@ class Signup extends PureComponent {
 
 	renderForm = () => {
 		return (
-			<form onSubmit={() => {}} className={styles.form}>
+			<form onSubmit={(e) => {e.preventDefault(); this.setState({showOtp: true})}} className={styles.form}>
+				<div className={styles.nameContainer}>
+					<input
+						className={styles.nameText}
+						type="text"
+						placeholder="First Name"
+						value={this.state.firstName}
+						onChange={this.handleFirstName}
+						style={{backgroundColor: colors.white, color: colors.dark}}
+					/>
+					<div className={styles.nameSeparator} style={{backgroundColor: colors.white}}/>
+					<input
+						className={styles.nameText}
+						type="text"
+						placeholder="Last Name"
+						value={this.state.lastName}
+						onChange={this.handleLastName}
+						style={{backgroundColor: colors.white, color: colors.dark}}
+					/>
+				</div>
 				<input
 					className={styles.inputText}
 					type="text"
-					placeholder="Enter Email"
+					placeholder="Email"
 					value={this.state.email}
 					onChange={this.handleemail}
 					style={{backgroundColor: colors.white, color: colors.dark}}
@@ -60,11 +108,21 @@ class Signup extends PureComponent {
 				<input
 					className={styles.inputText}
 					type="password"
-					placeholder="Enter Password"
+					placeholder="Password"
 					value={this.state.password}
 					onChange={this.handlePassword}
 					style={{backgroundColor: colors.white, color: colors.dark}}
 				/>
+				{this.state.showOtp ? (
+					<input
+					className={styles.inputText}
+					type="text"
+					placeholder="OTP"
+					value={this.state.otp}
+					onChange={this.handleOTP}
+					style={{backgroundColor: colors.white, color: colors.dark}}
+				/>
+				) : null}
 				<input
 					type="submit"
 					className={styles.submitButton}
@@ -80,7 +138,7 @@ class Signup extends PureComponent {
 			<div className={styles.containerRight} style={{backgroundColor: colors.white}}>
 				<h1 className={styles.rightHeader} style={{color: colors.dark}}>Sign Up</h1>
 				{this.renderForm()}
-				{/* {this.renderViewChangingButton()} */}
+				{this.renderViewChangingButtonHidden()}
 			</div>
 		)
 	}
