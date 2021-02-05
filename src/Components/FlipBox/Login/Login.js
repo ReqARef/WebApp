@@ -2,7 +2,8 @@ import React,  {PureComponent} from 'react';
 import styles from "./Login.module.css";
 import {authScreenParagraph} from '../../../utils/constants';
 import colors from '../../../utils/colors';
-
+import {connect} from 'react-redux';
+import {loginAsync} from '../../../store/actions/login';
 
 class Login extends PureComponent {
 	constructor() {
@@ -60,9 +61,20 @@ class Login extends PureComponent {
 		)
 	}
 
+	handleLogin = (e) => {
+		e.preventDefault()
+		const {email, password} = this.state;
+		if(email === '' || password === '') {
+			alert('Email or Password empty');
+			return;
+		}
+		const {sendLoginReq} = this.props;
+		sendLoginReq(this.state.email, this.state.password);
+	}
+
 	renderForm = () => {
 		return (
-			<form onSubmit={() => {}} className={styles.form}>
+			<form onSubmit={this.handleLogin} className={styles.form}>
 				<input
 					className={styles.inputText}
 					type="text"
@@ -99,14 +111,48 @@ class Login extends PureComponent {
 		)
 	}
 
-	render() {
-		return(
-			<div className={styles.containerMain} >
+	renderWholeCard = () => {
+		return (
+			<div>
 				{this.renderLeftDiv()}
 				{this.renderRightDiv()}
 			</div>
 		)
 	}
+
+	renderWelcomeScreen = () => {
+		return (
+			<div style={{backgroundColor: colors.dark, height: 500, width: 500}}>
+				<h1> Welcome Bro </h1>
+			</div>
+		);
+	}
+
+	render() {
+		const {isLoggedIn} = this.props;
+		return(
+			<div className={styles.containerMain} >
+				{isLoggedIn ? this.renderWelcomeScreen() : this.renderWholeCard()}
+			</div>
+		)
+	}
 }
 
-export default Login
+const mapStateToProps = state => {
+	return {
+	  ...state.Auth
+	};
+  };
+  
+  function mapDispatchToProps(dispatch) {
+	return {
+	  sendLoginReq: (username, password) => {
+		return dispatch(loginAsync(username, password));
+	  }
+	};
+  }
+  
+  export default connect(
+	mapStateToProps,
+	mapDispatchToProps,
+  )(Login);

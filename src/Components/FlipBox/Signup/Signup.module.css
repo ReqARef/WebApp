@@ -85,6 +85,32 @@
 	border-bottom: 1px solid rgba(52, 63, 69, .3);
 	font-size: 1vw;
 }
+.radioContainer {
+	display: flex;
+	margin-top: 2vh;
+}
+.radio {
+	height: 1.7vh;
+	width: 1.7vh;
+	border-radius: 1.7vh;
+	margin-top: 2px;
+	border: 1px solid rgba(52, 63, 69, .5);
+	margin-left: 1.2vh;
+}
+.radioSelected {
+	height: 1.7vh;
+	width: 1.7vh;
+	border-radius: 1.7vh;
+	margin-top: 2px;
+	border: 1px solid rgba(52, 63, 69, .5);
+	margin-left: 1.2vh;
+	background-color: rgba(52, 63, 69, .5);
+}
+.radioText {
+	margin-left: 0.7vh;
+	color: rgba(52, 63, 69, .75);
+	font-size: 1vw;
+}
 .submitButton {
 	height: 4vh;
 	width: 60%;
