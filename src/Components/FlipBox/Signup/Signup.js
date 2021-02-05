@@ -2,6 +2,8 @@ import React,  {PureComponent} from 'react';
 import styles from "./Signup.module.css";
 import {authScreenParagraph} from '../../../utils/constants';
 import colors from '../../../utils/colors';
+import {connect} from 'react-redux';
+import {signupAsync} from '../../../store/actions/login';
 
 class Signup extends PureComponent {
 	constructor() {
@@ -11,8 +13,8 @@ class Signup extends PureComponent {
 			lastName: '',
 			email: '',
 			password: '',
-			otp: '',
-			showOtp: false
+			// role: 1->Referer, 0 Referee
+			role: 1
 		}
 	}
 
@@ -75,9 +77,38 @@ class Signup extends PureComponent {
 		)
 	}
 
+	renderRadioButtons = () => {
+		const referee = this.state.role === 0 ? styles.radioSelected : styles.radio;
+		const referrer = this.state.role === 1 ? styles.radioSelected : styles.radio;
+		return (
+			<div className={styles.radioContainer}>
+				<div className={styles.radioText}>Role: </div>
+				<div className={referrer} onClick={()=>{this.setState({role: 1})}}/>
+				<div className={styles.radioText}>Give Referral</div>
+				<div className={referee} onClick={()=>{this.setState({role: 0})}}/>
+				<div className={styles.radioText}>Get Referral</div>
+			</div>
+		)
+	}
+
+	handleSignup = (e) => {
+		e.preventDefault();
+		const {firstName, lastName, email, password, role} = this.state;
+		if(!firstName || !lastName) {
+			alert('Enter full name');
+			return;
+		}
+		if(!email || ! password) {
+			alert('Enter email/password');
+			return;
+		}
+		const {sendSignUpReq} = this.props;
+		sendSignUpReq(firstName, lastName, email, password, role);
+	}
+
 	renderForm = () => {
 		return (
-			<form onSubmit={(e) => {e.preventDefault(); this.setState({showOtp: true})}} className={styles.form}>
+			<form onSubmit={this.handleSignup} className={styles.form}>
 				<div className={styles.nameContainer}>
 					<input
 						className={styles.nameText}
@@ -113,16 +144,7 @@ class Signup extends PureComponent {
 					onChange={this.handlePassword}
 					style={{backgroundColor: colors.white, color: colors.dark}}
 				/>
-				{this.state.showOtp ? (
-					<input
-					className={styles.inputText}
-					type="text"
-					placeholder="OTP"
-					value={this.state.otp}
-					onChange={this.handleOTP}
-					style={{backgroundColor: colors.white, color: colors.dark}}
-				/>
-				) : null}
+				{this.renderRadioButtons()}
 				<input
 					type="submit"
 					className={styles.submitButton}
@@ -143,14 +165,48 @@ class Signup extends PureComponent {
 		)
 	}
 
-	render() {
-		return(
-			<div className={styles.containerMain} >
+	renderWholeCard = () => {
+		return (
+			<div>
 				{this.renderLeftDiv()}
 				{this.renderRightDiv()}
 			</div>
 		)
 	}
+
+	renderWelcomeScreen = () => {
+		return (
+			<div style={{backgroundColor: colors.dark, height: 500, width: 500}}>
+				<h1> Welcome Bro </h1>
+			</div>
+		);
+	}
+
+	render() {
+		const {isLoggedIn} = this.props;
+		return(
+			<div className={styles.containerMain} >
+				{isLoggedIn ? this.renderWelcomeScreen() : this.renderWholeCard()}
+			</div>
+		)
+	}
 }
 
-export default Signup
+const mapStateToProps = state => {
+	return {
+	  ...state.Auth
+	};
+  };
+  
+  function mapDispatchToProps(dispatch) {
+	return {
+	  sendSignUpReq: (firstName, lastName, email, password, role) => {
+		return dispatch(signupAsync(firstName, lastName, email, password, role));
+	  }
+	};
+  }
+  
+  export default connect(
+	mapStateToProps,
+	mapDispatchToProps,
+  )(Signup);
