@@ -4,6 +4,7 @@ import Aux from '../Hoc/Auxiliary';
 import Authentication from '../Containers/Authentication/Authentication'
 import { Component } from 'react';
 import MyProfile from '../Containers/MyProfile/MyProfileContainer';
+import CompanySearch from '../Containers/CompanySearch/CompanySearchContainer';
 
 class App extends Component{
 	render(){
@@ -11,8 +12,9 @@ class App extends Component{
 			<div>
 				<Aux>
 					<Switch>
-						<Route path="/myprofile" component={MyProfile}></Route>
-						<Route path="/" component={Authentication}></Route>
+						<Route path="/companysearch" component={CompanySearch} />
+						<Route path="/myprofile" component={MyProfile} />
+						<Route path="/" component={Authentication} />
 					</Switch>	
 				</Aux>
 			</div>
