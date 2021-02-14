@@ -2,7 +2,8 @@ const initialState ={
 	isLoggedIn: false,
 	authToken: null,
 	refreshToken: null,
-	user: null
+	user: null,
+	showLoader : false
 };
 
 const login = (state, payLoad) => {
@@ -12,6 +13,7 @@ const login = (state, payLoad) => {
 	newState.user = user;
 	newState.authToken = authToken;
 	newState.refreshToken = refreshToken;
+	newState.showLoader = false;
 	return newState;
 }
 
@@ -22,6 +24,7 @@ const signup = (state, payLoad) => {
 	newState.user = user;
 	newState.authToken = authToken;
 	newState.refreshToken = refreshToken;
+	newState.showLoader = false;
 	return newState;
 }
 
@@ -30,8 +33,15 @@ const logout = (state) => {
 		isLoggedIn: false,
 		authToken: null,
 		refreshToken: null,
-		user: null
+		user: null,
+		showLoader: false
 	};
+}
+
+const showLoader = (state) => {
+	const newState = {...state};
+	newState.showLoader=true;
+	return newState;
 }
 
 const AuthenticationReducer = (state = initialState, action) => {
@@ -42,6 +52,8 @@ const AuthenticationReducer = (state = initialState, action) => {
 				return signup(state, action.payLoad);
 		case 'LOGOUT':
 			return logout(state);
+		case 'SHOWLOADER':
+			return showLoader(state);
 		default:
 			return state
 	}
