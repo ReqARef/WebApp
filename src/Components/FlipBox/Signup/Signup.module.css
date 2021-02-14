@@ -87,13 +87,14 @@
 }
 .radioContainer {
 	display: flex;
+	justify-content: center;
+	align-items: center;
 	margin-top: 2vh;
 }
 .radio {
 	height: 1.7vh;
 	width: 1.7vh;
 	border-radius: 1.7vh;
-	margin-top: 2px;
 	border: 1px solid rgba(52, 63, 69, .5);
 	margin-left: 1.2vh;
 }
@@ -101,7 +102,6 @@
 	height: 1.7vh;
 	width: 1.7vh;
 	border-radius: 1.7vh;
-	margin-top: 2px;
 	border: 1px solid rgba(52, 63, 69, .5);
 	margin-left: 1.2vh;
 	background-color: rgba(52, 63, 69, .5);
@@ -166,6 +166,9 @@ button:focus {outline:0;}
 		font-size: 3vw;
 	}
 	.inputText{
+		font-size: 3vw;
+	}
+	.radioText {
 		font-size: 3vw;
 	}
 	.rightHeader{

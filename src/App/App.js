@@ -4,6 +4,9 @@ import Aux from '../Hoc/Auxiliary';
 import Authentication from '../Containers/Authentication/Authentication'
 import RequestPage from '../Containers/RequestPage/RequestPage'
 import { Component } from 'react';
+import MyProfile from '../Containers/MyProfile/MyProfileContainer';
+import CompanySearch from '../Containers/CompanySearch/CompanySearchContainer';
+
 class App extends Component{
 	render(){
 		return (
@@ -11,7 +14,9 @@ class App extends Component{
 				<Aux>
 					<Switch>
 						<Route exact path="/request" component={RequestPage}></Route>
-						<Route path="/" component={Authentication}></Route>
+						<Route path="/companysearch" component={CompanySearch} />
+						<Route path="/myprofile" component={MyProfile} />
+						<Route path="/" component={Authentication} />
 					</Switch>	
 				</Aux>
 			</div>
