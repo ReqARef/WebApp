@@ -20,8 +20,15 @@ export function logout() {
   };
 }
 
+export function showLoader(){
+	return {
+		type :'SHOWLOADER'
+	};
+}
+
 export function loginAsync(email, password) {
   return function(dispatch) {
+	dispatch(showLoader());
     return fetch(server.concat('/login'), {
       method: 'POST',
       headers: {

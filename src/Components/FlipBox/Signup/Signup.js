@@ -57,8 +57,8 @@ class Signup extends PureComponent {
 			<button onClick={this.props.handleFlip}
 				className={styles.buttonTemp} 
 				style={{
-						backgroundColor: colors.dark, 
-						color: colors.white
+						backgroundColor: colors.white, 
+						color: colors.dark
 						}}>
 				To Login
 			</button>

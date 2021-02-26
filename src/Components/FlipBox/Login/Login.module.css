@@ -32,6 +32,8 @@
 	visibility: hidden;
 	border: none;
 	font-size: 13px;
+	background-color: white;
+	color: black;
 }
 
 /* right side */
@@ -74,6 +76,12 @@
 	font-size: 20px;
 	margin-top: 3vh;
 	box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.75);
+	text-align: center;
+	margin: auto;
+	padding-top: 9px;
+	font-size: larger;
+	margin-bottom: 10px;
+	display: inline-block;
 }
 
 /* main container */
@@ -105,7 +113,8 @@ button:focus {outline:0;}
 		display: none;
 	}
 	.submitButton{
-		font-size: 16px;
+		font-size: 20px;
+		padding-top: 15+px;
 	}
 	.buttonTemp{
 		height: 5vh;
@@ -114,7 +123,6 @@ button:focus {outline:0;}
 		height: 4vh;
 		border-radius: 7px;
 		margin-bottom: 20px;
-		box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.75);
 		font-size: 16px;
 	}
 	.inputText{

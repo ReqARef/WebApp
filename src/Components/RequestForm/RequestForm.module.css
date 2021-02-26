@@ -1,0 +1,13 @@
+.inputText {
+	width: 60%;
+	padding: 10px 10px;
+	margin: 8px 0;
+	display: inline-block;
+	box-sizing: border-box;
+	border: none;
+	border-bottom: 1px solid rgba(52, 63, 69, .3);
+	font-size: 1vw;
+}
+.requestDiv{	
+	text-align: center;
+}

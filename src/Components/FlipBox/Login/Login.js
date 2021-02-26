@@ -1,9 +1,10 @@
-import React,  {PureComponent} from 'react';
+import React, { PureComponent } from 'react';
 import styles from "./Login.module.css";
-import {authScreenParagraph} from '../../../utils/constants';
+import { authScreenParagraph } from '../../../utils/constants';
 import colors from '../../../utils/colors';
-import {connect} from 'react-redux';
-import {loginAsync} from '../../../store/actions/login';
+import { connect } from 'react-redux';
+import { loginAsync } from '../../../store/actions/login';
+import Loader from '../../Loader/Loader'
 
 class Login extends PureComponent {
 	constructor() {
@@ -15,35 +16,37 @@ class Login extends PureComponent {
 	}
 
 	handleemail = (e) => {
-		this.setState({email: e.target.value})
+		this.setState({ email: e.target.value })
 	}
 
 	handlePassword = (e) => {
-		this.setState({password: e.target.value})
+		this.setState({ password: e.target.value })
 	}
 
 	renderViewChangingButton = () => {
-		return(
-			<button onClick={this.props.handleFlip}
-				className={styles.button} 
-				style={{
-						backgroundColor: colors.dark, 
-						borderColor: colors.white, 
+		return (
+			<div>
+				<button onClick={this.props.handleFlip}
+					className={styles.button}
+					style={{
+						backgroundColor: colors.dark,
+						borderColor: colors.white,
 						color: colors.white
-						}}>
-				To SignUp
-			</button>
+					}}>
+					To SignUp
+				</button>
+			</div>
 		)
 	}
 
 	renderViewChangingButtonHidden = () => {
-		return(
+		return (
 			<button onClick={this.props.handleFlip}
-				className={styles.buttonTemp} 
+				className={styles.buttonTemp}
 				style={{
-						backgroundColor: colors.dark, 
-						color: colors.white
-						}}>
+					backgroundColor: colors.white,
+					color: colors.dark
+				}}>
 				To SignUp
 			</button>
 		)
@@ -51,7 +54,7 @@ class Login extends PureComponent {
 
 	renderLeftDiv = () => {
 		return (
-			<div className={styles.containerLeft} style={{backgroundColor: colors.dark, color: colors.white}}>
+			<div className={styles.containerLeft} style={{ backgroundColor: colors.dark, color: colors.white }}>
 				<h2 className={styles.leftHeading}>Welcome to ReqARef</h2>
 				<p className={styles.leftPara}>{authScreenParagraph}</p>
 				<div className={styles.buttonContainer}>
@@ -63,13 +66,28 @@ class Login extends PureComponent {
 
 	handleLogin = (e) => {
 		e.preventDefault()
-		const {email, password} = this.state;
-		if(email === '' || password === '') {
+		const { email, password } = this.state;
+		if (email === '' || password === '') {
 			alert('Email or Password empty');
 			return;
 		}
-		const {sendLoginReq} = this.props;
+		const { sendLoginReq } = this.props;
 		sendLoginReq(this.state.email, this.state.password);
+	}
+
+	renderLoader = () => {			
+		return(
+				<Loader/>
+			)
+	}
+	renderSubmitButton = () => {
+		return(
+			<div
+					onClick={this.handleLogin}
+					className={styles.submitButton}
+					style={{ backgroundColor: colors.dark, color: colors.white }}
+			>{this.props.showLoader ? this.renderLoader() : "Login"}</div>
+		)
 	}
 
 	renderForm = () => {
@@ -81,7 +99,7 @@ class Login extends PureComponent {
 					placeholder="Enter Email"
 					value={this.state.email}
 					onChange={this.handleemail}
-					style={{backgroundColor: colors.white, color: colors.dark}}
+					style={{ backgroundColor: colors.white, color: colors.dark }}
 				/>
 				<input
 					className={styles.inputText}
@@ -89,22 +107,17 @@ class Login extends PureComponent {
 					placeholder="Enter Password"
 					value={this.state.password}
 					onChange={this.handlePassword}
-					style={{backgroundColor: colors.white, color: colors.dark}}
+					style={{ backgroundColor: colors.white, color: colors.dark }}
 				/>
-				<input
-					type="submit"
-					className={styles.submitButton}
-					style={{backgroundColor: colors.dark, color: colors.white}}
-					value="Login"
-				/>
+				{this.renderSubmitButton()}
 			</form>
 		)
 	}
 
 	renderRightDiv = () => {
 		return (
-			<div className={styles.containerRight} style={{backgroundColor: colors.white}}>
-				<h1 className={styles.rightHeader} style={{color: colors.dark}}>Log In</h1>
+			<div className={styles.containerRight} style={{ backgroundColor: colors.white }}>
+				<h1 className={styles.rightHeader} style={{ color: colors.dark }}>Log In</h1>
 				{this.renderForm()}
 				{this.renderViewChangingButtonHidden()}
 			</div>
@@ -122,15 +135,16 @@ class Login extends PureComponent {
 
 	renderWelcomeScreen = () => {
 		return (
-			<div style={{backgroundColor: colors.dark, height: 500, width: 500}}>
+			<div style={{ backgroundColor: colors.dark, height: 500, width: 500 }}>
 				<h1> Welcome Bro </h1>
 			</div>
 		);
 	}
 
 	render() {
-		const {isLoggedIn} = this.props;
-		return(
+		const { isLoggedIn } = this.props;
+		console.log(this.props.showLoader);
+		return (
 			<div className={styles.containerMain} >
 				{isLoggedIn ? this.renderWelcomeScreen() : this.renderWholeCard()}
 			</div>
@@ -140,19 +154,19 @@ class Login extends PureComponent {
 
 const mapStateToProps = state => {
 	return {
-	  ...state.Auth
+		...state.Auth
 	};
-  };
-  
-  function mapDispatchToProps(dispatch) {
+};
+
+function mapDispatchToProps(dispatch) {
 	return {
-	  sendLoginReq: (username, password) => {
-		return dispatch(loginAsync(username, password));
-	  }
+		sendLoginReq: (username, password) => {
+			return dispatch(loginAsync(username, password));
+		}
 	};
-  }
-  
-  export default connect(
+}
+
+export default connect(
 	mapStateToProps,
 	mapDispatchToProps,
-  )(Login);
+)(Login);
