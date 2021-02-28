@@ -31,9 +31,10 @@ export function loginAsync(email, password) {
 	dispatch(showLoader());
     return fetch(server.concat('/login'), {
       method: 'POST',
+	  credentials: 'include',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         email,
@@ -47,7 +48,7 @@ export function loginAsync(email, password) {
         }
         return dispatch(login(json));
       })
-      .catch(() => {
+      .catch((e) => {
         return dispatch(logout());
       });
   };
@@ -57,6 +58,7 @@ export function signupAsync(firstName, lastName, email, password, role) {
   return function(dispatch) {
     return fetch(server.concat('/signup'), {
       method: 'POST',
+	  credentials: 'include',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -76,7 +78,7 @@ export function signupAsync(firstName, lastName, email, password, role) {
         }
         return dispatch(signup(json));
       })
-      .catch(() => {
+      .catch((e) => {
         return dispatch(logout());
       });
   };

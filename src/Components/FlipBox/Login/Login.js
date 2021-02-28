@@ -83,9 +83,9 @@ class Login extends PureComponent {
 	renderSubmitButton = () => {
 		return(
 			<div
-					onClick={this.handleLogin}
-					className={styles.submitButton}
-					style={{ backgroundColor: colors.dark, color: colors.white }}
+				onClick={this.handleLogin}
+				className={styles.submitButton}
+				style={{ backgroundColor: colors.dark, color: colors.white }}
 			>{this.props.showLoader ? this.renderLoader() : "Login"}</div>
 		)
 	}
@@ -143,7 +143,6 @@ class Login extends PureComponent {
 
 	render() {
 		const { isLoggedIn } = this.props;
-		console.log(this.props.showLoader);
 		return (
 			<div className={styles.containerMain} >
 				{isLoggedIn ? this.renderWelcomeScreen() : this.renderWholeCard()}

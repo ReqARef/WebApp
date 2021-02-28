@@ -1,7 +1,13 @@
+import Cookies from 'universal-cookie';
+import Cryptr from 'cryptr';
+
+const COOKIE_AGE = process.env.REACT_APP_COOKIE_AGE;
+const cookies = new Cookies();
+const cryptr = new Cryptr(process.env.REACT_APP_Cryptr_Secret);
+
 const initialState ={
 	isLoggedIn: false,
 	authToken: null,
-	refreshToken: null,
 	user: null,
 	showLoader : false
 };
@@ -12,7 +18,8 @@ const login = (state, payLoad) => {
 	const {user, authToken, refreshToken} = payLoad;
 	newState.user = user;
 	newState.authToken = authToken;
-	newState.refreshToken = refreshToken;
+	const encryptedRefreshToken = cryptr.encrypt(refreshToken)
+	cookies.set('refreshToken', encryptedRefreshToken, { path: '/', maxAge: COOKIE_AGE });
 	newState.showLoader = false;
 	return newState;
 }
@@ -23,7 +30,8 @@ const signup = (state, payLoad) => {
 	const {user, authToken, refreshToken} = payLoad;
 	newState.user = user;
 	newState.authToken = authToken;
-	newState.refreshToken = refreshToken;
+	const encryptedRefreshToken = cryptr.encrypt(refreshToken)
+	cookies.set('refreshToken', encryptedRefreshToken, { path: '/', maxAge: COOKIE_AGE });
 	newState.showLoader = false;
 	return newState;
 }
@@ -32,7 +40,6 @@ const logout = (state) => {
 	return {
 		isLoggedIn: false,
 		authToken: null,
-		refreshToken: null,
 		user: null,
 		showLoader: false
 	};
@@ -41,6 +48,18 @@ const logout = (state) => {
 const showLoader = (state) => {
 	const newState = {...state};
 	newState.showLoader=true;
+	return newState;
+}
+
+const removeAuthToken = (state) => {
+	const newState = {...state};
+	newState.authToken=null;
+	return newState;
+}
+
+const setAuthToken = (state, payLoad) => {
+	const newState = {...state};
+	newState.authToken=payLoad;
 	return newState;
 }
 
@@ -54,6 +73,10 @@ const AuthenticationReducer = (state = initialState, action) => {
 			return logout(state);
 		case 'SHOWLOADER':
 			return showLoader(state);
+		case 'REMOVE_AUTH_TOKEN':
+			return removeAuthToken(state);
+		case 'SET_AUTH_TOKEN':
+			return setAuthToken(state, action.payLoad);
 		default:
 			return state
 	}
