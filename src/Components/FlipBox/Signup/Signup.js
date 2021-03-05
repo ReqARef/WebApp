@@ -3,7 +3,7 @@ import styles from "./Signup.module.css";
 import {authScreenParagraph} from '../../../utils/constants';
 import colors from '../../../utils/colors';
 import {connect} from 'react-redux';
-import {signupAsync} from '../../../store/actions/login';
+import {signupAsync} from '../../../store/actions/Auth';
 
 class Signup extends PureComponent {
 	constructor() {

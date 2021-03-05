@@ -3,7 +3,7 @@ import styles from "./Login.module.css";
 import { authScreenParagraph } from '../../../utils/constants';
 import colors from '../../../utils/colors';
 import { connect } from 'react-redux';
-import { loginAsync } from '../../../store/actions/login';
+import { loginAsync } from '../../../store/actions/Auth';
 import Loader from '../../Loader/Loader'
 
 class Login extends PureComponent {

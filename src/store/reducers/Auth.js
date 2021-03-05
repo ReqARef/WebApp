@@ -7,6 +7,8 @@ const initialState ={
 const login = (state, payLoad) => {
 	const newState = {...state};
 	const {user, authToken} = payLoad;
+	delete user['password']
+	delete user['refresh_token']
 	newState.user = user;
 	newState.authToken = authToken;
 	newState.showLoader = false;

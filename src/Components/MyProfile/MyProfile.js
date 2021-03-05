@@ -3,8 +3,6 @@ import Profile from './Profile/Profile';
 import Settings from './Settings/Settings';
 import styles from './MyProfile.module.css'
 import colors from '../../utils/colors';
-
-
 class MyProfile extends PureComponent {
 	render(){
 		return (
