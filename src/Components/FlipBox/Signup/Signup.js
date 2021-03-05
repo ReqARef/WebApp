@@ -183,10 +183,10 @@ class Signup extends PureComponent {
 	}
 
 	render() {
-		const {isLoggedIn} = this.props;
+		const { authToken } = this.props;
 		return(
 			<div className={styles.containerMain} >
-				{isLoggedIn ? this.renderWelcomeScreen() : this.renderWholeCard()}
+				{authToken ? this.renderWelcomeScreen() : this.renderWholeCard()}
 			</div>
 		)
 	}

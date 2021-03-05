@@ -1,12 +1,4 @@
-import Cookies from 'universal-cookie';
-import Cryptr from 'cryptr';
-
-const COOKIE_AGE = process.env.REACT_APP_COOKIE_AGE;
-const cookies = new Cookies();
-const cryptr = new Cryptr(process.env.REACT_APP_Cryptr_Secret);
-
 const initialState ={
-	isLoggedIn: false,
 	authToken: null,
 	user: null,
 	showLoader : false
@@ -14,31 +6,24 @@ const initialState ={
 
 const login = (state, payLoad) => {
 	const newState = {...state};
-	newState.isLoggedIn = true;
-	const {user, authToken, refreshToken} = payLoad;
+	const {user, authToken} = payLoad;
 	newState.user = user;
 	newState.authToken = authToken;
-	const encryptedRefreshToken = cryptr.encrypt(refreshToken)
-	cookies.set('refreshToken', encryptedRefreshToken, { path: '/', maxAge: COOKIE_AGE });
 	newState.showLoader = false;
 	return newState;
 }
 
 const signup = (state, payLoad) => {
 	const newState = {...state};
-	newState.isLoggedIn = true;
-	const {user, authToken, refreshToken} = payLoad;
+	const {user, authToken} = payLoad;
 	newState.user = user;
 	newState.authToken = authToken;
-	const encryptedRefreshToken = cryptr.encrypt(refreshToken)
-	cookies.set('refreshToken', encryptedRefreshToken, { path: '/', maxAge: COOKIE_AGE });
 	newState.showLoader = false;
 	return newState;
 }
 
 const logout = (state) => {
 	return {
-		isLoggedIn: false,
 		authToken: null,
 		user: null,
 		showLoader: false
