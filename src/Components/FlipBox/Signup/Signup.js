@@ -3,7 +3,7 @@ import styles from "./Signup.module.css";
 import {authScreenParagraph} from '../../../utils/constants';
 import colors from '../../../utils/colors';
 import {connect} from 'react-redux';
-import {signupAsync} from '../../../store/actions/login';
+import {signupAsync} from '../../../store/actions/Auth';
 
 class Signup extends PureComponent {
 	constructor() {
@@ -183,10 +183,10 @@ class Signup extends PureComponent {
 	}
 
 	render() {
-		const {isLoggedIn} = this.props;
+		const { authToken } = this.props;
 		return(
 			<div className={styles.containerMain} >
-				{isLoggedIn ? this.renderWelcomeScreen() : this.renderWholeCard()}
+				{authToken ? this.renderWelcomeScreen() : this.renderWholeCard()}
 			</div>
 		)
 	}

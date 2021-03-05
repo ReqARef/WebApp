@@ -1,29 +1,65 @@
 import './App.css';
 import { Switch,Route} from 'react-router-dom'
 import Aux from '../Hoc/Auxiliary';
+import { connect } from 'react-redux';
 import Authentication from '../Containers/Authentication/Authentication'
 import RequestPage from '../Containers/RequestPage/RequestPage'
-import { Component } from 'react';
+import { PureComponent } from 'react';
 import MyProfile from '../Containers/MyProfile/MyProfileContainer';
 import CompanySearch from '../Containers/CompanySearch/CompanySearchContainer';
 import CompanySearchResult from '../Containers/CompanySearchResult/CompanySearchResult'
 
-class App extends Component{
+class App extends PureComponent{
+
+	redirectToLoginPage = () => {
+		return (
+			<Switch>
+				<Route path="/" component={Authentication} />
+			</Switch>	
+		)
+	}
+
+	redirectToRequestedPage = () => {
+		return (
+			<Switch>
+				<Route exact path="/request" component={RequestPage}></Route>
+				<Route exact path="/companysearch" component={CompanySearch} />
+				<Route exact path="/myprofile" component={MyProfile} />
+				<Route exact path="/searchresult" component={CompanySearchResult}></Route>
+				<Route path="/" component={Authentication} />
+			</Switch>	
+		)
+	}
+
 	render(){
+		const hasAuthToken = this.props.authToken;
 		return (
 			<div>
 				<Aux>
-					<Switch>
-						<Route exact path="/request" component={RequestPage}></Route>
-						<Route exact path="/companysearch" component={CompanySearch} />
-						<Route exact path="/myprofile" component={MyProfile} />
-						<Route exact path="/searchresult" component={CompanySearchResult}></Route>
-						<Route path="/" component={Authentication} />
-					</Switch>	
+					{hasAuthToken && this.redirectToRequestedPage()}
+					{!hasAuthToken && this.redirectToLoginPage()}
 				</Aux>
 			</div>
 		  );
 	}
 }
 
-export default App;
+const mapStateToProps = state => {
+	return {
+		authToken: state.Auth.authToken
+	};
+};
+
+function mapDispatchToProps(dispatch) {
+	return {
+		removeAuthToken: () => {
+			return dispatch({type: 'REMOVE_AUTH_TOKEN'});
+		},
+		setAuthToken: (token) => dispatch({type: 'SET_AUTH_TOKEN', payLoad: token})
+	};
+}
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps,
+)(App);

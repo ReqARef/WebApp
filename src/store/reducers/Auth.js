@@ -1,38 +1,32 @@
 const initialState ={
-	isLoggedIn: false,
 	authToken: null,
-	refreshToken: null,
 	user: null,
 	showLoader : false
 };
 
 const login = (state, payLoad) => {
 	const newState = {...state};
-	newState.isLoggedIn = true;
-	const {user, authToken, refreshToken} = payLoad;
+	const {user, authToken} = payLoad;
+	delete user['password']
+	delete user['refresh_token']
 	newState.user = user;
 	newState.authToken = authToken;
-	newState.refreshToken = refreshToken;
 	newState.showLoader = false;
 	return newState;
 }
 
 const signup = (state, payLoad) => {
 	const newState = {...state};
-	newState.isLoggedIn = true;
-	const {user, authToken, refreshToken} = payLoad;
+	const {user, authToken} = payLoad;
 	newState.user = user;
 	newState.authToken = authToken;
-	newState.refreshToken = refreshToken;
 	newState.showLoader = false;
 	return newState;
 }
 
 const logout = (state) => {
 	return {
-		isLoggedIn: false,
 		authToken: null,
-		refreshToken: null,
 		user: null,
 		showLoader: false
 	};
@@ -41,6 +35,18 @@ const logout = (state) => {
 const showLoader = (state) => {
 	const newState = {...state};
 	newState.showLoader=true;
+	return newState;
+}
+
+const removeAuthToken = (state) => {
+	const newState = {...state};
+	newState.authToken=null;
+	return newState;
+}
+
+const setAuthToken = (state, payLoad) => {
+	const newState = {...state};
+	newState.authToken=payLoad;
 	return newState;
 }
 
@@ -54,6 +60,10 @@ const AuthenticationReducer = (state = initialState, action) => {
 			return logout(state);
 		case 'SHOWLOADER':
 			return showLoader(state);
+		case 'REMOVE_AUTH_TOKEN':
+			return removeAuthToken(state);
+		case 'SET_AUTH_TOKEN':
+			return setAuthToken(state, action.payLoad);
 		default:
 			return state
 	}

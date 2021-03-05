@@ -3,7 +3,7 @@ import styles from "./Login.module.css";
 import { authScreenParagraph } from '../../../utils/constants';
 import colors from '../../../utils/colors';
 import { connect } from 'react-redux';
-import { loginAsync } from '../../../store/actions/login';
+import { loginAsync } from '../../../store/actions/Auth';
 import Loader from '../../Loader/Loader'
 
 class Login extends PureComponent {
@@ -83,9 +83,9 @@ class Login extends PureComponent {
 	renderSubmitButton = () => {
 		return(
 			<div
-					onClick={this.handleLogin}
-					className={styles.submitButton}
-					style={{ backgroundColor: colors.dark, color: colors.white }}
+				onClick={this.handleLogin}
+				className={styles.submitButton}
+				style={{ backgroundColor: colors.dark, color: colors.white }}
 			>{this.props.showLoader ? this.renderLoader() : "Login"}</div>
 		)
 	}
@@ -142,11 +142,10 @@ class Login extends PureComponent {
 	}
 
 	render() {
-		const { isLoggedIn } = this.props;
-		console.log(this.props.showLoader);
+		const { authToken } = this.props;
 		return (
 			<div className={styles.containerMain} >
-				{isLoggedIn ? this.renderWelcomeScreen() : this.renderWholeCard()}
+				{authToken ? this.renderWelcomeScreen() : this.renderWholeCard()}
 			</div>
 		)
 	}

@@ -2,8 +2,8 @@ import React from 'react'
 import Backdrop from '../Backdrop/Backdrop'
 import styles from './Modal.module.css'
 import Aux from '../../Hoc/Auxiliary'
+
 const modal = (props) => {
-	console.log(props)
 	return(
 		<Aux>	
 			<Backdrop show={props.show} clicked={props.closeModal}></Backdrop>
