@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react'
 import style from './Result.module.css';
 import inlineStyles from '../../../utils/styleConstants'
 import colors from '../../../utils/colors'
-import { connect } from 'react-redux';
 
 class Result extends PureComponent{
 	render(){
@@ -18,28 +17,23 @@ class Result extends PureComponent{
 				></img>
 				<h2 style={{
 					margin : 0
-				}}>User Name</h2>
+				}}>{this.props.name}</h2>
 				<p style={{
 					margin : 1
-				}}>Designation</p>
+				}}>{this.props.designation}</p>
 				<p style={{
 					margin : 1
-				}}>CompanyName</p>
+				}}>{this.props.company}</p>
 				<div className={style.RequestButton}
 					style={{
 						backgroundColor : colors.dark,
 						borderRadius : inlineStyles.borderRadius
 					}}
-					onClick={this.props.showModal}
+					onClick={() => this.props.showModal(this.props.email)}
 				>Request</div>
 			</div>
 			)
 	}
 }
 
-const mapDispatchToProps = dispatch => {
-	return {
-		onRequestButtonClick : () => dispatch({type : "SHOWPOPUP"})
-	}
-}
-export default connect(null, mapDispatchToProps)(Result);
+export default Result;

@@ -8,40 +8,65 @@ import RequestForm from '../RequestForm/RequestForm'
 
 class ResultBox extends PureComponent {
 	state={
-		showPopup : false
+		showPopup : false,
+		searchResult : [
+			{	
+				email : "salwanrohit1998@gmail.com",
+				name :"Rohit Salwan",
+				designation : "SDE",
+				company : "amdocs"
+			},
+			{	
+				email : "khajuriakanav@gmail.com",
+				name :"Kanav Khajuria",
+				designation : "Tech Expert",
+				company : "cisco"
+			},
+			{	
+				email : "sakshammehra@gmail.com",
+				name :"Saksham Mehra",
+				designation : "Junior Content Writer",
+				company : "reqAref"
+			}
+		]
 	}
 
-	togglePopup = () => {
+	togglePopup = (email) => {
 		this.setState({showPopup : !this.state.showPopup})
+		this.props.requestToSetter(email);
 	}
-	
+
 	render(){
+		let resultData = this.state.searchResult.map(result => {
+			return (
+				<Result 
+					showModal={this.togglePopup} 
+					name={result.name} 
+					key={result.email}
+					designation={result.designation}
+					company={result.company}	
+					click={this.submitButtonHandler}
+					email={result.email}
+				/>
+			)			
+		});
 		return (
 			<Aux>
 				<Modal show={this.state.showPopup} closeModal={this.togglePopup}>
-					<RequestForm/>
+					<RequestForm companyName={this.props.companyName}/>
 				</Modal>
 				<div className={styles.ResultBox}>
 					<h1>Search Result</h1>
-					<Result showModal={this.togglePopup}/>
-					<Result showModal={this.togglePopup} />
-					<Result showModal={this.togglePopup}/>
-					<Result showModal={this.togglePopup}/>
+					{resultData}
 				</div>
 			</Aux>
 		)
 	}
 }
 
-const mapStateToProps = state => {
-	return {
-		showPopup : state.showPopup
-	}
-}
-
 const mapDispatchToProps = dispatch => {
 	return {
-		onBackdropClick : () => dispatch({type : "HIDEPOPUP"})
+		requestToSetter : (email) => dispatch({type : "SETREQUESTTO",email : email},)
 	}
 }
-export default connect(mapStateToProps,mapDispatchToProps)(ResultBox);
+export default connect(null,mapDispatchToProps)(ResultBox);

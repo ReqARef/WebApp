@@ -1,18 +1,18 @@
 const initialState = {
-	showPopup : false 
+	requestTo : "",
+	company : ""
 };
 
 const popupReducer = ( state=initialState, action) => {
 	switch(action.type){
-		case "SHOWPOPUP":
+		case "SETREQUESTTO":
 			return {
 				...state,
-				showPopup : true
+				requestTo : action.email
 			}
-		case "HIDEPOPUP":
+		case "SENDREQUEST":
 			return {
-				...state,
-				showPopup : false
+				...state
 			}
 		default: 
 			return state;	

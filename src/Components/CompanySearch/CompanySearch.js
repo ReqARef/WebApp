@@ -4,10 +4,11 @@ import colors from '../../utils/colors';
 import Select from 'react-select';
 import { connect } from 'react-redux';
 import {getCompaniesList} from '../../store/actions/Company';
+import { withRouter } from 'react-router-dom'
 
 class CompanySearch extends PureComponent {
 	state = {
-		selectedOption: null,
+		selectedOption: null
 	};
 
 	componentDidMount() {
@@ -82,6 +83,16 @@ class CompanySearch extends PureComponent {
 		)
 	}
 
+	onSearchClickHandler = () => {
+		
+		if(!this.props.companyListDownloading){
+			this.props.history.push({
+				pathname : '/searchresult',
+				search : '?company_name='+this.props.companyList[this.state.selectedOption.value].company_name
+			})
+		}
+	}
+
 	renderSearchButton = () => {
 		return (
 			<div style={{width: '100%', display: 'flex', flexDirection: 'row', 
@@ -89,9 +100,7 @@ class CompanySearch extends PureComponent {
 				<input 
 					type="submit"
 					value="Search"
-					onClick={() => {
-						// first check if this.props.companyListDownloading is true then do nothing
-					}}
+					onClick={() => this.onSearchClickHandler()}
 					className={styles.submitButton} 
 					style={{color: colors.white}}/>	
 			</div>
@@ -125,7 +134,7 @@ function mapDispatchToProps(dispatch) {
 	};
 }
 
-export default connect(
+export default withRouter(connect(
 	mapStateToProps,
 	mapDispatchToProps,
-)(CompanySearch);
+)(CompanySearch));

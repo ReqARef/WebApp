@@ -21,7 +21,7 @@ export function postRequest(path, resolve, reject, body, extraHeaders={}, dispat
 	}
 	extraHeaders = extraHeaders || {}
 	path = path[0] === '/' ? path.substring(1) : path;
-
+	
 	return fetch(server.concat(`/${path}`), {
 		method: 'POST',
 		credentials: 'include',
@@ -37,6 +37,38 @@ export function postRequest(path, resolve, reject, body, extraHeaders={}, dispat
 		.then((json) => {
 			if(changeAuthToken) {
 				updateAuthToken(json, dispatch)
+			}
+			return resolve(json)
+		})
+		.catch((e) => {
+		  return reject(e);
+		});
+}
+
+export function getRequest(path, resolve, reject, params,extraHeaders={}, dispatch, changeAuthToken=true){
+	const headers = {
+		'Accept': 'application/json',
+		'Content-Type': 'application/json',
+		...extraHeaders
+	}
+	extraHeaders = extraHeaders || {}
+	path = path[0] === '/' ? path.substring(1) : path;
+	for(var key in params){
+		console.log(params[key]);
+	}
+	return fetch(server.concat(`/${path}`), {
+		method: 'GET',
+		credentials: 'include',
+		headers,
+		body:{}
+	  })
+		.then((response) => {
+			checkForGeneralErrors(response.status, dispatch);
+			return response.json()
+		})
+		.then((json) => {
+			if(changeAuthToken) {
+				updateAuthToken(json)
 			}
 			return resolve(json)
 		})

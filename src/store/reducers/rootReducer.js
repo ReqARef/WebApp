@@ -1,10 +1,12 @@
 import {combineReducers} from 'redux';
 import Auth from './Auth';
-import Popup from './PopupReducer';
 import Company from './Company';
+import requestReducer from './requestReducer'; 
+import userReducer from './UserSearchResult';
 
 export default combineReducers({
 	Auth,
-	Popup,
-	Company
+	requestReducer,
+	Company,
+	userReducer
 });
