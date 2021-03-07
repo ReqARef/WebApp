@@ -23,17 +23,17 @@ class CompanySearch extends PureComponent {
 
 	formatCompanyList = () => {
 		function sortArrayOnName(a, b) {
-			return a.value.localeCompare(b.value);
+			return a.label.localeCompare(b.label);
 		}
 
 		const {companyList} = this.props;
 		if(companyList.length === 0) return companyList;
 
-		const formattedResult = companyList.map((object) => {
+		const formattedResult = companyList.map((object, index) => {
 			const nameWithCapital = object.company_name.substring(0, 1).toUpperCase() 
 				+ object.company_name.substring(1);
 			const newObject = {
-				value: object.company_name,
+				value: index,
 				label: nameWithCapital
 			}
 			return newObject;
