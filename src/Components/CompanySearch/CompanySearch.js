@@ -8,7 +8,7 @@ import { withRouter } from 'react-router-dom'
 
 class CompanySearch extends PureComponent {
 	state = {
-		selectedOption: null,
+		selectedOption: null
 	};
 
 	componentDidMount() {
@@ -84,11 +84,11 @@ class CompanySearch extends PureComponent {
 	}
 
 	onSearchClickHandler = () => {
-		console.log(this.state.selectedOption)
+		
 		if(!this.props.companyListDownloading){
 			this.props.history.push({
 				pathname : '/searchresult',
-				search : '?company_name='+this.state.selectedOption
+				search : '?company_name='+this.props.companyList[this.state.selectedOption.value].company_name
 			})
 		}
 	}

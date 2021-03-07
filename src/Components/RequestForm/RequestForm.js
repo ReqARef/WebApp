@@ -4,7 +4,7 @@ import colors from '../../utils/colors'
 import inlineStyles from '../../utils/styleConstants'
 import { useDispatch , useSelector } from 'react-redux'
 import { makeRequestAsync } from '../../store/actions/Request'
-const RequestForm = () => {
+const RequestForm = (props) => {
 	const dispatch = useDispatch();
 	const email = useSelector(state => state).requestReducer.requestTo;
 	
@@ -12,10 +12,9 @@ const RequestForm = () => {
 	const [jobUrl, setJobUrl] = useState("");
 	const [comments, setComments] = useState("");
 
-
 	function onSubmitHandler(event){
 		event.preventDefault();
-		dispatch(makeRequestAsync(jobId, jobUrl, comments, email));
+		dispatch(makeRequestAsync(jobId, jobUrl, comments, email, props.companyName.company_name));
 	}
 
 	function jobIdHandler(event){

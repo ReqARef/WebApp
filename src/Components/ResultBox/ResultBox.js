@@ -53,7 +53,7 @@ class ResultBox extends PureComponent {
 		return (
 			<Aux>
 				<Modal show={this.state.showPopup} closeModal={this.togglePopup}>
-					<RequestForm/>
+					<RequestForm companyName={this.props.companyName}/>
 				</Modal>
 				<div className={styles.ResultBox}>
 					<h1>Search Result</h1>

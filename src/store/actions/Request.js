@@ -12,7 +12,7 @@ export function sendRequest() {
 	};
 }
 
-export function makeRequestAsync(jobId, jobUrl, comments, requestTo) {
+export function makeRequestAsync(jobId, jobUrl, comments, requestTo, companyName) {
 	return function(dispatch) {
 		const resolve = (json) => {
 		  if (!json.status) {
@@ -23,7 +23,7 @@ export function makeRequestAsync(jobId, jobUrl, comments, requestTo) {
 		const reject = (e) => {
 			return dispatch(logout());
 		}
-		const body = {jobId, jobUrl, comments, requestTo};
+		const body = {jobId, jobUrl, comments, requestTo, companyName};
 		return postRequest('request', resolve, reject, body, {}, dispatch, false)
 	};
   }
