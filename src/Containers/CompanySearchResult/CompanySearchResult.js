@@ -11,10 +11,9 @@ class CompanySearchResult extends PureComponent {
 		userList : []
 	}
 
-	async componentDidMount() {
+	async componentWillMount() {
 		const company_name = qs.parse(this.props.location.search , { ignoreQueryPrefix: true });
 		await this.setState({companyName: company_name})
-		console.log(this.state.companyName)
 		const headers = {
 			'Accept': 'application/json',
 			'Content-Type': 'application/json'
