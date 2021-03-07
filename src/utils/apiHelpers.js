@@ -45,7 +45,7 @@ export function postRequest(path, resolve, reject, body, extraHeaders={}, dispat
 		});
 }
 
-export function getRequest(path, resolve, reject, params,extraHeaders={}, dispatch, changeAuthToken=true){
+export function getRequest(path, resolve, reject, extraHeaders={}, dispatch, changeAuthToken=true){
 	const headers = {
 		'Accept': 'application/json',
 		'Content-Type': 'application/json',
@@ -53,14 +53,10 @@ export function getRequest(path, resolve, reject, params,extraHeaders={}, dispat
 	}
 	extraHeaders = extraHeaders || {}
 	path = path[0] === '/' ? path.substring(1) : path;
-	for(var key in params){
-		console.log(params[key]);
-	}
 	return fetch(server.concat(`/${path}`), {
 		method: 'GET',
 		credentials: 'include',
-		headers,
-		body:{}
+		headers
 	  })
 		.then((response) => {
 			checkForGeneralErrors(response.status, dispatch);

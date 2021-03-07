@@ -3,41 +3,54 @@ import colors from '../../utils/colors'
 import styles from './CompanySearchResult.module.css'
 import ResultBox from '../../Components/ResultBox/ResultBox'
 import qs from 'qs'
-import {server} from '../../utils/constants'
+import { connect } from 'react-redux';
+import {getUsersOfCompanySearchList} from '../../store/actions/Search'
 class CompanySearchResult extends PureComponent {
-
-	state = {
-		companyName : "",
-		userList : []
+	constructor(props) {
+		super(props);
+		const company_name = qs.parse(this.props.location.search , { ignoreQueryPrefix: true }).company_name;
+		this.state = {
+			companyName : company_name,
+			userList : []
+		}
 	}
 
-	async componentWillMount() {
-		const company_name = qs.parse(this.props.location.search , { ignoreQueryPrefix: true });
-		await this.setState({companyName: company_name})
-		const headers = {
-			'Accept': 'application/json',
-			'Content-Type': 'application/json'
-		}
-
-		const requestParams = {
-			method: 'GET',
-			credentials: 'include',
-			headers
-		}
-
-		const userList = await fetch(server.concat('/user?company_name='+this.state.companyName.company_name),requestParams);
-		console.log(userList);
+	componentDidMount() {
+		const {searchUsers, authToken} = this.props;
+		const {companyName} = this.state;
+		searchUsers(authToken, companyName)
 	}
 
-	render(){
+	render() {
+		const {usersOfCompanySearch, usersOfCompanySearchDownloading: loading} = this.props;
+		const {companyName} = this.state;
 		return(
 			<div className={styles.CompanySearchResult} style={{
 				backgroundColor : colors.background
 			}}> 
-				<ResultBox companyName={this.state.companyName}/>
+				{!loading && <ResultBox searchResult={usersOfCompanySearch} companyName={companyName}/>}
 			</div>
 		)
 	}
 }
 
-export default CompanySearchResult;
+const mapStateToProps = state => {
+	return {
+		authToken: state.Auth.authToken,
+		usersOfCompanySearch: state.Search.usersOfCompanySearch,
+		usersOfCompanySearchDownloading: state.Search.usersOfCompanySearchDownloading
+	};
+};
+
+function mapDispatchToProps(dispatch) {
+	return {
+		searchUsers: (token, company) => {
+			return dispatch(getUsersOfCompanySearchList(token, company));
+		}
+	};
+}
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps,
+)(CompanySearchResult);
