@@ -36,7 +36,7 @@ export function postRequest(path, resolve, reject, body, extraHeaders={}, dispat
 		})
 		.then((json) => {
 			if(changeAuthToken) {
-				updateAuthToken(json)
+				updateAuthToken(json, dispatch)
 			}
 			return resolve(json)
 		})
