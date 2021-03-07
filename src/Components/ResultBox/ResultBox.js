@@ -8,27 +8,7 @@ import RequestForm from '../RequestForm/RequestForm'
 
 class ResultBox extends PureComponent {
 	state={
-		showPopup : false,
-		searchResult : [
-			{	
-				email : "salwanrohit1998@gmail.com",
-				name :"Rohit Salwan",
-				designation : "SDE",
-				company : "amdocs"
-			},
-			{	
-				email : "khajuriakanav@gmail.com",
-				name :"Kanav Khajuria",
-				designation : "Tech Expert",
-				company : "cisco"
-			},
-			{	
-				email : "sakshammehra@gmail.com",
-				name :"Saksham Mehra",
-				designation : "Junior Content Writer",
-				company : "reqAref"
-			}
-		]
+		showPopup : false
 	}
 
 	togglePopup = (email) => {
@@ -36,27 +16,34 @@ class ResultBox extends PureComponent {
 		this.props.requestToSetter(email);
 	}
 
-	render(){
-		let resultData = this.state.searchResult.map(result => {
+	getResultData = () => {
+		return (this.props.searchResult || []).map(result => {
 			return (
 				<Result 
 					showModal={this.togglePopup} 
-					name={result.name} 
+					name={`${result.first_name} ${result.last_name}`} 
 					key={result.email}
-					designation={result.designation}
+					designation={result.designation || "Designation unknown"}
 					company={result.company}	
 					click={this.submitButtonHandler}
 					email={result.email}
 				/>
 			)			
 		});
+	}
+
+	render() {
+		const resultData = this.getResultData();
+		let {companyName} = this.props;
+		if(companyName)
+			companyName = companyName.substring(0, 1).toUpperCase() + companyName.substring(1);
 		return (
 			<Aux>
 				<Modal show={this.state.showPopup} closeModal={this.togglePopup}>
 					<RequestForm companyName={this.props.companyName}/>
 				</Modal>
 				<div className={styles.ResultBox}>
-					<h1>Search Result</h1>
+					<h1>{companyName + " Employees"}</h1>
 					{resultData}
 				</div>
 			</Aux>
