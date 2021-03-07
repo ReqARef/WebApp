@@ -12,7 +12,7 @@ export function signup(payLoad) {
 	  type: 'SIGNUP',
 	  payLoad,
 	};
-  }
+}
 
 export function logout() {
   return {
