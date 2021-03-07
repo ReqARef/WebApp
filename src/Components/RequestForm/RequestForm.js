@@ -7,6 +7,7 @@ import { makeRequestAsync } from '../../store/actions/Request'
 const RequestForm = (props) => {
 	const dispatch = useDispatch();
 	const email = useSelector(state => state).requestReducer.requestTo;
+	const token = useSelector(state => state).Auth.authToken;
 	
 	const [jobId, setJobId] = useState("");
 	const [jobUrl, setJobUrl] = useState("");
@@ -14,7 +15,7 @@ const RequestForm = (props) => {
 
 	function onSubmitHandler(event){
 		event.preventDefault();
-		dispatch(makeRequestAsync(jobId, jobUrl, comments, email, props.companyName.company_name));
+		dispatch(makeRequestAsync(jobId, jobUrl, comments, email, props.companyName,token));
 	}
 
 	function jobIdHandler(event){
