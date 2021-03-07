@@ -3,6 +3,7 @@ import styles from './RequestForm.module.css'
 import colors from '../../utils/colors'
 import inlineStyles from '../../utils/styleConstants'
 import { useDispatch , useSelector } from 'react-redux'
+import { makeRequestAsync } from '../../store/actions/Request'
 const RequestForm = () => {
 	const dispatch = useDispatch();
 	const email = useSelector(state => state).requestReducer.requestTo;
@@ -14,11 +15,7 @@ const RequestForm = () => {
 
 	function onSubmitHandler(event){
 		event.preventDefault();
-		console.log(jobId,jobUrl,comments);
-		dispatch({
-			type : "SENDREQUEST",
-			email : email
-		})
+		dispatch(makeRequestAsync(jobId, jobUrl, comments, email));
 	}
 
 	function jobIdHandler(event){

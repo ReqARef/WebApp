@@ -21,7 +21,7 @@ export function postRequest(path, resolve, reject, body, extraHeaders={}, dispat
 	}
 	extraHeaders = extraHeaders || {}
 	path = path[0] === '/' ? path.substring(1) : path;
-
+	
 	return fetch(server.concat(`/${path}`), {
 		method: 'POST',
 		credentials: 'include',

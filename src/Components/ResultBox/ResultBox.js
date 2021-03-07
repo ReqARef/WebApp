@@ -25,8 +25,8 @@ class ResultBox extends PureComponent {
 			{	
 				email : "sakshammehra@gmail.com",
 				name :"Saksham Mehra",
-				designation : "Associate Enggineer",
-				company : "amdocs"
+				designation : "Junior Content Writer",
+				company : "reqAref"
 			}
 		]
 	}

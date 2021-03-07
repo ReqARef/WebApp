@@ -6,32 +6,24 @@ export function logout() {
 	};
 }
 
-export function sendRequest(payLoad) {
+export function sendRequest() {
 	return {
-		type: 'SENDREQUEST',
-		payLoad,
+		type: 'SENDREQUEST'
 	};
 }
 
-export function showLoader(){
-	return {
-		type :'SHOWLOADER'
-	};
-}
-
-export function makeRequestASync(jobId, jobUrl, comments) {
+export function makeRequestAsync(jobId, jobUrl, comments, requestTo) {
 	return function(dispatch) {
-		dispatch(showLoader());
 		const resolve = (json) => {
 		  if (!json.status) {
 			throw new Error(json.error);
 		  }
-		  return dispatch(sendRequest(json));
+		  return dispatch(sendRequest());
 		}
 		const reject = (e) => {
 			return dispatch(logout());
 		}
-		const body = {jobId, jobUrl, comments};
+		const body = {jobId, jobUrl, comments, requestTo};
 		return postRequest('request', resolve, reject, body, {}, dispatch, false)
 	};
   }
