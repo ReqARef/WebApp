@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
 import Auth from './Auth';
-import Popup from './PopupReducer';
+import requestReducer from './requestReducer';
 
 export default combineReducers({
 	Auth,
-	Popup
+	requestReducer
 });

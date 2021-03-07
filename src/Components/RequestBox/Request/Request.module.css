@@ -2,6 +2,7 @@
 	margin-top: 10px;
 	height : 20vh;
 	width : 55vw;
+	overflow : scroll;
 }
 
 .UserImage{
