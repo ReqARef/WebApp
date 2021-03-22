@@ -1,6 +1,5 @@
 const initialState = {
-	requestTo : "",
-	company : ""
+	requestTo : ""
 };
 
 const popupReducer = ( state=initialState, action) => {
@@ -11,9 +10,7 @@ const popupReducer = ( state=initialState, action) => {
 				requestTo : action.email
 			}
 		case "SENDREQUEST":
-			return {
-				...state
-			}
+			return state;
 		default: 
 			return state;	
 	}

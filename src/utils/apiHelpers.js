@@ -41,6 +41,7 @@ export function postRequest(path, resolve, reject, body, extraHeaders={}, dispat
 			return resolve(json)
 		})
 		.catch((e) => {
+			console.log(e);
 		  return reject(e);
 		});
 }
