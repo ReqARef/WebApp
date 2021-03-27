@@ -1,0 +1,13 @@
+.container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-bottom: 5vh;
+}
+
+.image {
+	height: 10vw;
+	width: 17vw;
+	margin: 3vw;
+}
