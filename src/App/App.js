@@ -8,26 +8,36 @@ import { PureComponent } from 'react';
 import MyProfile from '../Containers/MyProfile/MyProfileContainer';
 import CompanySearch from '../Containers/CompanySearch/CompanySearchContainer';
 import CompanySearchResult from '../Containers/CompanySearchResult/CompanySearchResult'
+import Homepage from '../Containers/Homepage/Homepage';
+import Navbar from '../Containers/Navbar/Navbar';
 
 class App extends PureComponent{
 
 	redirectToLoginPage = () => {
 		return (
-			<Switch>
-				<Route path="/" component={Authentication} />
-			</Switch>	
+			<div>
+				<Navbar/>
+				<Switch>
+					<Route exact path="/" component={Homepage} />
+					<Route path="/" component={Authentication} />
+				</Switch>
+			</div>	
 		)
 	}
 
 	redirectToRequestedPage = () => {
 		return (
-			<Switch>
-				<Route exact path="/request" component={RequestPage}></Route>
-				<Route exact path="/companysearch" component={CompanySearch} />
-				<Route exact path="/myprofile" component={MyProfile} />
-				<Route exact path="/searchresult" component={CompanySearchResult}></Route>
-				<Route path="/" component={Authentication} />
-			</Switch>	
+			<div>
+				<Navbar/>
+				<Switch>
+					<Route exact path="/request" component={RequestPage}></Route>
+					<Route exact path="/companysearch" component={CompanySearch} />
+					<Route exact path="/myprofile" component={MyProfile} />
+					<Route exact path="/searchresult" component={CompanySearchResult}></Route>
+					<Route exact path="/auth" component={Authentication}></Route>
+					<Route path="/" component={Homepage} />
+				</Switch>	
+			</div>
 		)
 	}
 
