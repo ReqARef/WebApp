@@ -46,7 +46,7 @@ class App extends PureComponent{
 
 const mapStateToProps = state => {
 	return {
-		authToken: state.Auth.authToken
+		authToken: state.User.authToken
 	};
 };
 

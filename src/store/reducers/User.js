@@ -38,6 +38,12 @@ const showLoader = (state) => {
 	return newState;
 }
 
+const unshowLoader = (state) => {
+	const newState = {...state};
+	newState.showLoader=false;
+	return newState;
+}
+
 const removeAuthToken = (state) => {
 	const newState = {...state};
 	newState.authToken=null;
@@ -47,6 +53,20 @@ const removeAuthToken = (state) => {
 const setAuthToken = (state, payLoad) => {
 	const newState = {...state};
 	newState.authToken=payLoad;
+	return newState;
+}
+
+const setUserData = (state, payLoad) => {
+	const newState = {...state};
+	newState.showLoader=false;
+	newState.user=payLoad;
+	return newState;
+}
+
+const unsetUserData = (state, payLoad) => {
+	const newState = {...state};
+	newState.showLoader=false;
+	newState.user=null;
 	return newState;
 }
 
@@ -60,10 +80,16 @@ const AuthenticationReducer = (state = initialState, action) => {
 			return logout(state);
 		case 'SHOWLOADER':
 			return showLoader(state);
+		case 'UNSHOWLOADER':
+				return unshowLoader(state);
 		case 'REMOVE_AUTH_TOKEN':
 			return removeAuthToken(state);
 		case 'SET_AUTH_TOKEN':
 			return setAuthToken(state, action.payLoad);
+		case 'SET_USER_DATA':
+			return setUserData(state, action.payLoad);
+		case 'UNSET_USER_DATA':
+			return unsetUserData(state, action.payLoad);
 		default:
 			return state
 	}

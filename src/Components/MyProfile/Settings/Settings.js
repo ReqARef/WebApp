@@ -3,23 +3,60 @@ import colors from '../../../utils/colors';
 import {borderRadius} from '../../../utils//styleConstants';
 import styles from './Settings.module.css';
 import countries from '../../../utils/countries';
-
+import { connect } from 'react-redux';
+import {getUserData, updateUserData} from '../../../store/actions/User';
+import Loader from '../../Loader/Loader';
 class Settings extends PureComponent {
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 		this.state = {
-			firstName: 'Motu',
-			lastName: 'Kurmi',
-			mobile: '9191919191',
-			email: 'motu@gmail.com',
-			position: 'Student | Thug | Head',
-			company: 'ReqARef',
-			college: 'Thapar Institute of Engineering and Technology',
-			experience: '7 months',
-			country: 'IN',
-			role: 'referrer',
-			bio: 'I am next level motivational person that any company will be lucky to have. I dont refer anyone unless they agree to pay me 90% of their salary. Also note: Dont piss me off thank you :)'
+			errorOccurred: false,
+			firstName: '',
+			lastName: '',
+			mobile: '',
+			email: '',
+			position: '',
+			company: '',
+			college: '',
+			experience: '',
+			country: '',
+			// role: 1->Referer, 0 Referee
+			role: '',
+			bio: ''
 		}
+		const {getData, authToken} = this.props;
+		getData(authToken);
+	}
+
+	componentDidUpdate(prevProps, prevState) {
+		if(prevProps !== this.props) {
+			const {showLoader, user} = this.props;
+			if(!showLoader && !user) {
+				this.setState({errorOccurred: true});
+				alert('Something went wrong');
+			} else if(!showLoader && user) {
+				const {first_name: firstName, last_name: lastName, mobile, email, job_role: position, company_name: company, 
+					college, experience, country, role, bio} = user;
+				const roleIntegerToString = (role === 0 || role === 1) ? (role === 0 ? 'referee' : 'referrer') : '';
+				this.setState({firstName: firstName || '', lastName: lastName || '', mobile: mobile || '',
+					email: email || '', position: position || '', company: company || '', college: college || '',
+					experience: experience || '', country: country || '', role: roleIntegerToString, bio: bio || '', errorOccurred: false});
+			}
+		}
+	}
+
+	handleOnSaveClicked = () => {
+		const {firstName,lastName,mobile, email, position, company, college, experience,
+			country, role, bio} = this.state;
+		const roleToInteger = role === 'referee' ? 0 : 1;
+		const body = {firstName, lastName, mobile, email, position, companyName: company, college, experience,
+			country, role: roleToInteger, bio};
+		const {setData, authToken} = this.props;
+		if(!firstName.trim() || !lastName.trim()) {
+			alert('Name cannot be empty');
+			return;
+		}
+		setData(authToken, body);
 	}
 
 	renderHeader = () => {
@@ -36,7 +73,7 @@ class Settings extends PureComponent {
 		this.setState({[label]: e.target.value})
 	}
 
-	renderInputField = (label, heading) => {
+	renderInputField = (label, heading, disabled=false) => {
 		return (
 			<div style={{}}>
 				<div className={styles.inputTextHeading} style={{color: colors.dark}}>{heading}</div>
@@ -48,6 +85,7 @@ class Settings extends PureComponent {
 					value={this.state[label]}
 					onChange={(e) => this.handleInput(e, label)}
 					style={{backgroundColor: colors.white, color: colors.dark, borderRadius: 5}}
+					disabled={disabled}
 				/>
 			</div>
 		)
@@ -72,10 +110,10 @@ class Settings extends PureComponent {
 				style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'center'}}
 				className={styles.dualContainer}>
 				<div style={{width: '50%'}}>
-					{this.renderInputField('email', 'Email Address')}
+					{this.renderInputField('email', 'Email Address', true)}
 				</div>
 				<div style={{width: '50%'}}>
-					{this.renderInputField('mobile', 'Mobile Number')}
+					{this.renderInputField('mobile', 'Mobile Number', true)}
 				</div>
 			</div>
 		)
@@ -187,29 +225,54 @@ class Settings extends PureComponent {
 				<input 
 					type="submit"
 					value="Save"
-					onClick={() => {alert('Saved')}}
+					onClick={this.handleOnSaveClicked}
 					className={styles.submitButton} 
 					style={{backgroundColor: colors.dark, color: colors.white}}/>	
 			</div>
 		)
 	}
 
-	render(){
+	render() {
+		let {showLoader} = this.props;
+		const {errorOccurred} = this.state;
+		showLoader = showLoader || errorOccurred;
 		return (
 			<div style={{
 					backgroundColor: colors.white, borderRadius
 				}}
 				className={styles.containerMain}>
-				{this.renderHeader()}
-				{this.renderName()}
-				{this.renderEmailAndMobile()}
-				{this.renderCompanyAndPosition()}
-				{this.renderCollegeAndExperience()}
-				{this.renderCountryAndRole()}
-				{this.renderBio()}
-				{this.renderSaveButton()}
+				{showLoader && <Loader/>}
+				{!showLoader && this.renderHeader()}
+				{!showLoader && this.renderName()}
+				{!showLoader && this.renderEmailAndMobile()}
+				{!showLoader && this.renderCompanyAndPosition()}
+				{!showLoader && this.renderCollegeAndExperience()}
+				{!showLoader && this.renderCountryAndRole()}
+				{!showLoader && this.renderBio()}
+				{!showLoader && this.renderSaveButton()}
 			</div>
 		);
 	}
 };
-export default Settings;
+
+const mapStateToProps = state => {
+	return {
+		...state.User
+	};
+};
+
+function mapDispatchToProps(dispatch) {
+	return {
+		getData: (token) => {
+			return dispatch(getUserData(token));
+		},
+		setData: (token, body) => {
+			return dispatch(updateUserData(token, body));
+		}
+	};
+}
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps,
+)(Settings);
