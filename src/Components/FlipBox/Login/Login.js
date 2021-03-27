@@ -3,7 +3,7 @@ import styles from "./Login.module.css";
 import { authScreenParagraph } from '../../../utils/constants';
 import colors from '../../../utils/colors';
 import { connect } from 'react-redux';
-import { loginAsync } from '../../../store/actions/Auth';
+import { loginAsync } from '../../../store/actions/User';
 import Loader from '../../Loader/Loader'
 
 class Login extends PureComponent {
@@ -153,7 +153,7 @@ class Login extends PureComponent {
 
 const mapStateToProps = state => {
 	return {
-		...state.Auth
+		...state.User
 	};
 };
 

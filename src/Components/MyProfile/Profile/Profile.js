@@ -2,6 +2,8 @@ import React, {PureComponent} from 'react';
 import styles from './Profile.module.css'
 import colors from '../../../utils/colors';
 import {borderRadius} from '../../../utils/styleConstants';
+import { connect } from 'react-redux';
+import {countryCodeToCountry} from '../../../utils/helperFunctions';
 
 class Profile extends PureComponent {
 
@@ -13,7 +15,8 @@ class Profile extends PureComponent {
 	}
 
 	renderName = () => {
-		const name = 'Motu Kurmi'
+		const {first_name: firstName, last_name: lastName} = this.props;
+		const name = (firstName && lastName) ? (`${firstName} ${lastName}`) : 'Name unknown';
 		return (
 			<div className={styles.nameText} style={{color: colors.dark}}>
 				{name}
@@ -22,7 +25,10 @@ class Profile extends PureComponent {
 	}
 
 	renderLocation = () => {
-		const location = 'Gurgaon, India'
+		const {country} = this.props;
+		const location = countryCodeToCountry(country.trim());
+		if(!location)
+			return null;
 		return (
 			<div className={styles.locationText} style={{color: colors.dark}}>
 				{location}
@@ -31,7 +37,17 @@ class Profile extends PureComponent {
 	}
 
 	renderDesignation = () => {
-		const designation = 'Student | Thug | Head @ ReqARef'
+		let {job_role: jobRole, company_name: companyName} = this.props;
+		if(!companyName)
+			return null;
+		let designation = '';
+		companyName = companyName.substring(0,1).toUpperCase() + companyName.substring(1);
+		if(companyName.trim()) {
+			designation = designation + companyName.trim();
+			if(jobRole && jobRole.trim()) {
+				designation = designation + `, ${jobRole}`;
+			}
+		}
 		return (
 			<div className={styles.designationText} style={{color: colors.dark}}>
 				{designation}
@@ -40,7 +56,9 @@ class Profile extends PureComponent {
 	}
 
 	renderCollegeName = () => {
-		const college = 'Thapar Institute of Engineering and Technology'
+		const {college} = this.props;
+		if(!college || !college.trim())
+			return null;
 		return (
 			<div className={styles.collegeText} style={{color: colors.dark}}>
 				{college}
@@ -49,7 +67,9 @@ class Profile extends PureComponent {
 	}
 
 	renderExperience = () => {
-		const experience = '7 months'
+		const {experience} = this.props;
+		if(!experience || !experience.trim()) 
+			return null;
 		return (
 			<div className={styles.collegeText} style={{color: colors.dark}}>
 				{'Experience: ' + experience}
@@ -58,7 +78,9 @@ class Profile extends PureComponent {
 	}
 
 	renderBio = () => {
-		const bio = 'I am next level motivational person that any company will be lucky to have. I dont refer anyone unless they agree to pay me 90% of their salary. Also note: Dont piss me off thank you :)'
+		const {bio} = this.props;
+		if(!bio || !bio.trim())
+			return null;
 		return (
 			<div className={styles.collegeText} style={{color: colors.dark, marginBottom: 30}}>
 				{bio}
@@ -67,6 +89,8 @@ class Profile extends PureComponent {
 	}
 
 	renderDetails = () => {
+		const {bio} = this.props;
+		const brStyle = bio && bio.trim() ? styles.br : styles.marginDown;
 		return (
 			<div className={styles.detailsContainer}>
 				{this.renderName()}
@@ -74,7 +98,7 @@ class Profile extends PureComponent {
 				{this.renderDesignation()}
 				{this.renderCollegeName()}
 				{this.renderExperience()}
-				<div className={styles.br}/>
+				<div className={brStyle}/>
 				{this.renderBio()}
 			</div>
 		)
@@ -92,4 +116,14 @@ class Profile extends PureComponent {
 		);
 	}
 };
-export default Profile;
+
+const mapStateToProps = state => {
+	return {
+		...state.User.user
+	};
+};
+
+export default connect(
+	mapStateToProps,
+	null,
+)(Profile);

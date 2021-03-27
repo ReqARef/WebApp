@@ -36,7 +36,7 @@ class CompanySearchResult extends PureComponent {
 
 const mapStateToProps = state => {
 	return {
-		authToken: state.Auth.authToken,
+		authToken: state.User.authToken,
 		usersOfCompanySearch: state.Search.usersOfCompanySearch,
 		usersOfCompanySearchDownloading: state.Search.usersOfCompanySearchDownloading
 	};

@@ -122,7 +122,7 @@ class CompanySearch extends PureComponent {
 const mapStateToProps = state => {
 	return {
 		...state.Company,
-		authToken: state.Auth.authToken
+		authToken: state.User.authToken
 	};
 };
 

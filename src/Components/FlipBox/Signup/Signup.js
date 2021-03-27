@@ -3,7 +3,7 @@ import styles from "./Signup.module.css";
 import {authScreenParagraph} from '../../../utils/constants';
 import colors from '../../../utils/colors';
 import {connect} from 'react-redux';
-import {signupAsync} from '../../../store/actions/Auth';
+import {signupAsync} from '../../../store/actions/User';
 
 class Signup extends PureComponent {
 	constructor() {
@@ -194,7 +194,7 @@ class Signup extends PureComponent {
 
 const mapStateToProps = state => {
 	return {
-	  ...state.Auth
+	  ...state.User
 	};
   };
   
