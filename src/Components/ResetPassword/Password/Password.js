@@ -1,89 +1,55 @@
 import React, { PureComponent } from 'react';
-import styles from "./Login.module.css";
+import styles from "./Password.module.css";
 import { authScreenParagraph } from '../../../utils/constants';
 import colors from '../../../utils/colors';
 import { connect } from 'react-redux';
-import { loginAsync } from '../../../store/actions/User';
+import { changePassword } from '../../../store/actions/User';
 import Loader from '../../Loader/Loader'
 import { withRouter } from 'react-router-dom'
 
-class Login extends PureComponent {
+class Password extends PureComponent {
 	constructor() {
 		super()
 		this.state = {
-			email: '',
-			password: ''
+			password1: '',
+			password2: ''
 		}
 	}
 
-	handleemail = (e) => {
-		this.setState({ email: e.target.value })
+	handlePassword1 = (e) => {
+		this.setState({ password1: e.target.value })
 	}
 
-	handlePassword = (e) => {
-		this.setState({ password: e.target.value })
-	}
-
-	renderViewChangingButton = () => {
-		return (
-			<div>
-				<button onClick={this.props.handleFlip}
-					className={styles.button}
-					style={{
-						backgroundColor: colors.dark,
-						borderColor: colors.white,
-						color: colors.white
-					}}>
-					To SignUp
-				</button>
-			</div>
-		)
-	}
-
-	renderViewChangingButtonHidden = () => {
-		return (
-			<div className={styles.hiddenButtonContainer}>
-				<button onClick={this.props.handleFlip}
-					className={styles.buttonTemp}
-					style={{
-						backgroundColor: colors.white,
-						color: colors.dark
-					}}>
-					To SignUp
-				</button>
-				{this.renderResetPassword()}
-			</div>
-		)
+	handlePassword2 = (e) => {
+		this.setState({ password2: e.target.value })
 	}
 
 	renderLeftDiv = () => {
 		return (
 			<div className={styles.containerLeft} style={{ backgroundColor: colors.dark, color: colors.white }}>
 				<h2 className={styles.leftHeading}>Welcome to ReqARef</h2>
-				<p className={styles.leftPara}>{authScreenParagraph}</p>
-				<div className={styles.buttonContainer}>
-					{this.renderViewChangingButton()}
-					{this.renderResetPassword()}
-				</div>
-				
+				<p className={styles.leftPara}>{authScreenParagraph}</p> 
 			</div>
 		)
 	}
 
 	handleLogin = (e) => {
 		e.preventDefault()
-		const { email, password } = this.state;
-		if (email === '' || password === '') {
-			alert('Email or Password empty');
+		const { password1, password2 } = this.state;
+		const {email} = this.props;
+		if (password1 === '' || password2 === '') {
+			alert('Password empty');
 			return;
 		}
-		const { sendLoginReq } = this.props;
-		sendLoginReq(this.state.email, this.state.password);
+		if(password1 !== password2) {
+			alert('Password mismatch');
+			return;
+		}
+		const { changePassword } = this.props;
+		changePassword(email, password1);
 	}
 
 	renderLoader = () => {		
-		const {isFlipped} = this.props;
-		if(isFlipped) return null;	
 		return(
 			<Loader/>
 		)
@@ -95,7 +61,7 @@ class Login extends PureComponent {
 				onClick={this.handleLogin}
 				className={styles.submitButton}
 				style={{ backgroundColor: colors.dark, color: colors.white }}
-			>{this.props.showLoader ? this.renderLoader() : "Login"}</div>
+			>{this.props.showLoader ? this.renderLoader() : "Reset"}</div>
 		)
 	}
 
@@ -104,18 +70,18 @@ class Login extends PureComponent {
 			<form onSubmit={this.handleLogin} className={styles.form}>
 				<input
 					className={styles.inputText}
-					type="text"
-					placeholder="Enter Email"
+					type="password"
+					placeholder="Enter Password"
 					value={this.state.email}
-					onChange={this.handleemail}
+					onChange={this.handlePassword1}
 					style={{ backgroundColor: colors.white, color: colors.dark }}
 				/>
 				<input
 					className={styles.inputText}
 					type="password"
-					placeholder="Enter Password"
+					placeholder="Re Enter Password"
 					value={this.state.password}
-					onChange={this.handlePassword}
+					onChange={this.handlePassword2}
 					style={{ backgroundColor: colors.white, color: colors.dark }}
 				/>
 				{this.renderSubmitButton()}
@@ -123,22 +89,11 @@ class Login extends PureComponent {
 		)
 	}
 
-	renderResetPassword = () => {
-		return (
-			<a 
-				href={'/resetPassword'}
-				className={styles.resetPassword}>
-				Reset password
-			</a>
-		)
-	}
-
 	renderRightDiv = () => {
 		return (
 			<div className={styles.containerRight} style={{ backgroundColor: colors.white }}>
-				<h1 className={styles.rightHeader} style={{ color: colors.dark }}>Log In</h1>
+				<h2 className={styles.rightHeader} style={{ color: colors.dark }}>Enter New Password</h2>
 				{this.renderForm()}
-				{this.renderViewChangingButtonHidden()}
 			</div>
 		)
 	}
@@ -169,14 +124,14 @@ class Login extends PureComponent {
 
 const mapStateToProps = state => {
 	return {
-		...state.User
+		showLoader: state.User.showLoader
 	};
 };
 
 function mapDispatchToProps(dispatch) {
 	return {
-		sendLoginReq: (username, password) => {
-			return dispatch(loginAsync(username, password));
+		changePassword: (email, password) => {
+			return dispatch(changePassword(email, password));
 		}
 	};
 }
@@ -184,4 +139,4 @@ function mapDispatchToProps(dispatch) {
 export default withRouter(connect(
 	mapStateToProps,
 	mapDispatchToProps,
-)(Login));
+)(Password));

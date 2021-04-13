@@ -47,7 +47,7 @@ class RequestBox extends Component {
 
 const mapStateToProps = state => {
 	return {
-		authToken: state.Auth.authToken,
+		authToken: state.User.authToken,
 		requests : state.requestReducer.requests
 	};
 };

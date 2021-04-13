@@ -7,7 +7,7 @@ import { makeRequestAsync } from '../../store/actions/Request'
 const RequestForm = (props) => {
 	const dispatch = useDispatch();
 	const email = useSelector(state => state).requestReducer.requestTo;
-	const token = useSelector(state => state).Auth.authToken;
+	const token = useSelector(state => state).User.authToken;
 	
 	const [jobId, setJobId] = useState("");
 	const [jobUrl, setJobUrl] = useState("");
