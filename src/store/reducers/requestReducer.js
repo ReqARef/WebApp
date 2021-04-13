@@ -1,5 +1,6 @@
 const initialState = {
-	requestTo : ""
+	requestTo : "",
+	requests : []
 };
 
 const popupReducer = ( state=initialState, action) => {
@@ -11,6 +12,11 @@ const popupReducer = ( state=initialState, action) => {
 			}
 		case "SENDREQUEST":
 			return state;
+			case "GETREQUEST":
+				return {
+					...state,
+					requests : action.request
+				};
 		default: 
 			return state;	
 	}

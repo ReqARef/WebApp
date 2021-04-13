@@ -1,4 +1,5 @@
 import {postRequest} from '../../utils/apiHelpers';
+import {getRequest} from '../../utils/apiHelpers';
 
 export function logout() {
 	return {
@@ -9,6 +10,13 @@ export function logout() {
 export function sendRequest() {
 	return {
 		type: 'SENDREQUEST'
+	};
+}
+
+export function getRequests(payload) {
+	return {
+		type: 'GETREQUEST', 
+		request : payload.requests
 	};
 }
 
@@ -29,3 +37,20 @@ export function makeRequestAsync(jobId, jobUrl, comments, requestTo, companyName
 		return postRequest('request', resolve, reject, body, headers, dispatch, true)
 	};
   }
+
+export function getRequestAsync(token){
+	const auth = 'Bearer '.concat(token);
+	const headers = {'Authorization': auth}
+	return function(dispatch) {
+		const resolve = (json) => {
+			if (!json.status) {
+			throw new Error(json.error);
+			}
+			return dispatch(getRequests(json));
+		}
+		const reject = (e) => {
+			return dispatch(logout());
+		}
+		return getRequest('/request', resolve, reject, headers, dispatch, true);
+	};
+}
