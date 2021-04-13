@@ -2,7 +2,7 @@
 	margin-top: 10px;
 	height : 20vh;
 	width : 55vw;
-	overflow : scroll;
+	overflow: auto;
 }
 
 .UserImage{
@@ -52,4 +52,50 @@
 	justify-content: center;
 	align-items: center;
 	color: white;
+}
+
+@media (max-width : 600px){
+	.Request{
+		margin-top: 10px;
+		height : 300px;
+		width : 200px;
+		overflow: auto;
+	}
+
+	.UserData{
+		margin-left: 30px;
+		float: left;
+	}
+
+	.UserImage{
+		height : 130px;
+		float : left;
+		margin-top : 8px;
+		margin-left : 35px;
+	}
+
+	.ButtonDiv{
+		height : 10vh;
+		width : 10vw; 
+		float: left	;
+	}
+
+	.RejectDiv{
+		height: 30px;
+		width: 80px;
+	}
+
+	.AcceptDiv{
+		height: 30px;
+		width: 80px;
+	}
+
+	.userDataPara{
+		margin : 0;
+	}
+
+	.userDataCountry{
+		margin : 0;
+		visibility: hidden;
+	}
 }

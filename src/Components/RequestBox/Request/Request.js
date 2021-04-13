@@ -2,7 +2,7 @@ import React from 'react';
 import colors from '../../../utils/colors'
 import inlineStyles from '../../../utils/styleConstants'
 import style from './Request.module.css'
-const request = () => {
+const request = (props) => {
 	return (
 		<div style={{
 			backgroundColor  : colors.white,
@@ -15,9 +15,9 @@ const request = () => {
 				className={style.UserImage}
 			></img>
 			<div className={style.UserData}>
-				<h3>Rohit Salwan</h3>
-				<p>SDE-1, Amdocs</p>
-				<p>India</p>
+				<h3 className={style.userDataPara}>{props.userName}</h3>
+				<p className={style.userDataPara}>{props.designation + " "+props.companyName}</p>
+				<p className={style.userDataCountry}>{props.country}</p>
 			</div>
 			<div className={style.ButtonDiv}>
 				<div className={style.AcceptDiv}
