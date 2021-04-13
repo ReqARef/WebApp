@@ -5,6 +5,7 @@ import colors from '../../../utils/colors';
 import { connect } from 'react-redux';
 import { loginAsync } from '../../../store/actions/User';
 import Loader from '../../Loader/Loader'
+import { withRouter } from 'react-router-dom'
 
 class Login extends PureComponent {
 	constructor() {
@@ -75,11 +76,14 @@ class Login extends PureComponent {
 		sendLoginReq(this.state.email, this.state.password);
 	}
 
-	renderLoader = () => {			
+	renderLoader = () => {		
+		const {isFlipped} = this.props;
+		if(isFlipped) return null;	
 		return(
-				<Loader/>
-			)
+			<Loader/>
+		)
 	}
+
 	renderSubmitButton = () => {
 		return(
 			<div
@@ -109,8 +113,15 @@ class Login extends PureComponent {
 					onChange={this.handlePassword}
 					style={{ backgroundColor: colors.white, color: colors.dark }}
 				/>
+				{this.renderForgotPassword()}
 				{this.renderSubmitButton()}
 			</form>
+		)
+	}
+
+	renderForgotPassword = () => {
+		return (
+			<div>Forgot password</div>
 		)
 	}
 
@@ -133,19 +144,16 @@ class Login extends PureComponent {
 		)
 	}
 
-	renderWelcomeScreen = () => {
-		return (
-			<div style={{ backgroundColor: colors.dark, height: 500, width: 500 }}>
-				<h1> Welcome Bro </h1>
-			</div>
-		);
-	}
-
 	render() {
 		const { authToken } = this.props;
+		if(authToken) {
+			this.props.history.push({
+				pathname : '/'
+			})
+		}
 		return (
 			<div className={styles.containerMain} >
-				{authToken ? this.renderWelcomeScreen() : this.renderWholeCard()}
+				{this.renderWholeCard()}
 			</div>
 		)
 	}
@@ -165,7 +173,7 @@ function mapDispatchToProps(dispatch) {
 	};
 }
 
-export default connect(
+export default withRouter(connect(
 	mapStateToProps,
 	mapDispatchToProps,
-)(Login);
+)(Login));

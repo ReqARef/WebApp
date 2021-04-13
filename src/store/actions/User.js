@@ -63,6 +63,7 @@ export function loginAsync(email, password) {
         return dispatch(login(json));
       }
 	  const reject = (e) => {
+		alert("Invalid credentials");
 	  	return dispatch(logout());
 	  }
 	  const body = {email, password};
