@@ -26,9 +26,12 @@ class Profile extends PureComponent {
 
 	renderLocation = () => {
 		const {country} = this.props;
+		if(!country)
+			return null;
 		const location = countryCodeToCountry(country.trim());
 		if(!location)
 			return null;
+
 		return (
 			<div className={styles.locationText} style={{color: colors.dark}}>
 				{location}

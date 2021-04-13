@@ -21,8 +21,8 @@ class FlipBox extends PureComponent{
 		return (
 			<div className={styles.main}>
 				<ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal">
-					<Login handleFlip={this.handleFlip}/>
-					<SignUp handleFlip={this.handleFlip}/>
+					<Login handleFlip={this.handleFlip} isFlipped={this.state.isFlipped} />
+					<SignUp handleFlip={this.handleFlip} isFlipped={this.state.isFlipped} />
 				</ReactCardFlip>
 			</div>
 		);

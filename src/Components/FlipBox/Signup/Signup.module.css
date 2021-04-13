@@ -120,6 +120,13 @@
 	font-size: 20px;
 	margin-top: 3vh;
 	box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.75);
+	text-align: center;
+	margin: auto;
+	padding-top: 9px;
+	font-size: larger;
+	margin-bottom: 10px;
+	display: inline-block;
+	margin-top: 1.5vh;
 }
 
 /* main container */
@@ -151,7 +158,8 @@ button:focus {outline:0;}
 		display: none;
 	}
 	.submitButton{
-		font-size: 16px;
+		font-size: 20px;
+		padding-top: 15px;
 	}
 	.buttonTemp{
 		height: 5vh;

@@ -13,9 +13,9 @@ export default class Companies extends PureComponent {
 	renderImages = () => {
 		return (
 			<div>
-				{LOGO_URLS.map((url) => {
+				{LOGO_URLS.map((url, index) => {
 					return (
-						<img src={url} alt="test" className={styles.image}/>
+						<img src={url} alt="test" className={styles.image} key={index}/>
 					)
 				})}
 			</div>

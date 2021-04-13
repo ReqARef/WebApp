@@ -4,6 +4,8 @@ import {authScreenParagraph} from '../../../utils/constants';
 import colors from '../../../utils/colors';
 import {connect} from 'react-redux';
 import {signupAsync} from '../../../store/actions/User';
+import Loader from '../../Loader/Loader'
+import { withRouter } from 'react-router-dom'
 
 class Signup extends PureComponent {
 	constructor() {
@@ -36,6 +38,14 @@ class Signup extends PureComponent {
 
 	handleOTP = (e) => {
 		this.setState({otp: e.target.value})
+	}
+
+	renderLoader = () => {		
+		const {isFlipped} = this.props;
+		if(!isFlipped) return null;	
+		return(
+			<Loader/>
+		)
 	}
 
 	renderViewChangingButton = () => {
@@ -106,9 +116,21 @@ class Signup extends PureComponent {
 		sendSignUpReq(firstName, lastName, email, password, role);
 	}
 
+	renderSubmitButton = () => {
+		return (
+			<div
+				onClick={this.handleSignup}
+				className={styles.submitButton}
+				style={{backgroundColor: colors.dark, color: colors.white}}
+			>
+			{this.props.showLoader ? this.renderLoader() : "Signup"}
+			</div>
+		)
+	}
+
 	renderForm = () => {
 		return (
-			<form onSubmit={this.handleSignup} className={styles.form}>
+			<form className={styles.form}>
 				<div className={styles.nameContainer}>
 					<input
 						className={styles.nameText}
@@ -145,12 +167,7 @@ class Signup extends PureComponent {
 					style={{backgroundColor: colors.white, color: colors.dark}}
 				/>
 				{this.renderRadioButtons()}
-				<input
-					type="submit"
-					className={styles.submitButton}
-					style={{backgroundColor: colors.dark, color: colors.white}}
-					value="Signup"
-				/>
+				{this.renderSubmitButton()}
 			</form>
 		)
 	}
@@ -184,9 +201,14 @@ class Signup extends PureComponent {
 
 	render() {
 		const { authToken } = this.props;
-		return(
+		if(authToken) {
+			this.props.history.push({
+				pathname : '/'
+			})
+		}
+		return (
 			<div className={styles.containerMain} >
-				{authToken ? this.renderWelcomeScreen() : this.renderWholeCard()}
+				{this.renderWholeCard()}
 			</div>
 		)
 	}
@@ -206,7 +228,7 @@ const mapStateToProps = state => {
 	};
   }
   
-  export default connect(
+  export default withRouter(connect(
 	mapStateToProps,
 	mapDispatchToProps,
-  )(Signup);
+  )(Signup));
