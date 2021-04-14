@@ -34,9 +34,11 @@ export function getRequest(path, resolve, reject, extraHeaders={}, dispatch, cha
 			if(changeAuthToken) {
 				updateAuthToken(json, dispatch)
 			}
+			console.log(json);
 			return resolve(json)
 		})
 		.catch((e) => {
+			console.log(e);
 		  return reject(e);
 		});
 }
