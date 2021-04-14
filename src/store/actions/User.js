@@ -134,6 +134,70 @@ export function getUserData(token) {
 	};
 }
 
+export function sendOTP(email, callback) {
+	return function(dispatch) {
+	  dispatch(showLoader());
+	  const resolve = (json) => {
+		  if (!json.status) {
+			  throw new Error(json.error);
+		  }
+		  callback();
+		  dispatch(unshowLoader());
+	  }
+	  const reject = (e) => {
+		  dispatch(unshowLoader());
+		  alert(e);
+	  }
+	  const body = {
+		  email
+	  };
+	  return postRequest('resetPassword', resolve, reject, body, {}, dispatch, false)
+	};
+}
+
+export function verifyOTP(email, OTP, callback) {
+	return function(dispatch) {
+	  dispatch(showLoader());
+	  const resolve = (json) => {
+		  if (!json.status) {
+			  throw new Error(json.error);
+		  }
+		  callback();
+		  dispatch(unshowLoader());
+	  }
+	  const reject = (e) => {
+		  dispatch(unshowLoader());
+		  alert(e);
+	  }
+	  const body = {
+		  email,
+		  OTP
+	  };
+	  return postRequest('verifyOTP', resolve, reject, body, {}, dispatch, false)
+	};
+}
+
+export function changePassword(email, password) {
+	return function(dispatch) {
+	  dispatch(showLoader());
+	  const resolve = (json) => {
+		  if (!json.status) {
+			  throw new Error(json.error);
+		  }
+		  return dispatch(login(json));
+	  }
+	  const reject = (e) => {
+		  dispatch(unshowLoader());
+		  alert(e);
+	  }
+	  const body = {
+		  email,
+		  password
+	  };
+	  return postRequest('updatePassword', resolve, reject, body, {}, dispatch, false)
+	};
+}
+
 // export function authenticateToken(token) {
 // 	return function(dispatch) {
 // 	  const resolve = (json) => {

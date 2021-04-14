@@ -10,6 +10,7 @@ import CompanySearch from '../Containers/CompanySearch/CompanySearchContainer';
 import CompanySearchResult from '../Containers/CompanySearchResult/CompanySearchResult'
 import Homepage from '../Containers/Homepage/Homepage';
 import Navbar from '../Containers/Navbar/Navbar';
+import ResetPassword from '../Containers/ResetPassword/ResetPassword';
 
 class App extends PureComponent{
 
@@ -19,6 +20,7 @@ class App extends PureComponent{
 				<Navbar/>
 				<Switch>
 					<Route exact path="/" component={Homepage} />
+					<Route exact path="/resetPassword" component={ResetPassword} />
 					<Route path="/" component={Authentication} />
 				</Switch>
 			</div>	
@@ -34,7 +36,6 @@ class App extends PureComponent{
 					<Route exact path="/companysearch" component={CompanySearch} />
 					<Route exact path="/myprofile" component={MyProfile} />
 					<Route exact path="/searchresult" component={CompanySearchResult}></Route>
-					<Route exact path="/auth" component={Authentication}></Route>
 					<Route path="/" component={Homepage} />
 				</Switch>	
 			</div>
