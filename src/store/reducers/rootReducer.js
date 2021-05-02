@@ -4,11 +4,13 @@ import Company from './Company';
 import requestReducer from './requestReducer'; 
 import userReducer from './UserSearchResult';
 import Search from './SearchReducer';
+import StatsReducer from './StatsReducer';
 
 export default combineReducers({
 	User,
 	requestReducer,
 	Company,
 	userReducer,
-	Search
+	Search,
+	StatsReducer
 });
