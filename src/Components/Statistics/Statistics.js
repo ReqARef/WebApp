@@ -29,6 +29,7 @@ class Stats extends PureComponent{
 						['Rejected Request', refStats.rejectedRequests]
 						]}
 						options={{
+							backgroundColor: colors.white,
 							legend: 'none',
 							chartArea: {
 								left: '10px',
@@ -42,15 +43,22 @@ class Stats extends PureComponent{
 				)
 			}
 		}
+
+		const renderNoStats = () => {
+			return (
+				<div style={{color: colors.dark}}>Nothing to display</div>
+			)
+		}
+
 		return (
 			<div style={{
 				borderRadius,
-				backgroundColor : 'white',
+				backgroundColor : colors.white,
 				textAlign : 'center',
 				paddingBottom: '15px'
 			}}>
-				<h2>Request Statistics</h2>
-				{userStats}
+				<h2 style={{color: colors.dark}}>Request Statistics</h2>
+				{userStats != null ? userStats : renderNoStats()}
 			</div>
 		)
 	}

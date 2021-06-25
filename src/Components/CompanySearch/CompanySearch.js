@@ -94,6 +94,8 @@ class CompanySearch extends PureComponent {
 	}
 
 	renderSearchButton = () => {
+		const {selectedOption} = this.state;
+		const backgroundColor = selectedOption ? colors.dark : 'rgba(50, 50, 50, 0.75)';
 		return (
 			<div style={{width: '100%', display: 'flex', flexDirection: 'row', 
 				justifyContent: 'center', alignItems: 'center'}}>
@@ -102,7 +104,8 @@ class CompanySearch extends PureComponent {
 					value="Search"
 					onClick={() => this.onSearchClickHandler()}
 					className={styles.submitButton} 
-					style={{color: colors.white}}/>	
+					style={{color: colors.white, backgroundColor}}
+					disabled={!selectedOption}/>	
 			</div>
 		)
 	}
