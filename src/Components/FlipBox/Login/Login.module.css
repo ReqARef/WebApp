@@ -84,6 +84,7 @@
 	font-size: larger;
 	margin-bottom: 10px;
 	display: inline-block;
+	cursor: pointer;
 }
 .buttonTemp{
 	visibility: hidden;
