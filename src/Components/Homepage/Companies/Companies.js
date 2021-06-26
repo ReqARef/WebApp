@@ -21,6 +21,7 @@ export default class Companies extends PureComponent {
 			</div>
 		)
 	}
+
 	render() {
 		return(
 			<div className={styles.container} style={{backgroundColor: colors.background}}>

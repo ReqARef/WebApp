@@ -1,9 +1,9 @@
 const styles = {
-	borderRadius : "10px"
+	borderRadius: '10px'
 }
 
-export default styles;
-const borderRadius = 15;
+export default styles
+const borderRadius = 15
 export {
 	borderRadius
-};
+}

@@ -1,14 +1,14 @@
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from 'react'
 import RequestBox from '../../Components/RequestBox/RequestBox'
 import colors from '../../utils/colors'
 
-class RequestPage extends PureComponent{	
-	render(){
-		return(
+class RequestPage extends PureComponent {
+	render () {
+		return (
 			<div style={{
-				backgroundColor : colors.background,
-				height: "auto",
-				paddingTop : "100px"
+				backgroundColor: colors.background,
+				height: 'auto',
+				paddingTop: '100px'
 			}}>
 				<RequestBox/>
 			</div>
@@ -16,4 +16,4 @@ class RequestPage extends PureComponent{
 	}
 }
 
-export default RequestPage;
+export default RequestPage

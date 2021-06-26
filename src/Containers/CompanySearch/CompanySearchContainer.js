@@ -1,15 +1,15 @@
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from 'react'
 // import styles from './CompanySearch.module.css'
-import colors from '../../utils/colors';
-import CompanySearch from '../../Components/CompanySearch/CompanySearch';
+import colors from '../../utils/colors'
+import CompanySearch from '../../Components/CompanySearch/CompanySearch'
 
 class CompanySearchContainer extends PureComponent {
-	render(){
+	render () {
 		return (
-			<div style={{backgroundColor: colors.background}}>
+			<div style={{ backgroundColor: colors.background }}>
 				<CompanySearch/>
 			</div>
-		);
+		)
 	}
 };
-export default CompanySearchContainer;
+export default CompanySearchContainer

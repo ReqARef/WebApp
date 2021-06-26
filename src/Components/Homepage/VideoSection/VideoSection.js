@@ -1,11 +1,9 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent } from 'react'
 import styles from './VideoSection.module.css'
 
-
 export default class VideoSection extends PureComponent {
-
-	render() {
-		return(
+	render () {
+		return (
 			<div className={styles.heroContainer}>
 				<video src={this.props.src} autoPlay loop muted />
 				<h1>ReqARef</h1>

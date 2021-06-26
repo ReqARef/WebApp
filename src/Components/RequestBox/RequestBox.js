@@ -36,10 +36,11 @@ class RequestBox extends Component {
 			)
 		})
 	}
+
 	render(){
         const {authToken} = this.props;
         const {modalEmail, showModal} = this.state;
-		let requests = this.getRequestData();
+		const requests = this.getRequestData();
 		return(
             <div>
                 <RefereeModal token={authToken} modalEmail={modalEmail} showModal={showModal}

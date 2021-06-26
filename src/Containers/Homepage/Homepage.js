@@ -1,15 +1,14 @@
-import React, { PureComponent } from 'react';
-import VideoSection from '../../Components/Homepage/VideoSection/VideoSection';
-import AboutUs from '../../Components/Homepage/AboutUs/AboutUs';
-import Companies from '../../Components/Homepage/Companies/Companies';
+import React, { PureComponent } from 'react'
+import VideoSection from '../../Components/Homepage/VideoSection/VideoSection'
+import AboutUs from '../../Components/Homepage/AboutUs/AboutUs'
+import Companies from '../../Components/Homepage/Companies/Companies'
 // import colors from '../../utils/colors'
 // import styles from './Homepage.module.css'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 
 class CompanySearchResult extends PureComponent {
-
-	render() {
-		return(
+	render () {
+		return (
 			<div>
 				<VideoSection src="/videos/video-1.mp4"/>
 				<Companies />
@@ -21,17 +20,17 @@ class CompanySearchResult extends PureComponent {
 
 const mapStateToProps = state => {
 	return {
-		
-	};
-};
 
-function mapDispatchToProps(dispatch) {
+	}
+}
+
+function mapDispatchToProps (dispatch) {
 	return {
-		
-	};
+
+	}
 }
 
 export default connect(
 	mapStateToProps,
-	mapDispatchToProps,
-)(CompanySearchResult);
+	mapDispatchToProps
+)(CompanySearchResult)

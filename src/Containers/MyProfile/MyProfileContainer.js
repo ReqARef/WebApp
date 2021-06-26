@@ -1,15 +1,15 @@
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from 'react'
 // import styles from './MyProfile.module.css'
-import MyProfile from '../../Components/MyProfile/MyProfile';
-import colors from '../../utils/colors';
+import MyProfile from '../../Components/MyProfile/MyProfile'
+import colors from '../../utils/colors'
 
 class MyProfileContainer extends PureComponent {
-	render(){
+	render () {
 		return (
-			<div style={{backgroundColor: colors.background}}>
+			<div style={{ backgroundColor: colors.background }}>
 				<MyProfile/>
 			</div>
-		);
+		)
 	}
 };
-export default MyProfileContainer;
+export default MyProfileContainer

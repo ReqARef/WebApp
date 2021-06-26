@@ -1,11 +1,10 @@
-import React, {PureComponent} from 'react';
-import Navbar from '../../Components/Navbar/Navbar';
+import React, { PureComponent } from 'react'
+import Navbar from '../../Components/Navbar/Navbar'
 
 export default class NavbarContainer extends PureComponent {
-
-	render(){
+	render () {
 		return (
 			<Navbar/>
-		);
+		)
 	}
 };
