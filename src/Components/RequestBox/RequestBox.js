@@ -4,9 +4,17 @@ import inlineStyles from '../../utils/styleConstants';
 import colors from '../../utils/colors';
 import Request from './Request/Request'
 import { connect } from 'react-redux'
-import { getRequestAsync } from '../../store/actions/Request'
+import { getRequestListAsync } from '../../store/actions/Request'
+import RefereeModal from './RefereeModal/RefereeModal';
 
 class RequestBox extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            modalEmail: null,
+            showModal: false
+        }
+    }
 
 	componentDidMount() {
 		const {authToken, searchUsers} = this.props;
@@ -19,28 +27,38 @@ class RequestBox extends Component {
 				<Request
 					key={request.user.email}
 					userName = {request.user.first_name+" "+request.user.last_name}
+                    email={request.user.email}
 					designation = {request.user.company_name ? request.user.company_name : "Student"}
 					companyName = {request.user.job_role ? request.user.job_role : ""}
 					country = {request.user.country ? request.user.country : "India"}
+                    openModal = {(modalEmail) => {this.setState({modalEmail, showModal: true})}}
 				/>
 			)
 		})
 	}
 	render(){
+        const {authToken} = this.props;
+        const {modalEmail, showModal} = this.state;
 		let requests = this.getRequestData();
 		return(
-			<div className={styles.RequestBox} style={{
-				borderRadius : inlineStyles.borderRadius,
-				backgroundColor : colors.background,
-				margin : "auto",
-				paddingLeft : "70px",
-				paddingTop : "30px",
-				color : colors.dark,
-				paddingBottom : "70px"
+            <div>
+                <RefereeModal token={authToken} modalEmail={modalEmail} showModal={showModal}
+                closeModalCallback={() => {this.setState({showModal: false, modalEmail: null})}}/>
+                <div className={styles.RequestBox} style={{
+                    borderRadius : inlineStyles.borderRadius,
+                    backgroundColor : colors.background,
+                    margin : "auto",
+                    color : colors.dark,
+                    paddingBottom : "70px",
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center'
 				}}>
 				<h1>Requests</h1>
 				{requests}
 			</div>
+            </div>
+			
 		)
 	}
 }
@@ -55,7 +73,7 @@ const mapStateToProps = state => {
 function mapDispatchToProps(dispatch) {
 	return {
 		searchUsers: (token) => {
-			return dispatch(getRequestAsync(token))
+			return dispatch(getRequestListAsync(token))
 		}
 	};
 }

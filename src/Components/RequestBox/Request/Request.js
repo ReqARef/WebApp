@@ -16,8 +16,7 @@ const request = (props) => {
 		>
             <div style={{display: 'flex', flex: 1}}>
                 <img src="https://png.pngtree.com/png-clipart/20190520/original/pngtree-business-male-icon-vector-png-image_4187852.jpg" alt="user"
-                    className={style.UserImage}
-                ></img>
+                    className={style.UserImage} onClick={() => {props.openModal(props.email)}} />
                 <div className={style.UserData}>
                     <h3 className={style.userDataPara}>{props.userName}</h3>
                     <p className={style.userDataPara}>{props.designation + " "+props.companyName}</p>

@@ -8,8 +8,8 @@ import Loader from '../../Loader/Loader'
 import { withRouter } from 'react-router-dom'
 
 class Login extends PureComponent {
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 		this.state = {
 			email: '',
 			password: ''

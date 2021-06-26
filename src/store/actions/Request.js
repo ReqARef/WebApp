@@ -36,9 +36,9 @@ export function makeRequestAsync(jobId, jobUrl, comments, requestTo, companyName
 		const body = {jobId, jobUrl, comments, requestTo, companyName};
 		return postRequest('request', resolve, reject, body, headers, dispatch, true)
 	};
-  }
+}
 
-export function getRequestAsync(token){
+export function getRequestListAsync(token){
 	const auth = 'Bearer '.concat(token);
 	const headers = {'Authorization': auth}
 	return function(dispatch) {

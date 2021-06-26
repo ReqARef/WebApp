@@ -1,14 +1,14 @@
 import {server} from './constants';
 import {setAuthToken, logout} from '../store/actions/User';
 
-function checkForGeneralErrors(status, dispatch) {
+export function checkForGeneralErrors(status, dispatch) {
 	if(status === 401) {
 		dispatch(logout())
 	}
 	return null;
 }
 
-function updateAuthToken(json, dispatch) {
+export function updateAuthToken(json, dispatch) {
 	if(json && json['status'] && json['authToken'])
 		dispatch(setAuthToken(json['authToken']));
 }
