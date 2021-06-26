@@ -5,8 +5,8 @@ import EmailAndOtp from './EmailAndOtp/EmailAndOtp'
 import Password from './Password/Password'
 
 class ResetPassword extends PureComponent{
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		  this.state = {
 		  isFlipped: false,
 		  email: ''

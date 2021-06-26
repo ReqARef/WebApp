@@ -29,7 +29,7 @@ class Result extends PureComponent{
 						backgroundColor : colors.dark,
 						borderRadius : inlineStyles.borderRadius
 					}}
-					onClick={() => this.props.showModal(this.props.email)}
+					onClick={() => this.props.showModal(this.props.resultEmail)}
 				>Request</div>
 			</div>
 			)

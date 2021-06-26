@@ -5,8 +5,8 @@ import Login from './Login/Login'
 import SignUp from './Signup/Signup'
 
 class FlipBox extends PureComponent{
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		  this.state = {
 		  isFlipped: false
 		};

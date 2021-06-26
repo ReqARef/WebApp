@@ -4,7 +4,7 @@ import Aux from '../Hoc/Auxiliary';
 import { connect } from 'react-redux';
 import Authentication from '../Containers/Authentication/Authentication'
 import RequestPage from '../Containers/RequestPage/RequestPage'
-import { PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import MyProfile from '../Containers/MyProfile/MyProfileContainer';
 import CompanySearch from '../Containers/CompanySearch/CompanySearchContainer';
 import CompanySearchResult from '../Containers/CompanySearchResult/CompanySearchResult'

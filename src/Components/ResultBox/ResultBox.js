@@ -26,7 +26,7 @@ class ResultBox extends PureComponent {
 					designation={result.designation || "Designation unknown"}
 					company={result.company}	
 					click={this.submitButtonHandler}
-					email={result.email}
+					resultEmail={result.email}
 				/>
 			)			
 		});

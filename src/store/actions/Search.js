@@ -26,7 +26,7 @@ export function getUsersOfCompanySearchList(token, companyName) {
 		const reject = (e) => {
 			return dispatch(unshowLoader());
 		}
-		return getRequest(('/search/users/' + companyName), resolve, reject, {}, headers, dispatch, true)
+		return getRequest(('/search/users/company/' + companyName), resolve, reject, headers, dispatch, true)
 	};
   }
 
