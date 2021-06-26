@@ -1,56 +1,55 @@
-import {postRequest} from '../../utils/apiHelpers';
-import {getRequest} from '../../utils/apiHelpers';
+import { postRequest, getRequest } from '../../utils/apiHelpers'
 
-export function logout() {
+export function logout () {
 	return {
-	  type: 'LOGOUT',
-	};
+		type: 'LOGOUT'
+	}
 }
 
-export function sendRequest() {
+export function sendRequest () {
 	return {
 		type: 'SENDREQUEST'
-	};
+	}
 }
 
-export function getRequests(payload) {
+export function getRequests (payload) {
 	return {
-		type: 'GETREQUEST', 
-		request : payload.requests
-	};
+		type: 'GETREQUEST',
+		request: payload.requests
+	}
 }
 
-export function makeRequestAsync(jobId, jobUrl, comments, requestTo, companyName,token) {
-	const auth = 'Bearer '.concat(token);
-	const headers = {'Authorization': auth}
-	return function(dispatch) {
-		const resolve = (json) => {
-		  if (!json.status) {
-			throw new Error(json.error);
-		  }
-		  return dispatch(sendRequest());
-		}
-		const reject = (e) => {
-			return dispatch(logout());
-		}
-		const body = {jobId, jobUrl, comments, requestTo, companyName};
-		return postRequest('request', resolve, reject, body, headers, dispatch, true)
-	};
-}
-
-export function getRequestListAsync(token){
-	const auth = 'Bearer '.concat(token);
-	const headers = {'Authorization': auth}
-	return function(dispatch) {
+export function makeRequestAsync (jobId, jobUrl, comments, requestTo, companyName, token) {
+	const auth = 'Bearer '.concat(token)
+	const headers = { Authorization: auth }
+	return function (dispatch) {
 		const resolve = (json) => {
 			if (!json.status) {
-			throw new Error(json.error);
+				throw new Error(json.error)
 			}
-			return dispatch(getRequests(json));
+			return dispatch(sendRequest())
 		}
 		const reject = (e) => {
-			return dispatch(logout());
+			return dispatch(logout())
 		}
-		return getRequest('/request', resolve, reject, headers, dispatch, true);
-	};
+		const body = { jobId, jobUrl, comments, requestTo, companyName }
+		return postRequest('request', resolve, reject, body, headers, dispatch, true)
+	}
+}
+
+export function getRequestListAsync (token) {
+	const auth = 'Bearer '.concat(token)
+	const headers = { Authorization: auth }
+	return function (dispatch) {
+		const resolve = (json) => {
+			if (!json.status) {
+				throw new Error(json.error)
+			}
+			return dispatch(getRequests(json))
+		}
+		const reject = (e) => {
+			return dispatch(logout())
+		}
+		return getRequest('/request', resolve, reject, headers, dispatch, true)
+	}
 }

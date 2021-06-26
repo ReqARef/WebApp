@@ -1,33 +1,33 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent } from 'react'
 import colors from '../../utils/colors'
 import styles from './CompanySearchResult.module.css'
 import ResultBox from '../../Components/ResultBox/ResultBox'
 import qs from 'qs'
-import { connect } from 'react-redux';
-import {getUsersOfCompanySearchList} from '../../store/actions/Search'
+import { connect } from 'react-redux'
+import { getUsersOfCompanySearchList } from '../../store/actions/Search'
 class CompanySearchResult extends PureComponent {
-	constructor(props) {
-		super(props);
-		const company_name = qs.parse(this.props.location.search , { ignoreQueryPrefix: true }).company_name;
+	constructor (props) {
+		super(props)
+		const companyName = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).company_name
 		this.state = {
-			companyName : company_name,
-			userList : []
+			companyName,
+			userList: []
 		}
 	}
 
-	componentDidMount() {
-		const {searchUsers, authToken} = this.props;
-		const {companyName} = this.state;
+	componentDidMount () {
+		const { searchUsers, authToken } = this.props
+		const { companyName } = this.state
 		searchUsers(authToken, companyName)
 	}
 
-	render() {
-		const {usersOfCompanySearch, usersOfCompanySearchDownloading: loading} = this.props;
-		const {companyName} = this.state;
-		return(
+	render () {
+		const { usersOfCompanySearch, usersOfCompanySearchDownloading: loading } = this.props
+		const { companyName } = this.state
+		return (
 			<div className={styles.CompanySearchResult} style={{
-				backgroundColor : colors.background
-			}}> 
+				backgroundColor: colors.background
+			}}>
 				{!loading && <ResultBox searchResult={usersOfCompanySearch} companyName={companyName}/>}
 			</div>
 		)
@@ -39,18 +39,18 @@ const mapStateToProps = state => {
 		authToken: state.User.authToken,
 		usersOfCompanySearch: state.Search.usersOfCompanySearch,
 		usersOfCompanySearchDownloading: state.Search.usersOfCompanySearchDownloading
-	};
-};
+	}
+}
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
 	return {
 		searchUsers: (token, company) => {
-			return dispatch(getUsersOfCompanySearchList(token, company));
+			return dispatch(getUsersOfCompanySearchList(token, company))
 		}
-	};
+	}
 }
 
 export default connect(
 	mapStateToProps,
-	mapDispatchToProps,
-)(CompanySearchResult);
+	mapDispatchToProps
+)(CompanySearchResult)

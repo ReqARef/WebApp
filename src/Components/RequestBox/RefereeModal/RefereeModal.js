@@ -1,121 +1,166 @@
-import React, { PureComponent} from 'react';
-import ReactModal from 'react-modal';
-import {getRequest} from '../../../utils/apiHelpers'
-import colors from '../../../utils/colors';
-import Loader from '../../Loader/Loader';
+import React, { PureComponent } from 'react'
+import ReactModal from 'react-modal'
+import { getRequest } from '../../../utils/apiHelpers'
+import colors from '../../../utils/colors'
+import Loader from '../../Loader/Loader'
 import './RefereeModal.css'
-import {connect} from 'react-redux'
-import {countryCodeToCountry} from '../../../utils/helperFunctions';
+import { connect } from 'react-redux'
+import { countryCodeToCountry } from '../../../utils/helperFunctions'
 
 class RefereeModal extends PureComponent {
     constructor(props) {
-		super(props);
-        const {showModal} = props;
+        super(props)
+        const { showModal } = props
         this.state = {
-		  showModal,
-          data: null
-		};
-        this.handleOpenModal = this.handleOpenModal.bind(this);
-        this.handleCloseModal = this.handleCloseModal.bind(this);
-	}
+            showModal,
+            data: null
+        }
+        this.handleOpenModal = this.handleOpenModal.bind(this)
+        this.handleCloseModal = this.handleCloseModal.bind(this)
+    }
 
     handleOpenModal = () => {
-        this.setState({ showModal: true });
+        this.setState({ showModal: true })
     }
-    
-    handleCloseModal () {
-        const {closeModalCallback} = this.props;
-        this.setState({ showModal: false, data: null });
+
+    handleCloseModal() {
+        const { closeModalCallback } = this.props
+        this.setState({ showModal: false, data: null })
         closeModalCallback()
     }
 
     loadData = () => {
-        const {token, dispatch, modalEmail} = this.props;
-        const auth = 'Bearer '.concat(token);
-        const headers = {'Authorization': auth}
+        const { token, dispatch, modalEmail } = this.props
+        const auth = 'Bearer '.concat(token)
+        const headers = { Authorization: auth }
 
         const resolve = (json) => {
             if (!json.status) {
-                this.setState({showLoader: false, data: null})
+                this.setState({ showLoader: false, data: null })
             }
-            this.setState({data: json.data})
+            this.setState({ data: json.data })
             console.log(JSON.stringify(json))
         }
         const reject = (e) => {
-            this.setState({showLoader: false, data: null})
+            this.setState({ showLoader: false, data: null })
         }
         const url = `/search/user/email/${modalEmail}`
-        console.log("URL: " + url)
+        console.log('URL: ' + url)
         getRequest(url, resolve, reject, headers, dispatch, true)
     }
 
     renderLoader = () => {
-        return (
-            <Loader height="50px" width="50px"/>
-        )
+        return <Loader height="50px" width="50px" />
     }
 
     renderImagePlaceholder = () => {
         return (
-            <div style={{height: '160px', width: '160px', borderRadius: '200px',backgroundColor: colors.dark}}/>
+            <div
+                style={{
+                    height: '160px',
+                    width: '160px',
+                    borderRadius: '200px',
+                    backgroundColor: colors.dark
+                }}
+            />
         )
     }
 
     renderNameAndCountry = () => {
-        const {data: {first_name, last_name, country}} = this.state;
-        if(!country) return null;
+        const {
+            data: { first_name: firstName, last_name: lastName, country }
+        } = this.state
+        if (!country) return null
         const countryName = countryCodeToCountry(country)
         return (
-            <div style={{display: 'flex', fontSize: '3vh', marginTop: '8px'}}>{first_name + ' ' + last_name + ', ' + countryName}</div>
+            <div style={{ display: 'flex', fontSize: '3vh', marginTop: '8px' }}>
+                {firstName + ' ' + lastName + ', ' + countryName}
+            </div>
         )
     }
 
     renderCompany = () => {
-        const {data: {company_name}} = this.state;
-        if(!company_name) return null;
-        const companyName = company_name.substring(0,1).toUpperCase() + company_name.substring(1);
+        let {
+            data: { company_name: companyName }
+        } = this.state
+        if (!companyName) return null
+        companyName =
+            companyName.substring(0, 1).toUpperCase() + companyName.substring(1)
         return (
-            <div style={{display: 'flex', fontSize: '3vh', marginTop: '8px'}}>{companyName}</div>
+            <div style={{ display: 'flex', fontSize: '3vh', marginTop: '8px' }}>
+                {companyName}
+            </div>
         )
     }
 
     renderExperience = () => {
-        const {data: {experience}} = this.state;
-        if(!experience) return null;
+        const {
+            data: { experience }
+        } = this.state
+        if (!experience) return null
         return (
-            <div style={{display: 'flex', fontSize: '3vh', marginTop: '8px'}}>{'Experience: ' + experience}</div>
+            <div style={{ display: 'flex', fontSize: '3vh', marginTop: '8px' }}>
+                {'Experience: ' + experience}
+            </div>
         )
     }
 
     renderCollege = () => {
-        const {data: {college}} = this.state;
-        if(!college) return null;
+        const {
+            data: { college }
+        } = this.state
+        if (!college) return null
         return (
-            <div style={{display: 'flex', fontSize: '3vh', marginTop: '8px'}}>{'College/University: ' + college}</div>
+            <div style={{ display: 'flex', fontSize: '3vh', marginTop: '8px' }}>
+                {'College/University: ' + college}
+            </div>
         )
     }
 
     renderBio = () => {
-        const {data: {bio}} = this.state;
-        if(!bio) return null;
+        const {
+            data: { bio }
+        } = this.state
+        if (!bio) return null
         return (
-            <div style={{display: 'flex', fontSize: '3vh', marginTop: '8px'}}>{'Bio: ' + bio}</div>
+            <div style={{ display: 'flex', fontSize: '3vh', marginTop: '8px' }}>
+                {'Bio: ' + bio}
+            </div>
         )
     }
 
     renderResumeLink = () => {
-        let {data: {resume}} = this.state;
+        let {
+            data: { resume }
+        } = this.state
         resume = 'https://www.google.co.in'
-        if(!resume) return null;
+        if (!resume) return null
         return (
             // eslint-disable-next-line react/jsx-no-target-blank
-            <a href={resume} target="_blank" style={{display: 'flex', fontSize: '3vh', marginTop: '8px', color: 'inherit'}}>{'Resume'}</a>
+            <a
+                href={resume}
+                target="_blank"
+                style={{
+                    display: 'flex',
+                    fontSize: '3vh',
+                    marginTop: '8px',
+                    color: 'inherit'
+                }}
+            >
+                {'Resume'}
+            </a>
         )
     }
 
     renderContent = () => {
         return (
-            <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+            <div
+                style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center'
+                }}
+            >
                 {this.renderImagePlaceholder()}
                 {this.renderNameAndCountry()}
                 {this.renderCompany()}
@@ -128,9 +173,9 @@ class RefereeModal extends PureComponent {
     }
 
     renderModal = () => {
-        const {data} = this.state;
+        const { data } = this.state
         return (
-            <ReactModal 
+            <ReactModal
                 isOpen={this.state.showModal}
                 contentLabel="Minimal Modal Example"
                 closeTimeoutMS={1000}
@@ -149,32 +194,30 @@ class RefereeModal extends PureComponent {
             >
                 {data == null && this.renderLoader()}
                 {data != null && this.renderContent()}
-                <button onClick={this.handleCloseModal} style={{marginTop: '32px'}}>Close</button>
+                <button
+                    onClick={this.handleCloseModal}
+                    style={{ marginTop: '32px' }}
+                >
+                    Close
+                </button>
             </ReactModal>
         )
     }
 
-	render(){
-        const {showModal} = this.props;
-        const {data} = this.state;
-        if(this.state.showModal !== showModal)
-            this.setState({showModal})
-        if(showModal && data == null) {
+    render() {
+        const { showModal } = this.props
+        const { data } = this.state
+        if (this.state.showModal !== showModal) this.setState({ showModal })
+        if (showModal && data == null) {
             console.log('calling api')
             this.loadData()
         }
-		return(
-			<div>
-                {showModal && this.renderModal()}
-            </div>
-		)
-	}
+        return <div>{showModal && this.renderModal()}</div>
+    }
 }
 
-const mapStateToProps = state => {
-	return {
-	};
-};
+const mapStateToProps = (state) => {
+    return {}
+}
 
-
-export default connect(mapStateToProps)(RefereeModal);
+export default connect(mapStateToProps)(RefereeModal)

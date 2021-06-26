@@ -1,14 +1,14 @@
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from 'react'
 import styles from './Authentication.module.css'
-import FlipBox from '../../Components/FlipBox/FlipBox';
+import FlipBox from '../../Components/FlipBox/FlipBox'
 
 class Authentication extends PureComponent {
-	render(){
+	render () {
 		return (
 			<div className ={styles.Authentication}>
 				<FlipBox />
 			</div>
-		);
+		)
 	}
 };
-export default Authentication;
+export default Authentication
