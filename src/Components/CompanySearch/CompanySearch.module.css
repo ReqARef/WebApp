@@ -1,46 +1,46 @@
 .mainContainer {
-	height: 100vh;
+    height: 100vh;
 }
 .containerHeader {
-	height: 10vh;
+    height: 10vh;
 }
 .searchHeading {
-	margin-top: 8vh;
-	font-size: 6vh;
+    margin-top: 10vh;
+    font-size: 6vh;
 }
 .searchBar {
-	width: 50%;
-	margin-top: 5vh;
-	color: rgba(50, 50, 50);
-	border: 0;
+    width: 50%;
+    margin-top: 5vh;
+    color: rgba(50, 50, 50);
+    border: 0;
     box-shadow: none;
 }
 
 .submitButton {
-	width: 10%;
-	padding: 5px 0px;
-	border: 1px solid rgba(52, 63, 69, .3);
-	border-radius: 7px;
-	margin-bottom: 20px;
-	font-size: 20px;
-	margin-top: 5vh;
-	box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.75);
-	text-align: center;
-	/* background-color: rgba(50, 50, 50); */
+    width: 10%;
+    padding: 5px 0px;
+    border: 1px solid rgba(52, 63, 69, 0.3);
+    border-radius: 7px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    margin-top: 5vh;
+    box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.75);
+    text-align: center;
+    /* background-color: rgba(50, 50, 50); */
 }
 
 .submitButton:active {
-	background-color: lightslategray;
+    background-color: lightslategray;
 }
 
-@media (max-width : 600px){
-	.searchHeading {
-		margin-top: 6vh;
-		font-size: 3.3vh;
-		text-align: center;
-	}
-	.submitButton {
-		width: 20%;
-		font-size: 2vh;
-	}
+@media (max-width: 600px) {
+    .searchHeading {
+        margin-top: 10vh;
+        font-size: 3.3vh;
+        text-align: center;
+    }
+    .submitButton {
+        width: 20%;
+        font-size: 2vh;
+    }
 }
