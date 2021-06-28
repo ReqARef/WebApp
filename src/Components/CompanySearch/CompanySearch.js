@@ -8,7 +8,8 @@ import { withRouter } from 'react-router-dom'
 
 class CompanySearch extends PureComponent {
 	state = {
-		selectedOption: null
+		selectedOption: null,
+		showLoader: false
 	};
 
 	componentDidMount() {
@@ -84,7 +85,7 @@ class CompanySearch extends PureComponent {
 	}
 
 	onSearchClickHandler = () => {
-		
+		this.setState({showLoader : true});
 		if(!this.props.companyListDownloading){
 			this.props.history.push({
 				pathname : '/searchresult',
@@ -101,7 +102,7 @@ class CompanySearch extends PureComponent {
 				justifyContent: 'center', alignItems: 'center'}}>
 				<input 
 					type="submit"
-					value="Search"
+					value={this.state.showLoader ? "Searching..." : "Search"}
 					onClick={() => this.onSearchClickHandler()}
 					className={styles.submitButton} 
 					style={{color: colors.white, backgroundColor}}

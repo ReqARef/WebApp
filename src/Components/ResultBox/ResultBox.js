@@ -40,7 +40,7 @@ class ResultBox extends PureComponent {
 		return (
 			<Aux>
 				<Modal show={this.state.showPopup} closeModal={this.togglePopup}>
-					<RequestForm companyName={this.props.companyName}/>
+					<RequestForm companyName={this.props.companyName} showModal={this.togglePopup}/>
 				</Modal>
 				<div className={styles.ResultBox}>
 					<h1>{companyName + " Employees"}</h1>
@@ -56,4 +56,5 @@ const mapDispatchToProps = dispatch => {
 		requestToSetter : (email) => dispatch({type : "SETREQUESTTO",email : email},)
 	}
 }
+
 export default connect(null,mapDispatchToProps)(ResultBox);
