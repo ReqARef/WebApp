@@ -1,13 +1,12 @@
 import React, { PureComponent } from 'react'
 import ReactModal from 'react-modal'
-import { getRequest } from '../../../utils/apiHelpers'
-import colors from '../../../utils/colors'
-import Loader from '../../Loader/Loader'
-import './RefereeModal.css'
-import { connect } from 'react-redux'
-import { countryCodeToCountry } from '../../../utils/helperFunctions'
+import { getRequest } from '../../utils/apiHelpers'
+import colors from '../../utils/colors'
+import Loader from '../Loader/Loader'
+import './UserInfoModal.css'
+import { countryCodeToCountry } from '../../utils/helperFunctions'
 
-class RefereeModal extends PureComponent {
+export default class UserInfoModal extends PureComponent {
     constructor(props) {
         super(props)
         const { showModal } = props
@@ -130,10 +129,9 @@ class RefereeModal extends PureComponent {
     }
 
     renderResumeLink = () => {
-        let {
+        const {
             data: { resume }
         } = this.state
-        resume = 'https://www.google.co.in'
         if (!resume) return null
         return (
             // eslint-disable-next-line react/jsx-no-target-blank
@@ -144,7 +142,8 @@ class RefereeModal extends PureComponent {
                     display: 'flex',
                     fontSize: '3vh',
                     marginTop: '8px',
-                    color: 'inherit'
+                    color: 'inherit',
+                    fontWeight: 'bolder'
                 }}
             >
                 {'Resume'}
@@ -192,14 +191,36 @@ class RefereeModal extends PureComponent {
                     }
                 }}
             >
+                <div
+                    style={{
+                        position: 'absolute',
+                        width: '100%',
+                        top: '0px',
+                        display: 'flex',
+                        flexDirection: 'row-reverse'
+                    }}
+                >
+                    <div
+                        onClick={this.handleCloseModal}
+                        style={{
+                            marginRight: '16px',
+                            marginTop: '16px',
+                            backgroundColor: colors.dark,
+                            color: colors.white,
+                            height: '32px',
+                            width: '32px',
+                            borderRadius: '32px',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}
+                    >
+                        X
+                    </div>
+                </div>
                 {data == null && this.renderLoader()}
                 {data != null && this.renderContent()}
-                <button
-                    onClick={this.handleCloseModal}
-                    style={{ marginTop: '32px' }}
-                >
-                    Close
-                </button>
             </ReactModal>
         )
     }
@@ -215,9 +236,3 @@ class RefereeModal extends PureComponent {
         return <div>{showModal && this.renderModal()}</div>
     }
 }
-
-const mapStateToProps = (state) => {
-    return {}
-}
-
-export default connect(mapStateToProps)(RefereeModal)

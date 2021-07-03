@@ -5,20 +5,32 @@ import colors from '../../utils/colors'
 import Request from './Request/Request'
 import { connect } from 'react-redux'
 import { getRequestListAsync } from '../../store/actions/Request'
-import RefereeModal from './RefereeModal/RefereeModal'
+import UserInfoModal from '../UserInfoModal/UserInfoModal'
+import Loader from '../Loader/Loader'
 
 class RequestBox extends Component {
     constructor(props) {
         super(props)
         this.state = {
             modalEmail: null,
-            showModal: false
+            showModal: false,
+            showLoader: true
         }
     }
 
     componentDidMount() {
         const { authToken, searchUsers } = this.props
-        searchUsers(authToken)
+        searchUsers(authToken, () => {
+            this.setState({ showLoader: false })
+        })
+    }
+
+    renderLoader = () => {
+        return (
+            <div style={{ marginTop: '30vh' }}>
+                <Loader height="50px" width="50px" />
+            </div>
+        )
     }
 
     getRequestData = () => {
@@ -52,11 +64,11 @@ class RequestBox extends Component {
 
     render() {
         const { authToken } = this.props
-        const { modalEmail, showModal } = this.state
+        const { modalEmail, showModal, showLoader } = this.state
         const requests = this.getRequestData()
         return (
             <div>
-                <RefereeModal
+                <UserInfoModal
                     token={authToken}
                     modalEmail={modalEmail}
                     showModal={showModal}
@@ -64,6 +76,14 @@ class RequestBox extends Component {
                         this.setState({ showModal: false, modalEmail: null })
                     }}
                 />
+                <div
+                    style={{
+                        width: '100%'
+                    }}
+                >
+                    <h1 style={{ marginLeft: '22.5vw' }}>Requests</h1>
+                </div>
+                {showLoader && this.renderLoader()}
                 <div
                     className={styles.RequestBox}
                     style={{
@@ -77,8 +97,7 @@ class RequestBox extends Component {
                         justifyContent: 'center'
                     }}
                 >
-                    <h1>Requests</h1>
-                    {requests}
+                    {!showLoader && requests}
                 </div>
             </div>
         )
@@ -98,8 +117,8 @@ const mapStateToProps = (state) => {
 
 function mapDispatchToProps(dispatch) {
     return {
-        searchUsers: (token) => {
-            return dispatch(getRequestListAsync(token))
+        searchUsers: (token, callback) => {
+            return dispatch(getRequestListAsync(token, callback))
         }
     }
 }
