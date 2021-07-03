@@ -76,6 +76,11 @@ class Settings extends PureComponent {
     }
 
     handleOnSaveClicked = () => {
+        const { user } = this.props
+        if (!user || !user.email_verified) {
+            alert('Please verify your email to continue using ReqARef')
+            return
+        }
         const {
             firstName,
             lastName,
@@ -370,7 +375,8 @@ class Settings extends PureComponent {
                     className={styles.submitButton}
                     style={{
                         backgroundColor: colors.dark,
-                        color: colors.white
+                        color: colors.white,
+                        cursor: 'pointer'
                     }}
                 />
             </div>
