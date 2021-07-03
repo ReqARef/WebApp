@@ -117,7 +117,14 @@ class CompanySearch extends PureComponent {
 		)
 	}
     onSearchClickHandler = () => {
+        const { isVerified } = this.props
+
         if (!this.props.companyListDownloading) {
+            if (!isVerified) {
+                alert('Please verify your email to continue using ReqARef')
+                return
+            }
+
             this.props.history.push({
                 pathname: '/searchresult',
                 search:
@@ -147,7 +154,11 @@ class CompanySearch extends PureComponent {
 const mapStateToProps = (state) => {
     return {
         ...state.Company,
-        authToken: state.User.authToken
+        authToken: state.User.authToken,
+        isVerified:
+            state.User && state.User.user
+                ? state.User.user.email_verified
+                : false
     }
 }
 
