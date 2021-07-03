@@ -5,8 +5,9 @@ import colors from '../../utils/colors'
 import Loader from '../Loader/Loader'
 import './UserInfoModal.css'
 import { countryCodeToCountry } from '../../utils/helperFunctions'
+import { connect } from 'react-redux'
 
-export default class UserInfoModal extends PureComponent {
+class UserInfoModal extends PureComponent {
     constructor(props) {
         super(props)
         const { showModal } = props
@@ -34,6 +35,7 @@ export default class UserInfoModal extends PureComponent {
         const headers = { Authorization: auth }
 
         const resolve = (json) => {
+            console.log('KANAV, ', JSON.stringify(json))
             if (!json.status) {
                 this.setState({ showLoader: false, data: null })
             }
@@ -236,3 +238,6 @@ export default class UserInfoModal extends PureComponent {
         return <div>{showModal && this.renderModal()}</div>
     }
 }
+
+// DONT REMOVE: Connect is used to get access to dispatch
+export default connect(null, null)(UserInfoModal)
