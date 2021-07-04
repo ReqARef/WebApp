@@ -1,99 +1,101 @@
 .Request {
-	margin-top: 10px;
-	height : 20vh;
-	width : 55vw;
-	overflow: auto;
+    margin-top: 10px;
+    height: 20vh;
+    width: 55vw;
+    overflow: auto;
 }
 
-.UserImage{
-	height : 150px;
-	float : left;
-	margin-left : 20px;
+.UserImage {
+    height: 150px;
+    float: left;
+    margin-left: 20px;
     cursor: pointer;
 }
 
-.UserData{
-	margin-left : 30px;
-	float : left;
+.UserData {
+    margin-left: 30px;
+    float: left;
 }
 
-.ButtonDiv{
-	float : right;
-	cursor: pointer;
-	margin-right : 30px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+.ButtonDiv {
+    float: right;
+    cursor: pointer;
+    margin-right: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.AcceptDiv{
-	height: 40px;
-	width: 130px;
-	margin: auto; 
-	text-align: center;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	color: white;
+.AcceptDiv {
+    height: 40px;
+    width: 130px;
+    margin: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    cursor: pointer;
 }
 
-.RejectDiv{
-	height: 40px;
-	width: 130px;
-	margin: auto;
+.RejectDiv {
+    height: 40px;
+    width: 130px;
+    margin: auto;
     margin-top: 10px;
-	text-align: center; 
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    cursor: pointer;
 }
 
-@media (max-width : 600px){
-	.Request{
-		margin-top: 10px;
-		height : 300px;
-		width : 200px;
-		overflow: auto;
-	}
+@media (max-width: 600px) {
+    .Request {
+        margin-top: 10px;
+        height: 300px;
+        width: 200px;
+        overflow: auto;
+    }
 
-	.UserData{
-		margin-left: 30px;
-		float: left;
-	}
+    .UserData {
+        margin-left: 30px;
+        float: left;
+    }
 
-	.UserImage{
-		height : 130px;
-		float : left;
-		margin-top : 8px;
-		margin-left : 35px;
-	}
+    .UserImage {
+        height: 130px;
+        float: left;
+        margin-top: 8px;
+        margin-left: 35px;
+    }
 
-	.ButtonDiv{
-		height : 10vh;
-		width : 10vw; 
-		float: left	;
-	}
+    .ButtonDiv {
+        height: 10vh;
+        width: 10vw;
+        float: left;
+    }
 
-	.RejectDiv{
-		height: 30px;
-		width: 80px;
-	}
+    .RejectDiv {
+        height: 30px;
+        width: 80px;
+    }
 
-	.AcceptDiv{
-		height: 30px;
-		width: 80px;
-	}
+    .AcceptDiv {
+        height: 30px;
+        width: 80px;
+    }
 
-	.userDataPara{
-		margin : 0;
-	}
+    .userDataPara {
+        margin: 0;
+    }
 
-	.userDataCountry{
-		margin : 0;
-		visibility: hidden;
-	}
+    .userDataCountry {
+        margin: 0;
+        visibility: hidden;
+    }
 }
