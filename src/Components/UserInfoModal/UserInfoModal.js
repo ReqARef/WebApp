@@ -178,6 +178,7 @@ class UserInfoModal extends PureComponent {
                 isOpen={this.state.showModal}
                 contentLabel="Minimal Modal Example"
                 closeTimeoutMS={1000}
+                ariaHideApp={false}
                 style={{
                     content: {
                         color: colors.dark,
@@ -230,7 +231,6 @@ class UserInfoModal extends PureComponent {
         const { data } = this.state
         if (this.state.showModal !== showModal) this.setState({ showModal })
         if (showModal && data == null) {
-            console.log('calling api')
             this.loadData()
         }
         return <div>{showModal && this.renderModal()}</div>
