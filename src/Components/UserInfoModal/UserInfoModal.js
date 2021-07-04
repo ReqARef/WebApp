@@ -35,18 +35,15 @@ class UserInfoModal extends PureComponent {
         const headers = { Authorization: auth }
 
         const resolve = (json) => {
-            console.log('KANAV, ', JSON.stringify(json))
             if (!json.status) {
                 this.setState({ showLoader: false, data: null })
             }
             this.setState({ data: json.data })
-            console.log(JSON.stringify(json))
         }
         const reject = (e) => {
             this.setState({ showLoader: false, data: null })
         }
         const url = `/search/user/email/${modalEmail}`
-        console.log('URL: ' + url)
         getRequest(url, resolve, reject, headers, dispatch, true)
     }
 
@@ -71,11 +68,12 @@ class UserInfoModal extends PureComponent {
         const {
             data: { first_name: firstName, last_name: lastName, country }
         } = this.state
-        if (!country) return null
-        const countryName = countryCodeToCountry(country)
+        if (!firstName) return null
+        let countryName = ''
+        if (country) countryName = ', ' + countryCodeToCountry(country)
         return (
             <div style={{ display: 'flex', fontSize: '3vh', marginTop: '8px' }}>
-                {firstName + ' ' + lastName + ', ' + countryName}
+                {firstName + ' ' + lastName + countryName}
             </div>
         )
     }
