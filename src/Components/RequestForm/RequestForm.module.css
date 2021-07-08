@@ -5,9 +5,10 @@
 	margin-bottom: 8px;
 	display: inline-block;
 	box-sizing: border-box;
-	border: none;
-	border-bottom: 1px solid rgba(52, 63, 69, .3);
+	border: 2px solid #343f45;
+	border-radius: 3px;
 	font-size: 1vw;
+	background-color: white;
 }
 .requestDiv{	
 	text-align: center;
@@ -20,5 +21,17 @@
 	color: white;
 	font-size: 25px;
 	padding-top: 13px;
+}
+
+.inputTextBox {
+	width: 60%;
+	height: 200px;
+	padding: 10px;
+	margin: 8px 0;
+	margin-bottom: 8px;
+	border: 2px solid #343f45;
+	border-radius: 3px;
+	font-size: 1vw;
+	text-align: justified;
 }
 

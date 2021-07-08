@@ -7,7 +7,6 @@ import colors from '../../utils/colors'
 
 class Stats extends PureComponent {
 	constructor (props) {
-		console.log('cons')
 		super(props)
 		const { getStats, authToken } = this.props
 		getStats(authToken)
