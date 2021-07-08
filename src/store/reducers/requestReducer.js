@@ -1,6 +1,8 @@
 const initialState = {
 	requestTo: '',
-	requests: []
+	requests: [],
+	showLoader: false,
+	showPopUp: false
 }
 
 const popupReducer = (state = initialState, action) => {
@@ -8,6 +10,7 @@ const popupReducer = (state = initialState, action) => {
 	case 'SETREQUESTTO':
 		return {
 			...state,
+			showPopUp: true,
 			requestTo: action.email
 		}
 	case 'SENDREQUEST':
@@ -16,6 +19,16 @@ const popupReducer = (state = initialState, action) => {
 		return {
 			...state,
 			requests: action.request
+		}
+	case 'SHOWREQUESTLOADER':
+		return {
+			...state,
+			showLoader: true
+		}
+	case 'HIDEREQUESTLOADER':
+		return {
+			...state,
+			showLoader: false
 		}
 	default:
 		return state

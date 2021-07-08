@@ -48,9 +48,10 @@ export function postRequest (path, resolve, reject, body, extraHeaders = {}, dis
 		'Content-Type': 'application/json',
 		...extraHeaders
 	}
+	console.log(headers);
 	extraHeaders = extraHeaders || {}
 	path = path[0] === '/' ? path.substring(1) : path
-
+	console.log(body);
 	return fetch(server.concat(`/${path}`), {
 		method: 'POST',
 		credentials: 'include',
