@@ -116,6 +116,7 @@ class CompanySearch extends PureComponent {
 			</div>
 		)
 	}
+    
     onSearchClickHandler = () => {
         const { isVerified } = this.props
 

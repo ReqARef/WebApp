@@ -44,7 +44,8 @@ const RequestForm = (props) => {
 		return (<div className={styles.requestButton}
 			style={{
 				backgroundColor : colors.dark,
-				borderRadius : inlineStyles.borderRadius
+				borderRadius : inlineStyles.borderRadius,
+				cursor: 'pointer'
 			}}
 			onClick = {(event) => onSubmitHandler(event)}
 		>{showLoader ? renderLoader() : "Submit"}</div>);
@@ -69,12 +70,12 @@ const RequestForm = (props) => {
 					type="text" 
 					placeholder="Job URL"></input>
 				<input 
-					className={styles.inputText}
+					className={styles.inputTextBox}
 					onChange={commentsHandler} 
 					value={comments}
 					style={{ backgroundColor: colors.white, color: colors.dark }} 
 					type="text" 
-					placeholder="Comments"></input>
+					placeholder="Why you are suitable for the job"></input>
 				{renderSubmitButton()}
 			</form>
 		</div>

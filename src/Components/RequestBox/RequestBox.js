@@ -37,7 +37,7 @@ class RequestBox extends Component {
         return (this.props.requests || []).map((request) => {
             return (
                 <Request
-                    key={request.user.email}
+                    key={request.id}
                     userName={
                         request.user.first_name + ' ' + request.user.last_name
                     }
@@ -57,6 +57,8 @@ class RequestBox extends Component {
                         this.setState({ modalEmail, showModal: true })
                     }}
                     isVerified={this.props.isVerified}
+                    requestId={request.id}
+                    token={this.props.authToken}
                 />
             )
         })
@@ -111,7 +113,7 @@ const mapStateToProps = (state) => {
         isVerified:
             state.User && state.User.user
                 ? state.User.user.email_verified
-                : false
+                : false,
     }
 }
 
