@@ -2,28 +2,24 @@ import React from 'react'
 import colors from '../../../utils/colors'
 import inlineStyles from '../../../utils/styleConstants'
 import style from './Request.module.css'
-import { handleRequestAsync } from '../../../store/actions/Request';
+import { handleRequestAsync } from '../../../store/actions/Request'
 import { useDispatch } from 'react-redux'
 
 const request = (props) => {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
     const { isVerified } = props
     const handleAcceptOnClick = () => {
         if (!isVerified) {
             alert('Please verify your email to continue using ReqARef')
-        }
-        else{
-            console.log("accept")
-            dispatch(handleRequestAsync(props.token,props.requestId,"accept"));
+        } else {
+            dispatch(handleRequestAsync(props.token, props.requestId, 'accept'))
         }
     }
     const handleRejectOnClick = () => {
         if (!isVerified) {
             alert('Please verify your email to continue using ReqARef')
-        }
-        else{
-            console.log('reject')
-            dispatch(handleRequestAsync(props.token,props.requestId,"reject"));
+        } else {
+            dispatch(handleRequestAsync(props.token, props.requestId, 'reject'))
         }
     }
 
@@ -62,7 +58,8 @@ const request = (props) => {
                     className={style.AcceptDiv}
                     style={{
                         backgroundColor: colors.dark,
-                        borderRadius: inlineStyles.borderRadius
+                        borderRadius: inlineStyles.borderRadius,
+                        cursor: 'pointer'
                     }}
                     onClick={handleAcceptOnClick}
                 >
@@ -71,7 +68,8 @@ const request = (props) => {
                 <div
                     style={{
                         backgroundColor: colors.background,
-                        borderRadius: inlineStyles.borderRadius
+                        borderRadius: inlineStyles.borderRadius,
+                        cursor: 'pointer'
                     }}
                     className={style.RejectDiv}
                     onClick={handleRejectOnClick}

@@ -7,10 +7,10 @@ import { getCompaniesList } from '../../store/actions/Company'
 import { withRouter } from 'react-router-dom'
 
 class CompanySearch extends PureComponent {
-	state = {
-		selectedOption: null,
-		showLoader: false
-	};
+    state = {
+        selectedOption: null,
+        showLoader: false
+    }
 
     componentDidMount() {
         const { authToken, downloadList, companyListDownloading } = this.props
@@ -100,23 +100,37 @@ class CompanySearch extends PureComponent {
         )
     }
 
-	renderSearchButton = () => {
-		const {selectedOption} = this.state;
-		const backgroundColor = selectedOption ? colors.dark : 'rgba(50, 50, 50, 0.75)';
-		return (
-			<div style={{width: '100%', display: 'flex', flexDirection: 'row', 
-				justifyContent: 'center', alignItems: 'center'}}>
-				<input 
-					type="submit"
-					value={this.state.showLoader ? "Searching..." : "Search"}
-					onClick={() => this.onSearchClickHandler()}
-					className={styles.submitButton} 
-					style={{color: colors.white, backgroundColor}}
-					disabled={!selectedOption}/>	
-			</div>
-		)
-	}
-    
+    renderSearchButton = () => {
+        const { selectedOption } = this.state
+        const backgroundColor = selectedOption
+            ? colors.dark
+            : 'rgba(50, 50, 50, 0.75)'
+        return (
+            <div
+                style={{
+                    width: '100%',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}
+            >
+                <input
+                    type="submit"
+                    value={this.state.showLoader ? 'Searching...' : 'Search'}
+                    onClick={() => this.onSearchClickHandler()}
+                    className={styles.submitButton}
+                    style={{
+                        color: colors.white,
+                        backgroundColor,
+                        cursor: 'pointer'
+                    }}
+                    disabled={!selectedOption}
+                />
+            </div>
+        )
+    }
+
     onSearchClickHandler = () => {
         const { isVerified } = this.props
 
