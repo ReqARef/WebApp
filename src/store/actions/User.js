@@ -209,6 +209,7 @@ export function verifyEmailOTP(token, OTP, callback, errorCallback) {
             if (!json.status) {
                 throw new Error(json.error)
             }
+            console.log(json.user.email_verified)
             callback()
             return dispatch(setUserData(json.user))
         }

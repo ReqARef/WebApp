@@ -54,7 +54,8 @@ class Signup extends PureComponent {
                 style={{
                     backgroundColor: colors.dark,
                     borderColor: colors.white,
-                    color: colors.white
+                    color: colors.white,
+                    cursor: 'pointer'
                 }}
             >
                 To Login
@@ -69,7 +70,8 @@ class Signup extends PureComponent {
                 className={styles.buttonTemp}
                 style={{
                     backgroundColor: colors.white,
-                    color: colors.dark
+                    color: colors.dark,
+                    cursor: 'pointer'
                 }}
             >
                 To Login
@@ -138,7 +140,11 @@ class Signup extends PureComponent {
             <div
                 onClick={this.handleSignup}
                 className={styles.submitButton}
-                style={{ backgroundColor: colors.dark, color: colors.white }}
+                style={{
+                    backgroundColor: colors.dark,
+                    color: colors.white,
+                    cursor: 'pointer'
+                }}
             >
                 {this.props.showLoader ? this.renderLoader() : 'Signup'}
             </div>
