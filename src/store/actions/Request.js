@@ -1,5 +1,5 @@
 import { postRequest, getRequest } from '../../utils/apiHelpers'
-import { unshowLoader } from './User';
+import { unshowLoader } from './User'
 
 export function logout() {
     return {
@@ -20,46 +20,54 @@ export function getRequests(payload) {
     }
 }
 
-export function showLoader(){
-	return {
-		type: 'SHOWREQUESTLOADER'
-	};
-};
+export function showLoader() {
+    return {
+        type: 'SHOWREQUESTLOADER'
+    }
+}
 
-export function hideLoader(){
-	return {
-		type: 'HIDEREQUESTLOADER'
-	};
-};
+export function hideLoader() {
+    return {
+        type: 'HIDEREQUESTLOADER'
+    }
+}
 
-export function handleRequest(){
-    return{
+export function handleRequest() {
+    return {
         type: 'HANDLEREQUEST'
     }
 }
 
-export function makeRequestAsync (jobId, jobUrl, comments, requestTo, companyName, token, showModal) {
-	const auth = 'Bearer '.concat(token)
-	const headers = { Authorization: auth }
-	return function (dispatch) {
-		dispatch(showLoader())
-		const resolve = (json) => {
-			if (!json.status) {
-				throw new Error(json.error)
-			}
-			dispatch(unshowLoader());
-			return dispatch(sendRequest())
-		}
-		const reject = (e) => {
-			dispatch(unshowLoader())
-			return dispatch(logout())
-		}
+export function makeRequestAsync(
+    jobId,
+    jobUrl,
+    comments,
+    requestTo,
+    companyName,
+    token,
+    showModal
+) {
+    const auth = 'Bearer '.concat(token)
+    const headers = { Authorization: auth }
+    return function (dispatch) {
+        dispatch(showLoader())
+        const resolve = (json) => {
+            if (!json.status) {
+                throw new Error(json.error)
+            }
+            dispatch(unshowLoader())
+            return dispatch(sendRequest())
+        }
+        const reject = (e) => {
+            dispatch(unshowLoader())
+            return dispatch(logout())
+        }
 
-		const body = { jobId, jobUrl, comments, requestTo, companyName }
-		postRequest('request', resolve, reject, body, headers, dispatch, true);
-		showModal(null);
-		return dispatch(hideLoader());
-	}
+        const body = { jobId, jobUrl, comments, requestTo, companyName }
+        postRequest('request', resolve, reject, body, headers, dispatch, true)
+        showModal(null)
+        return dispatch(hideLoader())
+    }
 }
 
 export function getRequestListAsync(token, callback) {
@@ -81,22 +89,29 @@ export function getRequestListAsync(token, callback) {
     }
 }
 
-export function handleRequestAsync(token,requestId,action){
+export function handleRequestAsync(token, requestId, action) {
     const auth = 'Bearer '.concat(token)
     const headers = { Authorization: auth }
     return function (dispatch) {
-        console.log("hello");
-		const resolve = (json) => {
-			if (!json.status) {
-				throw new Error(json.error)
-			}
-			return dispatch(handleRequest())
-		}
-		const reject = (e) => {
-			return dispatch(logout())
-		}
+        const resolve = (json) => {
+            if (!json.status) {
+                throw new Error(json.error)
+            }
+            return dispatch(handleRequest())
+        }
+        const reject = (e) => {
+            return dispatch(logout())
+        }
 
-		const body = { requestId, action}
-		return postRequest('handlerequest', resolve, reject, body, headers, dispatch, true);
-	}
-};
+        const body = { requestId, action }
+        return postRequest(
+            'handlerequest',
+            resolve,
+            reject,
+            body,
+            headers,
+            dispatch,
+            true
+        )
+    }
+}
