@@ -6,6 +6,7 @@ import Aux from '../../Hoc/Auxiliary'
 import { connect } from 'react-redux'
 import RequestForm from '../RequestForm/RequestForm'
 import UserInfoModal from '../UserInfoModal/UserInfoModal'
+import colors from '../../utils/colors'
 
 class ResultBox extends PureComponent {
     state = {
@@ -70,7 +71,7 @@ class ResultBox extends PureComponent {
                         width: '100%'
                     }}
                 >
-                    <h1 style={{ marginLeft: '27vw' }}>
+                    <h1 style={{ marginLeft: '25vw', color: colors.dark }}>
                         {companyName + ' Employees'}
                     </h1>
                 </div>

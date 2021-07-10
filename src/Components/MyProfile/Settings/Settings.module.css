@@ -1,112 +1,113 @@
 .containerMain {
-	padding: 2% 5%;
-	width: 50%;
-	margin: 1vw;
-	margin-right: 2vw;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin-bottom: 5%;
+    padding: 2% 5%;
+    width: 50%;
+    margin: 1vw;
+    margin-right: 2vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5%;
+    box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.4);
 }
 .headerContainer {
-	height: 10vh;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin-top: 5vh;
+    height: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5vh;
 }
 .headerText {
-	font-size: 2vw;
-	margin-top: 1vh;
-	font-weight: 700;
-	text-align: center
+    font-size: 2vw;
+    margin-top: 1vh;
+    font-weight: 700;
+    text-align: center;
 }
 .br {
-	height: 1.5px;
-	width: 70%;
-	background-color: rgba(50, 50, 50, 0.2);
+    height: 1.5px;
+    width: 70%;
+    background-color: rgba(50, 50, 50, 0.2);
 }
 .dualContainer {
-	margin-top: 3vh;
+    margin-top: 3vh;
 }
-.inputTextHeading{
-	font-size: 1.4vw;
-	margin-bottom: 1vh;
-	font-weight: 600;
-	width: fit-content;
+.inputTextHeading {
+    font-size: 1.4vw;
+    margin-bottom: 1vh;
+    font-weight: 600;
+    width: fit-content;
 }
 .inputText {
-	width: 85%;
-	padding: 10px 10px;
-	display: inline-block;
-	border: 1px solid rgba(52, 63, 69, .1);
-	font-size: 1.2vw;
-	box-shadow: 1px 1px 3px 0px rgba(50, 50, 50, 0.5);
+    width: 85%;
+    padding: 10px 10px;
+    display: inline-block;
+    border: 1px solid rgba(52, 63, 69, 0.1);
+    font-size: 1.2vw;
+    box-shadow: 1px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
 .bioContainer {
-	margin-top: 3vh;
+    margin-top: 3vh;
 }
 .inputTextBio {
-	width: 93%;
-	padding: 10px 10px;
-	border: 1px solid rgba(52, 63, 69, .1);
-	font-size: 1.2vw;
-	box-shadow: 1px 1px 3px 0px rgba(50, 50, 50, 0.5);
-	font-family: inherit;
+    width: 93%;
+    padding: 10px 10px;
+    border: 1px solid rgba(52, 63, 69, 0.1);
+    font-size: 1.2vw;
+    box-shadow: 1px 1px 3px 0px rgba(50, 50, 50, 0.5);
+    font-family: inherit;
 }
-textarea:focus{
-	outline: none;
+textarea:focus {
+    outline: none;
 }
-select:focus{
-	outline: none;
+select:focus {
+    outline: none;
 }
 .submitButton {
-	width: 20%;
-	padding: 5px 0px;
-	border: 1px solid rgba(52, 63, 69, .3);
-	border-radius: 7px;
-	margin-bottom: 20px;
-	font-size: 20px;
-	margin-top: 3vh;
-	box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.75);
-	text-align: center;
-	margin-top: 7%;
+    width: 20%;
+    padding: 5px 0px;
+    border: 1px solid rgba(52, 63, 69, 0.3);
+    border-radius: 7px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    margin-top: 3vh;
+    box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.75);
+    text-align: center;
+    margin-top: 7%;
 }
 
-@media (max-width : 600px){
-	.containerMain {
-		padding: 0px 10%;
-		width: 70%;
-		margin-bottom: 40%;
-	}
-	.headerContainer {
-		margin-top: 2vh;
-	}
-	.headerText {
-		font-size: 2.5vh;
-		margin-top: 1vh;
-		font-weight: 700;
-		text-align: center
-	}
-	.dualContainer {
-		margin-top: 1.5vh;
-	}
-	.inputTextHeading {
-		font-size: 1.7vh;
-	}
-	.inputText {
-		width: 75%;
-		font-size: 1.7vh;
-	}
-	.bioContainer {
-		margin-top: 2vh;
-	}
-	.inputTextBio {
-		width: 95%;
-		padding: 10px 10px;
-		border: 1px solid rgba(52, 63, 69, .1);
-		font-size: 1.7vh;
-		box-shadow: 1px 1px 3px 0px rgba(50, 50, 50, 0.5);
-		font-family: inherit;
-	}
+@media (max-width: 600px) {
+    .containerMain {
+        padding: 0px 10%;
+        width: 70%;
+        margin-bottom: 40%;
+    }
+    .headerContainer {
+        margin-top: 2vh;
+    }
+    .headerText {
+        font-size: 2.5vh;
+        margin-top: 1vh;
+        font-weight: 700;
+        text-align: center;
+    }
+    .dualContainer {
+        margin-top: 1.5vh;
+    }
+    .inputTextHeading {
+        font-size: 1.7vh;
+    }
+    .inputText {
+        width: 75%;
+        font-size: 1.7vh;
+    }
+    .bioContainer {
+        margin-top: 2vh;
+    }
+    .inputTextBio {
+        width: 95%;
+        padding: 10px 10px;
+        border: 1px solid rgba(52, 63, 69, 0.1);
+        font-size: 1.7vh;
+        box-shadow: 1px 1px 3px 0px rgba(50, 50, 50, 0.5);
+        font-family: inherit;
+    }
 }

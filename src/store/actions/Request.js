@@ -1,5 +1,4 @@
 import { postRequest, getRequest } from '../../utils/apiHelpers'
-import { unshowLoader } from './User'
 
 export function logout() {
     return {
@@ -45,28 +44,25 @@ export function makeRequestAsync(
     requestTo,
     companyName,
     token,
-    showModal
+    showLoader
 ) {
     const auth = 'Bearer '.concat(token)
     const headers = { Authorization: auth }
     return function (dispatch) {
-        dispatch(showLoader())
         const resolve = (json) => {
             if (!json.status) {
                 throw new Error(json.error)
             }
-            dispatch(unshowLoader())
+            showLoader(false)
             return dispatch(sendRequest())
         }
         const reject = (e) => {
-            dispatch(unshowLoader())
-            return dispatch(logout())
+            alert('Something went wrong')
+            showLoader(false)
         }
 
         const body = { jobId, jobUrl, comments, requestTo, companyName }
         postRequest('request', resolve, reject, body, headers, dispatch, true)
-        showModal(null)
-        return dispatch(hideLoader())
     }
 }
 
