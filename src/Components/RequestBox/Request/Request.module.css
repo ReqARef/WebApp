@@ -3,6 +3,7 @@
     height: 20vh;
     width: 55vw;
     overflow: auto;
+    box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.4);
 }
 
 .UserImage {
@@ -31,7 +32,7 @@
     height: 4vh;
     width: 8vw;
     border: 1px solid rgba(52, 63, 69, 0.3);
-    box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.75);
+    box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.4);
     margin: auto;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -40,7 +41,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* font-weight: 500; */
     font-size: large;
 }
 
@@ -48,7 +48,7 @@
     height: 4vh;
     width: 100%;
     border: 1px solid rgba(52, 63, 69, 0.3);
-    box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.75);
+    box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.4);
     margin: auto;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -57,7 +57,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: 500;
     font-size: large;
 }
 
