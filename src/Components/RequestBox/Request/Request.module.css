@@ -28,30 +28,37 @@
 }
 
 .AcceptDiv {
-    height: 40px;
-    width: 130px;
+    height: 4vh;
+    width: 8vw;
+    border: 1px solid rgba(52, 63, 69, 0.3);
+    box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.75);
     margin: auto;
-    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    display: inline-block;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: white;
-    cursor: pointer;
+    /* font-weight: 500; */
+    font-size: large;
 }
 
 .RejectDiv {
-    height: 40px;
-    width: 130px;
+    height: 4vh;
+    width: 100%;
+    border: 1px solid rgba(52, 63, 69, 0.3);
+    box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.75);
     margin: auto;
-    margin-top: 10px;
-    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    display: inline-block;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: white;
-    cursor: pointer;
+    font-weight: 500;
+    font-size: large;
 }
 
 @media (max-width: 600px) {
@@ -72,7 +79,6 @@
         float: left;
         margin-top: 8px;
         margin-left: 35px;
-        cursor: pointer;
     }
 
     .ButtonDiv {

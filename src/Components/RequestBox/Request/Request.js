@@ -52,12 +52,12 @@ const request = (props) => {
                     <p className={style.userDataCountry}>{props.country}</p>
                 </div>
             </div>
-
             <div className={style.ButtonDiv}>
                 <div
                     className={style.AcceptDiv}
                     style={{
                         backgroundColor: colors.dark,
+                        color: colors.white,
                         borderRadius: inlineStyles.borderRadius,
                         cursor: 'pointer'
                     }}
@@ -68,6 +68,7 @@ const request = (props) => {
                 <div
                     style={{
                         backgroundColor: colors.background,
+                        color: colors.dark,
                         borderRadius: inlineStyles.borderRadius,
                         cursor: 'pointer'
                     }}

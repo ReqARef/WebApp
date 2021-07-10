@@ -38,6 +38,7 @@ class Result extends PureComponent {
                     style={{
                         backgroundColor: colors.dark,
                         borderRadius: inlineStyles.borderRadius,
+                        color: colors.white,
                         cursor: 'pointer'
                     }}
                     onClick={() => this.props.showModal(this.props.resultEmail)}
