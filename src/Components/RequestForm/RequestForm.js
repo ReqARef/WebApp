@@ -4,7 +4,7 @@ import colors from '../../utils/colors'
 import inlineStyles from '../../utils/styleConstants'
 import { useDispatch, useSelector } from 'react-redux'
 import { makeRequestAsync } from '../../store/actions/Request'
-// import Loader from '../Loader/Loader'
+import Loader from '../Loader/Loader'
 
 const RequestForm = (props) => {
     const dispatch = useDispatch()
@@ -14,8 +14,15 @@ const RequestForm = (props) => {
     const [jobId, setJobId] = useState('')
     const [jobUrl, setJobUrl] = useState('')
     const [comments, setComments] = useState('')
+    const [showLoader, setLoader] = useState(false)
+    const buttonText = showLoader ? <Loader /> : 'Submit'
 
     function onSubmitHandler(event) {
+        if (!jobId || !jobUrl) {
+            alert('missing job id or job url')
+            return
+        }
+        setLoader(true)
         event.preventDefault()
         dispatch(
             makeRequestAsync(
@@ -24,7 +31,8 @@ const RequestForm = (props) => {
                 comments,
                 email,
                 props.companyName,
-                token
+                token,
+                setLoader
             )
         )
     }
@@ -88,7 +96,7 @@ const RequestForm = (props) => {
                     }}
                     onClick={(event) => onSubmitHandler(event)}
                 >
-                    Submit
+                    {buttonText}
                 </div>
             </form>
         </div>
