@@ -127,3 +127,38 @@ export function putRequest(
             return reject(e)
         })
 }
+
+export function formDataPostRequest(
+    path,
+    resolve,
+    reject,
+    body,
+    extraHeaders = {},
+    dispatch,
+    changeAuthToken = true
+) {
+    const headers = {
+        ...extraHeaders
+    }
+    extraHeaders = extraHeaders || {}
+    path = path[0] === '/' ? path.substring(1) : path
+    return fetch(server.concat(`/${path}`), {
+        method: 'POST',
+        credentials: 'include',
+        headers,
+        body
+    })
+        .then((response) => {
+            checkForGeneralErrors(response.status, dispatch)
+            return response.json()
+        })
+        .then((json) => {
+            if (changeAuthToken) {
+                updateAuthToken(json, dispatch)
+            }
+            return resolve(json)
+        })
+        .catch((e) => {
+            return reject(e)
+        })
+}

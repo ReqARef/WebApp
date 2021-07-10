@@ -5,6 +5,7 @@ import { Chart } from 'react-google-charts'
 import { borderRadius } from '../../utils/styleConstants'
 import style from './Statistics.module.css'
 import colors from '../../utils/colors'
+import Loader from '../Loader/Loader'
 
 class Stats extends PureComponent {
     constructor(props) {
@@ -49,6 +50,8 @@ class Stats extends PureComponent {
             return <div style={{ color: colors.dark }}>Nothing to display</div>
         }
 
+        const { showLoader } = this.props
+
         return (
             <div
                 className={style.containerMain}
@@ -59,8 +62,24 @@ class Stats extends PureComponent {
                     paddingBottom: '15px'
                 }}
             >
-                <h2 style={{ color: colors.dark }}>Request Statistics</h2>
-                {userStats != null ? userStats : renderNoStats()}
+                {showLoader && (
+                    <div
+                        style={{
+                            width: '100%',
+                            height: '100%',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}
+                    >
+                        <Loader />
+                    </div>
+                )}
+                {!showLoader && (
+                    <h2 style={{ color: colors.dark }}>Request Statistics</h2>
+                )}
+                {!showLoader &&
+                    (userStats != null ? userStats : renderNoStats())}
             </div>
         )
     }
@@ -69,7 +88,8 @@ class Stats extends PureComponent {
 const mapStateToProps = (state) => {
     return {
         authToken: state.User.authToken,
-        userStats: state.StatsReducer.userStats
+        userStats: state.StatsReducer.userStats,
+        showLoader: state.User.showLoader
     }
 }
 
