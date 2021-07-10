@@ -1,4 +1,9 @@
-import { getRequest, postRequest, putRequest } from '../../utils/apiHelpers'
+import {
+    getRequest,
+    postRequest,
+    putRequest,
+    formDataPostRequest
+} from '../../utils/apiHelpers'
 
 export function login(payLoad) {
     return {
@@ -116,7 +121,7 @@ export function updateUserData(token, body) {
             body,
             headers,
             dispatch,
-            true
+            false
         )
     }
 }
@@ -142,7 +147,7 @@ export function getUserData(token) {
             reject,
             headers,
             dispatch,
-            true
+            false
         )
     }
 }
@@ -225,7 +230,7 @@ export function verifyEmailOTP(token, OTP, callback, errorCallback) {
             body,
             headers,
             dispatch,
-            true
+            false
         )
     }
 }
@@ -255,7 +260,7 @@ export function verifyOTP(email, OTP, callback) {
             body,
             {},
             dispatch,
-            false
+            true
         )
     }
 }
@@ -283,6 +288,32 @@ export function changePassword(email, password) {
             reject,
             body,
             {},
+            dispatch,
+            false
+        )
+    }
+}
+
+export function changeAvatar(token, img) {
+    return function (dispatch) {
+        const auth = 'Bearer '.concat(token)
+        const headers = { Authorization: auth }
+        const resolve = (json) => {
+            if (!json.status) {
+                throw new Error(json.error)
+            }
+            return dispatch(setUserData(json.user))
+        }
+        const reject = (e) => {
+            alert(e)
+        }
+        const body = img
+        return formDataPostRequest(
+            '/user/avatar',
+            resolve,
+            reject,
+            body,
+            headers,
             dispatch,
             false
         )
