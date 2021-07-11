@@ -18,6 +18,16 @@ class RequestBox extends Component {
         }
     }
 
+    listUpdated = () => {
+        console.log('popup')
+        this.setState({ showLoader: true })
+    }
+
+    hideLoader = () => {
+        console.log('hide')
+        this.setState({ showLoader: false })
+    }
+
     componentDidMount() {
         const { authToken, searchUsers } = this.props
         searchUsers(authToken, () => {
@@ -35,32 +45,34 @@ class RequestBox extends Component {
 
     getRequestData = () => {
         return (this.props.requests || []).map((request) => {
-            return (
-                <Request
-                    key={request.id}
-                    userName={
-                        request.user.first_name + ' ' + request.user.last_name
-                    }
-                    email={request.user.email}
-                    designation={
-                        request.user.company_name
-                            ? request.user.company_name
-                            : 'Student'
-                    }
-                    companyName={
-                        request.user.job_role ? request.user.job_role : ''
-                    }
-                    country={
-                        request.user.country ? request.user.country : 'India'
-                    }
-                    openModal={(modalEmail) => {
-                        this.setState({ modalEmail, showModal: true })
-                    }}
-                    isVerified={this.props.isVerified}
-                    requestId={request.id}
-                    token={this.props.authToken}
-                />
-            )
+            if (request.referral_status === 0) {
+                return (
+                    <Request
+                        key={request.id}
+                        userName={
+                            request.user.first_name +
+                            ' ' +
+                            request.user.last_name
+                        }
+                        jobId={request.job_id ? request.job_id : ''}
+                        country={
+                            request.job_url ? request.job_url : 'url not found'
+                        }
+                        openModal={(modalEmail) => {
+                            this.setState({ modalEmail, showModal: true })
+                        }}
+                        isVerified={this.props.isVerified}
+                        requestId={request.id}
+                        token={this.props.authToken}
+                        updated={this.listUpdated}
+                        hideLoader={() => {
+                            console.log('hide')
+                            this.setState({ showLoader: false })
+                        }}
+                    />
+                )
+            }
+            return null
         })
     }
 
@@ -69,7 +81,11 @@ class RequestBox extends Component {
         const { modalEmail, showModal, showLoader } = this.state
         const requests = this.getRequestData()
         return (
-            <div>
+            <div
+                style={{
+                    height: '100vh'
+                }}
+            >
                 <UserInfoModal
                     token={authToken}
                     modalEmail={modalEmail}
@@ -98,7 +114,8 @@ class RequestBox extends Component {
                         paddingBottom: '70px',
                         display: 'flex',
                         flexDirection: 'column',
-                        justifyContent: 'center'
+                        justifyContent: 'center',
+                        overflow: 'auto'
                     }}
                 >
                     {!showLoader && requests}

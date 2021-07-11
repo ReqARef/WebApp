@@ -1,7 +1,8 @@
 .Request {
     margin-top: 10px;
-    height: 20vh;
-    width: 55vw;
+    width: 60vw;
+    float: left;
+    height: 30vh;
     overflow: auto;
     box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.4);
 }
@@ -63,7 +64,7 @@
 @media (max-width: 600px) {
     .Request {
         margin-top: 10px;
-        height: 300px;
+        height: 10px;
         width: 200px;
         overflow: auto;
     }
