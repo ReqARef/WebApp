@@ -294,7 +294,7 @@ export function changePassword(email, password) {
     }
 }
 
-export function changeAvatar(token, img) {
+export function changeAvatar(token, img, callback) {
     return function (dispatch) {
         const auth = 'Bearer '.concat(token)
         const headers = { Authorization: auth }
@@ -302,9 +302,11 @@ export function changeAvatar(token, img) {
             if (!json.status) {
                 throw new Error(json.error)
             }
+            callback()
             return dispatch(setUserData(json.user))
         }
         const reject = (e) => {
+            callback()
             alert(e)
         }
         const body = img

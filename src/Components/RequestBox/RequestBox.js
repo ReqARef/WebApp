@@ -58,6 +58,7 @@ class RequestBox extends Component {
                         country={
                             request.job_url ? request.job_url : 'url not found'
                         }
+                        email={request.user.email}
                         openModal={(modalEmail) => {
                             this.setState({ modalEmail, showModal: true })
                         }}
@@ -83,7 +84,7 @@ class RequestBox extends Component {
         return (
             <div
                 style={{
-                    height: '100vh'
+                    minHeight: '100vh'
                 }}
             >
                 <UserInfoModal

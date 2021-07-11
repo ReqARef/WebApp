@@ -10,6 +10,9 @@ import Loader from '../../Loader/Loader'
 class Profile extends PureComponent {
     constructor(props) {
         super(props)
+        this.state = {
+            showImageLoader: false
+        }
         this.hiddenFileInput = React.createRef()
     }
 
@@ -26,7 +29,10 @@ class Profile extends PureComponent {
             ) {
                 const formdata = new FormData()
                 formdata.append('avatar', img)
-                sendAvatarChangeReq(authToken, formdata)
+                this.setState({ showImageLoader: true })
+                sendAvatarChangeReq(authToken, formdata, () => {
+                    this.setState({ showImageLoader: false })
+                })
             } else {
                 alert('We only support png, jpg and jpeg formats')
             }
@@ -38,6 +44,8 @@ class Profile extends PureComponent {
     }
 
     renderEmptyImage = () => {
+        const { showImageLoader } = this.state
+        const text = showImageLoader ? <Loader /> : 'Upload Image'
         return (
             <div
                 className={styles.avatarContainer}
@@ -51,7 +59,7 @@ class Profile extends PureComponent {
                 }}
                 onClick={this.onImageClick}
             >
-                Upload Image
+                {text}
             </div>
         )
     }
@@ -231,8 +239,8 @@ const mapStateToProps = (state) => {
 
 function mapDispatchToProps(dispatch) {
     return {
-        sendAvatarChangeReq: (token, img) => {
-            return dispatch(changeAvatar(token, img))
+        sendAvatarChangeReq: (token, img, callback) => {
+            return dispatch(changeAvatar(token, img, callback))
         }
     }
 }

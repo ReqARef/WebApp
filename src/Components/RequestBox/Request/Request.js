@@ -7,8 +7,8 @@ import { useDispatch } from 'react-redux'
 
 const request = (props) => {
     const dispatch = useDispatch()
-
     const { isVerified } = props
+
     const handleAcceptOnClick = () => {
         if (!isVerified) {
             alert('Please verify your email to continue using ReqARef')
@@ -24,6 +24,7 @@ const request = (props) => {
             )
         }
     }
+
     const handleRejectOnClick = () => {
         if (!isVerified) {
             alert('Please verify your email to continue using ReqARef')
@@ -45,7 +46,7 @@ const request = (props) => {
             style={{
                 backgroundColor: colors.white,
                 borderRadius: inlineStyles.borderRadius,
-                border: '1px solid ' + colors.background,
+                border: '0px solid ' + 'orange',
                 display: 'flex',
                 alignItems: 'center',
                 flex: 1
