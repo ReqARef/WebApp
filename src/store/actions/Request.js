@@ -85,17 +85,20 @@ export function getRequestListAsync(token, callback) {
     }
 }
 
-export function handleRequestAsync(token, requestId, action) {
+export function handleRequestAsync(token, requestId, action, unshowLoader) {
     const auth = 'Bearer '.concat(token)
     const headers = { Authorization: auth }
     return function (dispatch) {
+        dispatch(showLoader(true));
         const resolve = (json) => {
             if (!json.status) {
                 throw new Error(json.error)
             }
-            return dispatch(handleRequest())
+            unshowLoader();
+            return dispatch(getRequests(json))
         }
         const reject = (e) => {
+            unshowLoader();
             return dispatch(logout())
         }
 

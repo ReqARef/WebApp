@@ -7,19 +7,36 @@ import { useDispatch } from 'react-redux'
 
 const request = (props) => {
     const dispatch = useDispatch()
+
     const { isVerified } = props
     const handleAcceptOnClick = () => {
         if (!isVerified) {
             alert('Please verify your email to continue using ReqARef')
         } else {
-            dispatch(handleRequestAsync(props.token, props.requestId, 'accept'))
+            props.updated()
+            dispatch(
+                handleRequestAsync(
+                    props.token,
+                    props.requestId,
+                    'accept',
+                    props.hideLoader
+                )
+            )
         }
     }
     const handleRejectOnClick = () => {
         if (!isVerified) {
             alert('Please verify your email to continue using ReqARef')
         } else {
-            dispatch(handleRequestAsync(props.token, props.requestId, 'reject'))
+            props.updated()
+            dispatch(
+                handleRequestAsync(
+                    props.token,
+                    props.requestId,
+                    'reject',
+                    props.hideLoader
+                )
+            )
         }
     }
 
@@ -46,10 +63,8 @@ const request = (props) => {
                 />
                 <div className={style.UserData}>
                     <h3 className={style.userDataPara}>{props.userName}</h3>
-                    <p className={style.userDataPara}>
-                        {props.designation + ' ' + props.companyName}
-                    </p>
-                    <p className={style.userDataCountry}>{props.country}</p>
+                    <p className={style.userDataPara}>{props.jobId}</p>
+                    <a className={style.userDataCountry}>{props.country}</a>
                 </div>
             </div>
             <div className={style.ButtonDiv}>
