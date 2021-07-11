@@ -71,7 +71,9 @@ class ResultBox extends PureComponent {
                         width: '100%'
                     }}
                 >
-                    <h1 style={{ marginLeft: '25vw', color: colors.dark }}>
+                    <h1
+                        style={{ marginLeft: '25vw', color: colors.fontcolor1 }}
+                    >
                         {companyName + ' Employees'}
                     </h1>
                 </div>

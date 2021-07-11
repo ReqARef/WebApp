@@ -58,6 +58,7 @@ class RequestBox extends Component {
                         country={
                             request.job_url ? request.job_url : 'url not found'
                         }
+                        email={request.user.email}
                         openModal={(modalEmail) => {
                             this.setState({ modalEmail, showModal: true })
                         }}
@@ -83,7 +84,7 @@ class RequestBox extends Component {
         return (
             <div
                 style={{
-                    height: '100vh'
+                    minHeight: '100vh'
                 }}
             >
                 <UserInfoModal
@@ -99,7 +100,12 @@ class RequestBox extends Component {
                         width: '100%'
                     }}
                 >
-                    <h1 style={{ marginLeft: '22.5vw', color: colors.dark }}>
+                    <h1
+                        style={{
+                            marginLeft: '22.5vw',
+                            color: colors.fontcolor1
+                        }}
+                    >
                         Requests
                     </h1>
                 </div>
@@ -110,7 +116,7 @@ class RequestBox extends Component {
                         borderRadius: inlineStyles.borderRadius,
                         backgroundColor: colors.background,
                         margin: 'auto',
-                        color: colors.dark,
+                        color: colors.fontcolor1,
                         paddingBottom: '70px',
                         display: 'flex',
                         flexDirection: 'column',

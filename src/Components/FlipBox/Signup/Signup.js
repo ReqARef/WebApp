@@ -54,7 +54,7 @@ class Signup extends PureComponent {
                 style={{
                     backgroundColor: colors.dark,
                     borderColor: colors.white,
-                    color: colors.white,
+                    color: colors.fontcolor2,
                     cursor: 'pointer'
                 }}
             >
@@ -70,7 +70,7 @@ class Signup extends PureComponent {
                 className={styles.buttonTemp}
                 style={{
                     backgroundColor: colors.white,
-                    color: colors.dark,
+                    color: colors.fontcolor1,
                     cursor: 'pointer'
                 }}
             >
@@ -83,7 +83,10 @@ class Signup extends PureComponent {
         return (
             <div
                 className={styles.containerLeft}
-                style={{ backgroundColor: colors.dark, color: colors.white }}
+                style={{
+                    backgroundColor: colors.dark,
+                    color: colors.fontcolor2
+                }}
             >
                 <h2 className={styles.leftHeading}>Welcome to ReqARef</h2>
                 <p className={styles.leftPara}>{authScreenParagraph}</p>
@@ -142,7 +145,7 @@ class Signup extends PureComponent {
                 className={styles.submitButton}
                 style={{
                     backgroundColor: colors.dark,
-                    color: colors.white,
+                    color: colors.fontcolor2,
                     cursor: 'pointer'
                 }}
             >
@@ -163,7 +166,7 @@ class Signup extends PureComponent {
                         onChange={this.handleFirstName}
                         style={{
                             backgroundColor: colors.white,
-                            color: colors.dark
+                            color: colors.fontcolor1
                         }}
                     />
                     <div
@@ -178,7 +181,7 @@ class Signup extends PureComponent {
                         onChange={this.handleLastName}
                         style={{
                             backgroundColor: colors.white,
-                            color: colors.dark
+                            color: colors.fontcolor1
                         }}
                     />
                 </div>
@@ -190,7 +193,7 @@ class Signup extends PureComponent {
                     onChange={this.handleemail}
                     style={{
                         backgroundColor: colors.white,
-                        color: colors.dark
+                        color: colors.fontcolor1
                     }}
                 />
                 <input
@@ -201,7 +204,7 @@ class Signup extends PureComponent {
                     onChange={this.handlePassword}
                     style={{
                         backgroundColor: colors.white,
-                        color: colors.dark
+                        color: colors.fontcolor1
                     }}
                 />
                 {this.renderRadioButtons()}
@@ -218,7 +221,7 @@ class Signup extends PureComponent {
             >
                 <h1
                     className={styles.rightHeader}
-                    style={{ color: colors.dark }}
+                    style={{ color: colors.fontcolor1 }}
                 >
                     Sign Up
                 </h1>

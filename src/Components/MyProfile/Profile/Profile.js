@@ -10,6 +10,9 @@ import Loader from '../../Loader/Loader'
 class Profile extends PureComponent {
     constructor(props) {
         super(props)
+        this.state = {
+            showImageLoader: false
+        }
         this.hiddenFileInput = React.createRef()
     }
 
@@ -26,7 +29,10 @@ class Profile extends PureComponent {
             ) {
                 const formdata = new FormData()
                 formdata.append('avatar', img)
-                sendAvatarChangeReq(authToken, formdata)
+                this.setState({ showImageLoader: true })
+                sendAvatarChangeReq(authToken, formdata, () => {
+                    this.setState({ showImageLoader: false })
+                })
             } else {
                 alert('We only support png, jpg and jpeg formats')
             }
@@ -38,6 +44,8 @@ class Profile extends PureComponent {
     }
 
     renderEmptyImage = () => {
+        const { showImageLoader } = this.state
+        const text = showImageLoader ? <Loader /> : 'Upload Image'
         return (
             <div
                 className={styles.avatarContainer}
@@ -47,11 +55,11 @@ class Profile extends PureComponent {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    color: colors.dark
+                    color: colors.fontcolor1
                 }}
                 onClick={this.onImageClick}
             >
-                Upload Image
+                {text}
             </div>
         )
     }
@@ -102,7 +110,10 @@ class Profile extends PureComponent {
         const name =
             firstName && lastName ? `${firstName} ${lastName}` : 'Name unknown'
         return (
-            <div className={styles.nameText} style={{ color: colors.dark }}>
+            <div
+                className={styles.nameText}
+                style={{ color: colors.fontcolor1 }}
+            >
                 {name}
             </div>
         )
@@ -115,7 +126,10 @@ class Profile extends PureComponent {
         if (!location) return null
 
         return (
-            <div className={styles.locationText} style={{ color: colors.dark }}>
+            <div
+                className={styles.locationText}
+                style={{ color: colors.fontcolor1 }}
+            >
                 {location}
             </div>
         )
@@ -136,7 +150,7 @@ class Profile extends PureComponent {
         return (
             <div
                 className={styles.designationText}
-                style={{ color: colors.dark }}
+                style={{ color: colors.fontcolor1 }}
             >
                 {designation}
             </div>
@@ -147,7 +161,10 @@ class Profile extends PureComponent {
         const { college } = this.props
         if (!college || !college.trim()) return null
         return (
-            <div className={styles.collegeText} style={{ color: colors.dark }}>
+            <div
+                className={styles.collegeText}
+                style={{ color: colors.fontcolor1 }}
+            >
                 {college}
             </div>
         )
@@ -157,7 +174,10 @@ class Profile extends PureComponent {
         const { experience } = this.props
         if (!experience || !experience.trim()) return null
         return (
-            <div className={styles.collegeText} style={{ color: colors.dark }}>
+            <div
+                className={styles.collegeText}
+                style={{ color: colors.fontcolor1 }}
+            >
                 {'Experience: ' + experience}
             </div>
         )
@@ -169,7 +189,7 @@ class Profile extends PureComponent {
         return (
             <div
                 className={styles.collegeText}
-                style={{ color: colors.dark, marginBottom: 30 }}
+                style={{ color: colors.fontcolor1, marginBottom: 30 }}
             >
                 {bio}
             </div>
@@ -219,8 +239,8 @@ const mapStateToProps = (state) => {
 
 function mapDispatchToProps(dispatch) {
     return {
-        sendAvatarChangeReq: (token, img) => {
-            return dispatch(changeAvatar(token, img))
+        sendAvatarChangeReq: (token, img, callback) => {
+            return dispatch(changeAvatar(token, img, callback))
         }
     }
 }

@@ -48,11 +48,20 @@ class CompanySearch extends PureComponent {
     renderSearchBar = () => {
         const { selectedOption } = this.state
         const boxStyles = {
+            option: (provided) => ({
+                ...provided,
+                color: colors.fontcolor1
+            }),
             control: (base) => ({
                 ...base,
                 border: 0,
                 // This line disable the blue border
-                boxShadow: 'none'
+                boxShadow: 'none',
+                color: colors.fontcolor1
+            }),
+            singleValue: (provided) => ({
+                ...provided,
+                color: colors.fontcolor1
             })
         }
         const theme = (theme) => ({
@@ -82,7 +91,7 @@ class CompanySearch extends PureComponent {
                 }}
             >
                 <div
-                    style={{ color: colors.dark }}
+                    style={{ color: colors.fontcolor1 }}
                     className={styles.searchHeading}
                 >
                     Referrals just a search away
@@ -121,7 +130,7 @@ class CompanySearch extends PureComponent {
                     onClick={() => this.onSearchClickHandler()}
                     className={styles.submitButton}
                     style={{
-                        color: colors.white,
+                        color: colors.fontcolor2,
                         backgroundColor,
                         cursor: 'pointer'
                     }}

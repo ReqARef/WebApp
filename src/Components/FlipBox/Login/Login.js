@@ -33,7 +33,7 @@ class Login extends PureComponent {
                     style={{
                         backgroundColor: colors.dark,
                         borderColor: colors.white,
-                        color: colors.white,
+                        color: colors.fontcolor2,
                         cursor: 'pointer'
                     }}
                 >
@@ -51,7 +51,7 @@ class Login extends PureComponent {
                     className={styles.buttonTemp}
                     style={{
                         backgroundColor: colors.white,
-                        color: colors.dark,
+                        color: colors.fontcolor1,
                         cursor: 'pointer'
                     }}
                 >
@@ -66,7 +66,10 @@ class Login extends PureComponent {
         return (
             <div
                 className={styles.containerLeft}
-                style={{ backgroundColor: colors.dark, color: colors.white }}
+                style={{
+                    backgroundColor: colors.dark,
+                    color: colors.fontcolor2
+                }}
             >
                 <h2 className={styles.leftHeading}>Welcome to ReqARef</h2>
                 <p className={styles.leftPara}>{authScreenParagraph}</p>
@@ -101,7 +104,10 @@ class Login extends PureComponent {
             <div
                 onClick={this.handleLogin}
                 className={styles.submitButton}
-                style={{ backgroundColor: colors.dark, color: colors.white }}
+                style={{
+                    backgroundColor: colors.dark,
+                    color: colors.fontcolor2
+                }}
             >
                 {this.props.showLoader ? this.renderLoader() : 'Login'}
             </div>
@@ -119,7 +125,7 @@ class Login extends PureComponent {
                     onChange={this.handleemail}
                     style={{
                         backgroundColor: colors.white,
-                        color: colors.dark
+                        color: colors.fontcolor1
                     }}
                 />
                 <input
@@ -130,7 +136,7 @@ class Login extends PureComponent {
                     onChange={this.handlePassword}
                     style={{
                         backgroundColor: colors.white,
-                        color: colors.dark
+                        color: colors.fontcolor1
                     }}
                 />
                 {this.renderSubmitButton()}
@@ -154,7 +160,7 @@ class Login extends PureComponent {
             >
                 <h1
                     className={styles.rightHeader}
-                    style={{ color: colors.dark }}
+                    style={{ color: colors.fontcolor1 }}
                 >
                     Log In
                 </h1>
