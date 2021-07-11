@@ -83,7 +83,9 @@ class RequestBox extends Component {
                         width: '100%'
                     }}
                 >
-                    <h1 style={{ marginLeft: '22.5vw' }}>Requests</h1>
+                    <h1 style={{ marginLeft: '22.5vw', color: colors.dark }}>
+                        Requests
+                    </h1>
                 </div>
                 {showLoader && this.renderLoader()}
                 <div
@@ -113,7 +115,7 @@ const mapStateToProps = (state) => {
         isVerified:
             state.User && state.User.user
                 ? state.User.user.email_verified
-                : false,
+                : false
     }
 }
 

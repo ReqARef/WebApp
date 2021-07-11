@@ -1,37 +1,44 @@
 .inputText {
-	width: 60%;
-	padding: 10px;
-	margin: 8px 0;
-	margin-bottom: 8px;
-	display: inline-block;
-	box-sizing: border-box;
-	border: 2px solid #343f45;
-	border-radius: 3px;
-	font-size: 1vw;
-	background-color: white;
+    width: 60%;
+    padding: 10px;
+    margin: 8px 0;
+    margin-bottom: 8px;
+    display: inline-block;
+    box-sizing: border-box;
+    border: 2px solid #343f45;
+    border-radius: 3px;
+    font-size: 1vw;
+    background-color: white;
 }
-.requestDiv{	
-	text-align: center;
+.requestDiv {
+    text-align: center;
 }
 
-.requestButton{
-	height : 4vh;
-	width : 10vw;
-	margin:auto;
-	color: white;
-	font-size: 25px;
-	padding-top: 13px;
+.requestButton {
+    height: 4vh;
+    width: 40%;
+    border: 1px solid rgba(52, 63, 69, 0.3);
+    margin-bottom: 20px;
+    font-size: 20px;
+    margin-top: 3vh;
+    box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.75);
+    text-align: center;
+    margin: auto;
+    padding-top: 9px;
+    font-size: larger;
+    margin-bottom: 10px;
+    display: inline-block;
+    margin-top: 1.5vh;
 }
 
 .inputTextBox {
-	width: 60%;
-	height: 200px;
-	padding: 10px;
-	margin: 8px 0;
-	margin-bottom: 8px;
-	border: 2px solid #343f45;
-	border-radius: 3px;
-	font-size: 1vw;
-	text-align: justified;
+    width: 60%;
+    height: 200px;
+    padding: 10px;
+    margin: 8px 0;
+    margin-bottom: 8px;
+    border: 2px solid #343f45;
+    border-radius: 3px;
+    font-size: 1vw;
+    text-align: justified;
 }
-

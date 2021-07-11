@@ -1,8 +1,8 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import styles from './RequestForm.module.css'
 import colors from '../../utils/colors'
 import inlineStyles from '../../utils/styleConstants'
-import { useDispatch , useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { makeRequestAsync } from '../../store/actions/Request'
 import Loader from '../Loader/Loader'
 const RequestForm = (props) => {
@@ -82,4 +82,4 @@ const RequestForm = (props) => {
 	)
 }
 
-export default RequestForm;
+export default RequestForm

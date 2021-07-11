@@ -2,16 +2,98 @@ import React, { PureComponent } from 'react'
 import styles from './Profile.module.css'
 import colors from '../../../utils/colors'
 import { borderRadius } from '../../../utils/styleConstants'
+import { changeAvatar } from '../../../store/actions/User'
 import { connect } from 'react-redux'
 import { countryCodeToCountry } from '../../../utils/helperFunctions'
+import Loader from '../../Loader/Loader'
 
 class Profile extends PureComponent {
-    renderAvatar = () => {
+    constructor(props) {
+        super(props)
+        this.hiddenFileInput = React.createRef()
+    }
+
+    onImageUpload = (event) => {
+        event.preventDefault()
+        if (event.target.files && event.target.files[0]) {
+            const { sendAvatarChangeReq, authToken } = this.props
+            const img = event.target.files[0]
+            const imageName = img.name
+            if (
+                imageName.includes('.png') ||
+                imageName.includes('.jpg') ||
+                imageName.includes('.jpeg')
+            ) {
+                const formdata = new FormData()
+                formdata.append('avatar', img)
+                sendAvatarChangeReq(authToken, formdata)
+            } else {
+                alert('We only support png, jpg and jpeg formats')
+            }
+        }
+    }
+
+    onImageClick = () => {
+        this.hiddenFileInput.current.click()
+    }
+
+    renderEmptyImage = () => {
         return (
             <div
                 className={styles.avatarContainer}
-                style={{ backgroundColor: colors.background }}
-            ></div>
+                style={{
+                    backgroundColor: colors.background,
+                    cursor: 'pointer',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    color: colors.dark
+                }}
+                onClick={this.onImageClick}
+            >
+                Upload Image
+            </div>
+        )
+    }
+
+    renderAvatar = (img) => {
+        return (
+            <div>
+                <img
+                    className={styles.avatarContainer}
+                    src={`data:image/png;base64,${img}`}
+                    alt="Profile Picture"
+                    style={{ cursor: 'pointer' }}
+                    onClick={this.onImageClick}
+                />
+            </div>
+        )
+    }
+
+    renderImageView = () => {
+        const { avatar } = this.props
+        const img =
+            avatar &&
+            btoa(
+                new Uint8Array(avatar.data).reduce(function (data, byte) {
+                    return data + String.fromCharCode(byte)
+                }, '')
+            )
+
+        return (
+            <div>
+                {!avatar && this.renderEmptyImage()}
+                {avatar && this.renderAvatar(img)}
+                <form>
+                    <input
+                        type="file"
+                        ref={this.hiddenFileInput}
+                        onChange={this.onImageUpload}
+                        style={{ display: 'none' }}
+                        name="avatar"
+                    />
+                </form>
+            </div>
         )
     }
 
@@ -111,6 +193,7 @@ class Profile extends PureComponent {
     }
 
     render() {
+        const { showLoader } = this.props
         return (
             <div
                 style={{
@@ -119,8 +202,9 @@ class Profile extends PureComponent {
                 }}
                 className={styles.containerMain}
             >
-                {this.renderAvatar()}
-                {this.renderDetails()}
+                {!showLoader && this.renderImageView()}
+                {!showLoader && this.renderDetails()}
+                {showLoader && <Loader />}
             </div>
         )
     }
@@ -128,8 +212,17 @@ class Profile extends PureComponent {
 
 const mapStateToProps = (state) => {
     return {
-        ...state.User.user
+        ...state.User.user,
+        showLoader: state.User.showLoader
     }
 }
 
-export default connect(mapStateToProps, null)(Profile)
+function mapDispatchToProps(dispatch) {
+    return {
+        sendAvatarChangeReq: (token, img) => {
+            return dispatch(changeAvatar(token, img))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile)
