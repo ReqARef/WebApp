@@ -47,7 +47,11 @@ class Stats extends PureComponent {
         }
 
         const renderNoStats = () => {
-            return <div style={{ color: colors.dark }}>Nothing to display</div>
+            return (
+                <div style={{ color: colors.fontcolor1 }}>
+                    Nothing to display
+                </div>
+            )
         }
 
         const { showLoader } = this.props
@@ -76,7 +80,9 @@ class Stats extends PureComponent {
                     </div>
                 )}
                 {!showLoader && (
-                    <h2 style={{ color: colors.dark }}>Request Statistics</h2>
+                    <h2 style={{ color: colors.fontcolor1 }}>
+                        Request Statistics
+                    </h2>
                 )}
                 {!showLoader &&
                     (userStats != null ? userStats : renderNoStats())}

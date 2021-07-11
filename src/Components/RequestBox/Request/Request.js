@@ -72,7 +72,7 @@ const request = (props) => {
                     className={style.AcceptDiv}
                     style={{
                         backgroundColor: colors.dark,
-                        color: colors.white,
+                        color: colors.fontcolor2,
                         borderRadius: inlineStyles.borderRadius,
                         cursor: 'pointer'
                     }}
@@ -83,7 +83,7 @@ const request = (props) => {
                 <div
                     style={{
                         backgroundColor: colors.background,
-                        color: colors.dark,
+                        color: colors.fontcolor1,
                         borderRadius: inlineStyles.borderRadius,
                         cursor: 'pointer'
                     }}

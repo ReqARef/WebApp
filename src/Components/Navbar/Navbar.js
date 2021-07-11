@@ -28,7 +28,7 @@ class Navbar extends PureComponent {
         return (
             <Link to="/" className={styles.link}>
                 <div className={styles.logoContainer}>
-                    <div style={{ color: colors.white }}>ReqARef</div>
+                    <div style={{ color: colors.fontcolor2 }}>ReqARef</div>
                 </div>
             </Link>
         )
@@ -50,7 +50,10 @@ class Navbar extends PureComponent {
             <Link to={'/'} className={styles.link}>
                 <div
                     className={styles.button}
-                    style={{ color: colors.white, borderColor: colors.white }}
+                    style={{
+                        color: colors.fontcolor2,
+                        borderColor: colors.white
+                    }}
                     onClick={logoutAction}
                 >
                     Logout
@@ -66,22 +69,27 @@ class Navbar extends PureComponent {
                 {this.renderButton(
                     'My Profile',
                     '/myprofile',
-                    colors.white,
+                    colors.fontcolor2,
                     colors.white
                 )}
                 {this.renderButton(
                     'Search',
                     '/companysearch',
-                    colors.white,
+                    colors.fontcolor2,
                     colors.white
                 )}
                 {this.renderButton(
                     'Requests',
                     '/request',
-                    colors.white,
+                    colors.fontcolor2,
                     colors.white
                 )}
-                {this.renderButton('Home', '/', colors.white, colors.white)}
+                {this.renderButton(
+                    'Home',
+                    '/',
+                    colors.fontcolor2,
+                    colors.white
+                )}
             </div>
         )
     }
@@ -125,7 +133,7 @@ class Navbar extends PureComponent {
         return (
             <div
                 style={{
-                    color: colors.dark,
+                    color: colors.fontcolor1,
                     marginLeft: '1vw',
                     fontSize: '2.2vh'
                 }}
@@ -207,7 +215,7 @@ class Navbar extends PureComponent {
                 <div
                     className={styles.button}
                     style={{
-                        color: colors.dark,
+                        color: colors.fontcolor1,
                         borderColor: colors.dark,
                         marginRight: '1vw'
                     }}
@@ -305,7 +313,7 @@ class Navbar extends PureComponent {
             >
                 <div
                     style={{
-                        color: colors.dark,
+                        color: colors.fontcolor1,
                         fontSize: '22px',
                         marginBottom: '16px'
                     }}
@@ -322,7 +330,7 @@ class Navbar extends PureComponent {
                         height: '5vh',
                         width: '5vh',
                         fontSize: '3vh',
-                        color: colors.dark
+                        color: colors.fontcolor1
                     }}
                 />
                 <div style={{ display: 'flex' }}>
@@ -330,7 +338,7 @@ class Navbar extends PureComponent {
                         className={styles.otpSubmitButton}
                         style={{
                             backgroundColor: colors.dark,
-                            color: colors.white,
+                            color: colors.fontcolor2,
                             marginTop: '16px',
                             marginRight: '8px'
                         }}
@@ -342,7 +350,7 @@ class Navbar extends PureComponent {
                         className={styles.otpSubmitButton}
                         style={{
                             backgroundColor,
-                            color: colors.white,
+                            color: colors.fontcolor2,
                             marginTop: '16px',
                             marginLeft: '8px'
                         }}

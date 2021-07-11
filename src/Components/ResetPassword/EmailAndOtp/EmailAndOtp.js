@@ -29,7 +29,10 @@ class EmailAndOtp extends PureComponent {
         return (
             <div
                 className={styles.containerLeft}
-                style={{ backgroundColor: colors.dark, color: colors.white }}
+                style={{
+                    backgroundColor: colors.dark,
+                    color: colors.fontcolor2
+                }}
             >
                 <h2 className={styles.leftHeading}>Welcome to ReqARef</h2>
                 <p className={styles.leftPara}>{authScreenParagraph}</p>
@@ -74,7 +77,7 @@ class EmailAndOtp extends PureComponent {
                 className={styles.submitButton}
                 style={{
                     backgroundColor: colors.dark,
-                    color: colors.white,
+                    color: colors.fontcolor2,
                     cursor: 'pointer'
                 }}
             >
@@ -95,7 +98,7 @@ class EmailAndOtp extends PureComponent {
                     onChange={this.handleemail}
                     style={{
                         backgroundColor: colors.white,
-                        color: colors.dark
+                        color: colors.fontcolor1
                     }}
                 />
                 {isOtpSent && (
@@ -107,7 +110,7 @@ class EmailAndOtp extends PureComponent {
                         onChange={this.handleOtp}
                         style={{
                             backgroundColor: colors.white,
-                            color: colors.dark
+                            color: colors.fontcolor1
                         }}
                     />
                 )}
@@ -124,7 +127,7 @@ class EmailAndOtp extends PureComponent {
             >
                 <h1
                     className={styles.rightHeader}
-                    style={{ color: colors.dark }}
+                    style={{ color: colors.fontcolor1 }}
                 >
                     Reset Password
                 </h1>

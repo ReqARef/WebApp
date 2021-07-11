@@ -47,7 +47,7 @@ class Profile extends PureComponent {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    color: colors.dark
+                    color: colors.fontcolor1
                 }}
                 onClick={this.onImageClick}
             >
@@ -102,7 +102,10 @@ class Profile extends PureComponent {
         const name =
             firstName && lastName ? `${firstName} ${lastName}` : 'Name unknown'
         return (
-            <div className={styles.nameText} style={{ color: colors.dark }}>
+            <div
+                className={styles.nameText}
+                style={{ color: colors.fontcolor1 }}
+            >
                 {name}
             </div>
         )
@@ -115,7 +118,10 @@ class Profile extends PureComponent {
         if (!location) return null
 
         return (
-            <div className={styles.locationText} style={{ color: colors.dark }}>
+            <div
+                className={styles.locationText}
+                style={{ color: colors.fontcolor1 }}
+            >
                 {location}
             </div>
         )
@@ -136,7 +142,7 @@ class Profile extends PureComponent {
         return (
             <div
                 className={styles.designationText}
-                style={{ color: colors.dark }}
+                style={{ color: colors.fontcolor1 }}
             >
                 {designation}
             </div>
@@ -147,7 +153,10 @@ class Profile extends PureComponent {
         const { college } = this.props
         if (!college || !college.trim()) return null
         return (
-            <div className={styles.collegeText} style={{ color: colors.dark }}>
+            <div
+                className={styles.collegeText}
+                style={{ color: colors.fontcolor1 }}
+            >
                 {college}
             </div>
         )
@@ -157,7 +166,10 @@ class Profile extends PureComponent {
         const { experience } = this.props
         if (!experience || !experience.trim()) return null
         return (
-            <div className={styles.collegeText} style={{ color: colors.dark }}>
+            <div
+                className={styles.collegeText}
+                style={{ color: colors.fontcolor1 }}
+            >
                 {'Experience: ' + experience}
             </div>
         )
@@ -169,7 +181,7 @@ class Profile extends PureComponent {
         return (
             <div
                 className={styles.collegeText}
-                style={{ color: colors.dark, marginBottom: 30 }}
+                style={{ color: colors.fontcolor1, marginBottom: 30 }}
             >
                 {bio}
             </div>
