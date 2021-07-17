@@ -4,6 +4,7 @@ import inlineStyles from '../../../utils/styleConstants'
 import style from './Request.module.css'
 import { handleRequestAsync } from '../../../store/actions/Request'
 import { useDispatch } from 'react-redux'
+import { imagePlaceHolder } from '../../../utils/constants'
 
 const request = (props) => {
     const dispatch = useDispatch()
@@ -41,6 +42,31 @@ const request = (props) => {
         }
     }
 
+    const renderAvatar = () => {
+        const { avatar } = props
+        const img =
+            avatar &&
+            btoa(
+                new Uint8Array(avatar.data).reduce(function (data, byte) {
+                    return data + String.fromCharCode(byte)
+                }, '')
+            )
+        const imageTemplateURL = imagePlaceHolder
+        const source = avatar
+            ? `data:image/png;base64,${img}`
+            : imageTemplateURL
+        return (
+            <img
+                src={source}
+                alt="user"
+                className={style.UserImage}
+                onClick={() => {
+                    props.openModal(props.email)
+                }}
+            />
+        )
+    }
+
     return (
         <div
             style={{
@@ -54,14 +80,7 @@ const request = (props) => {
             className={style.Request}
         >
             <div style={{ display: 'flex', flex: 1 }}>
-                <img
-                    src="https://png.pngtree.com/png-clipart/20190520/original/pngtree-business-male-icon-vector-png-image_4187852.jpg"
-                    alt="user"
-                    className={style.UserImage}
-                    onClick={() => {
-                        props.openModal(props.email)
-                    }}
-                />
+                {renderAvatar()}
                 <div className={style.UserData}>
                     <h3 className={style.userDataPara}>{props.userName}</h3>
                     <p className={style.userDataPara}>{props.jobId}</p>

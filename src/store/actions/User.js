@@ -247,7 +247,7 @@ export function verifyOTP(email, OTP, callback) {
         }
         const reject = (e) => {
             dispatch(unshowLoader())
-            alert(e)
+            alert('Something went wrong')
         }
         const body = {
             email,
@@ -276,7 +276,7 @@ export function changePassword(email, password) {
         }
         const reject = (e) => {
             dispatch(unshowLoader())
-            alert(e)
+            alert('Something went wrong')
         }
         const body = {
             email,
@@ -307,7 +307,7 @@ export function changeAvatar(token, img, callback) {
         }
         const reject = (e) => {
             callback()
-            alert(e)
+            alert('Something went wrong')
         }
         const body = img
         return formDataPostRequest(
