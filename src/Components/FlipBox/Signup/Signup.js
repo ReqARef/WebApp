@@ -112,6 +112,10 @@ class Signup extends PureComponent {
             this.state.role === 0 ? styles.radioSelected : styles.radio
         const referrer =
             this.state.role === 1 ? styles.radioSelected : styles.radio
+        const backgroundColorReferee =
+            this.state.role === 0 ? colors.blue : colors.white
+        const backgroundColorReferrer =
+            this.state.role === 1 ? colors.blue : colors.white
         return (
             <div className={styles.radioContainer}>
                 <div className={styles.radioText}>Role: </div>
@@ -120,6 +124,7 @@ class Signup extends PureComponent {
                     onClick={() => {
                         this.setState({ role: 1 })
                     }}
+                    style={{ backgroundColor: backgroundColorReferrer }}
                 />
                 <div className={styles.radioText}>Give Referral</div>
                 <div
@@ -127,6 +132,7 @@ class Signup extends PureComponent {
                     onClick={() => {
                         this.setState({ role: 0 })
                     }}
+                    style={{ backgroundColor: backgroundColorReferee }}
                 />
                 <div className={styles.radioText}>Get Referral</div>
             </div>

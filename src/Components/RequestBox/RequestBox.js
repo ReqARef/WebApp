@@ -66,7 +66,6 @@ class RequestBox extends Component {
                         token={this.props.authToken}
                         updated={this.listUpdated}
                         hideLoader={() => {
-                            console.log('hide')
                             this.setState({ showLoader: false })
                         }}
                     />
@@ -101,7 +100,7 @@ class RequestBox extends Component {
                 >
                     <h1
                         style={{
-                            marginLeft: '22.5vw',
+                            marginLeft: '19vw',
                             color: colors.fontColorBlue
                         }}
                     >

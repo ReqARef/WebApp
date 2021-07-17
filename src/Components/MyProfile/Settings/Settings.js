@@ -363,6 +363,10 @@ class Settings extends PureComponent {
     }
 
     renderSaveButton = () => {
+        if (this.state.bio.length > 100) {
+            alert('Bio length should be less than 100 letters')
+            return
+        }
         return (
             <div
                 style={{

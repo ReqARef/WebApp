@@ -219,7 +219,7 @@ class Profile extends PureComponent {
                 style={{
                     backgroundColor: colors.white,
                     borderRadius,
-                    height: '56vh'
+                    height: '65vh'
                 }}
                 className={styles.containerMain}
             >
