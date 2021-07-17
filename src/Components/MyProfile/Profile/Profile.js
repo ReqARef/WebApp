@@ -55,7 +55,7 @@ class Profile extends PureComponent {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    color: colors.fontcolor1
+                    color: colors.fontcolorBlack
                 }}
                 onClick={this.onImageClick}
             >
@@ -112,7 +112,7 @@ class Profile extends PureComponent {
         return (
             <div
                 className={styles.nameText}
-                style={{ color: colors.fontcolor1 }}
+                style={{ color: colors.fontcolorBlack }}
             >
                 {name}
             </div>
@@ -128,7 +128,7 @@ class Profile extends PureComponent {
         return (
             <div
                 className={styles.locationText}
-                style={{ color: colors.fontcolor1 }}
+                style={{ color: colors.fontcolorBlack }}
             >
                 {location}
             </div>
@@ -150,7 +150,7 @@ class Profile extends PureComponent {
         return (
             <div
                 className={styles.designationText}
-                style={{ color: colors.fontcolor1 }}
+                style={{ color: colors.fontcolorBlack }}
             >
                 {designation}
             </div>
@@ -163,7 +163,7 @@ class Profile extends PureComponent {
         return (
             <div
                 className={styles.collegeText}
-                style={{ color: colors.fontcolor1 }}
+                style={{ color: colors.fontcolorBlack }}
             >
                 {college}
             </div>
@@ -176,7 +176,7 @@ class Profile extends PureComponent {
         return (
             <div
                 className={styles.collegeText}
-                style={{ color: colors.fontcolor1 }}
+                style={{ color: colors.fontcolorBlack }}
             >
                 {'Experience: ' + experience}
             </div>
@@ -189,7 +189,7 @@ class Profile extends PureComponent {
         return (
             <div
                 className={styles.collegeText}
-                style={{ color: colors.fontcolor1, marginBottom: 30 }}
+                style={{ color: colors.fontcolorBlack, marginBottom: 30 }}
             >
                 {bio}
             </div>
@@ -218,7 +218,8 @@ class Profile extends PureComponent {
             <div
                 style={{
                     backgroundColor: colors.white,
-                    borderRadius
+                    borderRadius,
+                    height: '56vh'
                 }}
                 className={styles.containerMain}
             >

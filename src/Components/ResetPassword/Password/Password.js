@@ -29,8 +29,8 @@ class Password extends PureComponent {
             <div
                 className={styles.containerLeft}
                 style={{
-                    backgroundColor: colors.dark,
-                    color: colors.fontcolor2
+                    backgroundColor: colors.blue,
+                    color: colors.fontcolorWhite
                 }}
             >
                 <h2 className={styles.leftHeading}>Welcome to ReqARef</h2>
@@ -65,8 +65,8 @@ class Password extends PureComponent {
                 onClick={this.handleLogin}
                 className={styles.submitButton}
                 style={{
-                    backgroundColor: colors.dark,
-                    color: colors.fontcolor2,
+                    backgroundColor: colors.blue,
+                    color: colors.fontcolorWhite,
                     cursor: 'pointer'
                 }}
             >
@@ -86,7 +86,7 @@ class Password extends PureComponent {
                     onChange={this.handlePassword1}
                     style={{
                         backgroundColor: colors.white,
-                        color: colors.fontcolor1
+                        color: colors.fontcolorBlack
                     }}
                 />
                 <input
@@ -97,7 +97,7 @@ class Password extends PureComponent {
                     onChange={this.handlePassword2}
                     style={{
                         backgroundColor: colors.white,
-                        color: colors.fontcolor1
+                        color: colors.fontcolorBlack
                     }}
                 />
                 {this.renderSubmitButton()}
@@ -113,7 +113,7 @@ class Password extends PureComponent {
             >
                 <h2
                     className={styles.rightHeader}
-                    style={{ color: colors.fontcolor1 }}
+                    style={{ color: colors.fontcolorBlack }}
                 >
                     Enter New Password
                 </h2>

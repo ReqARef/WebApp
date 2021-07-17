@@ -31,9 +31,9 @@ class Login extends PureComponent {
                     onClick={this.props.handleFlip}
                     className={styles.button}
                     style={{
-                        backgroundColor: colors.dark,
+                        backgroundColor: colors.blue,
                         borderColor: colors.white,
-                        color: colors.fontcolor2,
+                        color: colors.fontcolorWhite,
                         cursor: 'pointer'
                     }}
                 >
@@ -51,7 +51,7 @@ class Login extends PureComponent {
                     className={styles.buttonTemp}
                     style={{
                         backgroundColor: colors.white,
-                        color: colors.fontcolor1,
+                        color: colors.fontcolorBlack,
                         cursor: 'pointer'
                     }}
                 >
@@ -67,11 +67,16 @@ class Login extends PureComponent {
             <div
                 className={styles.containerLeft}
                 style={{
-                    backgroundColor: colors.dark,
-                    color: colors.fontcolor2
+                    backgroundColor: colors.blue,
+                    color: colors.fontcolorWhite
                 }}
             >
-                <h2 className={styles.leftHeading}>Welcome to ReqARef</h2>
+                <h2
+                    className={styles.leftHeading}
+                    style={{ color: colors.fontcolorWhite }}
+                >
+                    Welcome to ReqARef
+                </h2>
                 <p className={styles.leftPara}>{authScreenParagraph}</p>
                 <div className={styles.buttonContainer}>
                     {this.renderViewChangingButton()}
@@ -105,8 +110,9 @@ class Login extends PureComponent {
                 onClick={this.handleLogin}
                 className={styles.submitButton}
                 style={{
-                    backgroundColor: colors.dark,
-                    color: colors.fontcolor2
+                    backgroundColor: colors.blue,
+                    color: colors.fontcolorWhite,
+                    marginTop: '10px'
                 }}
             >
                 {this.props.showLoader ? this.renderLoader() : 'Login'}
@@ -125,7 +131,7 @@ class Login extends PureComponent {
                     onChange={this.handleemail}
                     style={{
                         backgroundColor: colors.white,
-                        color: colors.fontcolor1
+                        color: colors.fontcolorBlack
                     }}
                 />
                 <input
@@ -136,7 +142,7 @@ class Login extends PureComponent {
                     onChange={this.handlePassword}
                     style={{
                         backgroundColor: colors.white,
-                        color: colors.fontcolor1
+                        color: colors.fontcolorBlack
                     }}
                 />
                 {this.renderSubmitButton()}
@@ -160,7 +166,7 @@ class Login extends PureComponent {
             >
                 <h1
                     className={styles.rightHeader}
-                    style={{ color: colors.fontcolor1 }}
+                    style={{ color: colors.fontColorBlue }}
                 >
                     Log In
                 </h1>

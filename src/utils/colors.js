@@ -1,8 +1,10 @@
 const colors = {
-    dark: '#343f45',
-    white: '#f8f8ff',
-    background: '#f8f8ff',
-    fontcolor1: '#343f45',
-    fontcolor2: '#f8f8ff'
+    blue: '#3A53B0',
+    white: '#ffffff',
+    black: '#000000',
+    background: '#ffffff',
+    fontcolorBlack: '#000000',
+    fontcolorWhite: '#ffffff',
+    fontColorBlue: '#3A53B0'
 }
 export default colors

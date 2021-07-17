@@ -3,8 +3,15 @@ import VideoSection from '../../Components/Homepage/VideoSection/VideoSection'
 import AboutUs from '../../Components/Homepage/AboutUs/AboutUs'
 import Companies from '../../Components/Homepage/Companies/Companies'
 import { connect } from 'react-redux'
+import { setNavbarSelection } from '../../store/actions/Navbar'
 
 class CompanySearchResult extends PureComponent {
+    constructor(props) {
+        super(props)
+        const { setNavbarButtonSelection } = props
+        setNavbarButtonSelection('HOME')
+    }
+
     render() {
         return (
             <div style={{ marginTop: '10vh' }}>
@@ -16,12 +23,10 @@ class CompanySearchResult extends PureComponent {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {}
-}
-
 function mapDispatchToProps(dispatch) {
-    return {}
+    return {
+        setNavbarButtonSelection: (value) => dispatch(setNavbarSelection(value))
+    }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CompanySearchResult)
+export default connect(null, mapDispatchToProps)(CompanySearchResult)

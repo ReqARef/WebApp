@@ -52,9 +52,9 @@ class Signup extends PureComponent {
                 onClick={this.props.handleFlip}
                 className={styles.button}
                 style={{
-                    backgroundColor: colors.dark,
+                    backgroundColor: colors.blue,
                     borderColor: colors.white,
-                    color: colors.fontcolor2,
+                    color: colors.fontcolorWhite,
                     cursor: 'pointer'
                 }}
             >
@@ -70,7 +70,7 @@ class Signup extends PureComponent {
                 className={styles.buttonTemp}
                 style={{
                     backgroundColor: colors.white,
-                    color: colors.fontcolor1,
+                    color: colors.fontcolorBlack,
                     cursor: 'pointer'
                 }}
             >
@@ -84,12 +84,22 @@ class Signup extends PureComponent {
             <div
                 className={styles.containerLeft}
                 style={{
-                    backgroundColor: colors.dark,
-                    color: colors.fontcolor2
+                    backgroundColor: colors.blue,
+                    color: colors.fontcolorWhite
                 }}
             >
-                <h2 className={styles.leftHeading}>Welcome to ReqARef</h2>
-                <p className={styles.leftPara}>{authScreenParagraph}</p>
+                <h2
+                    className={styles.leftHeading}
+                    style={{ color: colors.fontcolorWhite }}
+                >
+                    Welcome to ReqARef
+                </h2>
+                <p
+                    className={styles.leftPara}
+                    style={{ color: colors.fontcolorWhite }}
+                >
+                    {authScreenParagraph}
+                </p>
                 <div className={styles.buttonContainer}>
                     {this.renderViewChangingButton()}
                 </div>
@@ -144,8 +154,8 @@ class Signup extends PureComponent {
                 onClick={this.handleSignup}
                 className={styles.submitButton}
                 style={{
-                    backgroundColor: colors.dark,
-                    color: colors.fontcolor2,
+                    backgroundColor: colors.blue,
+                    color: colors.fontcolorWhite,
                     cursor: 'pointer'
                 }}
             >
@@ -166,7 +176,7 @@ class Signup extends PureComponent {
                         onChange={this.handleFirstName}
                         style={{
                             backgroundColor: colors.white,
-                            color: colors.fontcolor1
+                            color: colors.fontcolorBlack
                         }}
                     />
                     <div
@@ -181,7 +191,7 @@ class Signup extends PureComponent {
                         onChange={this.handleLastName}
                         style={{
                             backgroundColor: colors.white,
-                            color: colors.fontcolor1
+                            color: colors.fontcolorBlack
                         }}
                     />
                 </div>
@@ -193,7 +203,7 @@ class Signup extends PureComponent {
                     onChange={this.handleemail}
                     style={{
                         backgroundColor: colors.white,
-                        color: colors.fontcolor1
+                        color: colors.fontcolorBlack
                     }}
                 />
                 <input
@@ -204,7 +214,7 @@ class Signup extends PureComponent {
                     onChange={this.handlePassword}
                     style={{
                         backgroundColor: colors.white,
-                        color: colors.fontcolor1
+                        color: colors.fontcolorBlack
                     }}
                 />
                 {this.renderRadioButtons()}
@@ -221,7 +231,7 @@ class Signup extends PureComponent {
             >
                 <h1
                     className={styles.rightHeader}
-                    style={{ color: colors.fontcolor1 }}
+                    style={{ color: colors.blue }}
                 >
                     Sign Up
                 </h1>

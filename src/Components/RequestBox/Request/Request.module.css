@@ -4,7 +4,7 @@
     float: left;
     height: 30vh;
     overflow: auto;
-    box-shadow: 3px 3px 3px 3px rgba(50, 50, 50, 0.05);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .UserImage {
