@@ -22,7 +22,7 @@ class Stats extends PureComponent {
                 userStats = (
                     <Chart
                         width={'100%'}
-                        height={'325px'}
+                        height={'285px'}
                         chartType="PieChart"
                         data={[
                             ['RequestStatus', 'requestCount'],
@@ -64,7 +64,7 @@ class Stats extends PureComponent {
                     backgroundColor: colors.white,
                     textAlign: 'center',
                     paddingBottom: '15px',
-                    height: '55.5vh'
+                    height: '46.5vh'
                 }}
             >
                 {showLoader && (

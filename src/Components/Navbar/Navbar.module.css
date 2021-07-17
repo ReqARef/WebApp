@@ -15,6 +15,8 @@
     flex-direction: column-reverse;
     border-bottom-left-radius: 2vh;
     border-bottom-right-radius: 2vh;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    z-index: 1000;
 }
 
 .logoContainer {
@@ -35,7 +37,7 @@
 .otpSubmitButton {
     height: 5vh;
     width: 5vw;
-    border-radius: 15px;
+    border-radius: 6px;
     font-size: 16px;
     text-align: center;
     display: flex;

@@ -440,7 +440,8 @@ class Navbar extends PureComponent {
                 style={{
                     display: 'flex',
                     flexDirection: 'column',
-                    alignItems: 'center'
+                    alignItems: 'center',
+                    zIndex: '1000'
                 }}
             >
                 {this.renderCompleteNavbar()}

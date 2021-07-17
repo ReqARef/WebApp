@@ -94,7 +94,6 @@ class Login extends PureComponent {
             return
         }
         const { sendLoginReq } = this.props
-        console.log(password)
         sendLoginReq(this.state.email, this.state.password)
     }
 

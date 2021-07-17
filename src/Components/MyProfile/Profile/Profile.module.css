@@ -15,10 +15,11 @@
     width: 15vw;
     border-radius: 15vw;
     margin-top: -2vw;
+    box-shadow: rgba(100, 100, 111, 0.1) 0px 7px 29px 0px;
 }
 .nameText {
     font-size: 2vw;
-    margin-top: 1vh;
+    /* margin-top: 1vh; */
     font-weight: 700;
     text-align: center;
 }
