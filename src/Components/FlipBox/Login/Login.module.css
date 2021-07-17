@@ -1,157 +1,161 @@
 /* left side */
 .containerLeft {
-	width: 20vw;
-	float: left;
-	height: 75vh;
-	border-radius: 30px 0 0 30px;
-	box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.75);
+    width: 20vw;
+    float: left;
+    height: 75vh;
+    border-radius: 30px 0 0 30px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 .leftHeading {
-	margin-top: 15vh;
-	text-align: center;
-	font-size: 3vh;
+    margin-top: 15vh;
+    text-align: center;
+    font-size: 3vh;
 }
 .leftPara {
-	margin: 2vw;
-	margin-top: 5vh;
-	font-size: 2.5vh;
+    margin: 2vw;
+    margin-top: 5vh;
+    font-size: 2.5vh;
 }
 .buttonContainer {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	margin-top: 10vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10vh;
 }
 
-.button{
-	height: 5vh;
-	width: 7vw;
-	border-radius: 15px;
-	border-style: solid;
-	font-size: 13px;
+.button {
+    height: 5vh;
+    width: 7vw;
+    border-radius: 10px;
+    border-style: solid;
+    font-size: 13px;
 }
 .resetPassword {
-	text-decoration: none;
-	font-size: 15px;
-	margin-left: 1vw;
-	color: white;
+    text-decoration: none;
+    font-size: 15px;
+    margin-left: 1vw;
+    color: white;
 }
 
 /* right side */
 .containerRight {
-	width: 30vw;
-	height: 75vh;
-	float: left;
-	border-radius: 0 30px 30px 0;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.75);
+    width: 30vw;
+    height: 75vh;
+    float: left;
+    border-radius: 0 30px 30px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 .rightHeader {
-	margin-bottom: 7vh;
-	margin-top: 12vh;
+    margin-bottom: 7vh;
+    margin-top: 12vh;
 }
 .form {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
 }
 .inputText {
-	width: 60%;
-	padding: 10px 10px;
-	margin: 8px 0;
-	display: inline-block;
-	box-sizing: border-box;
-	border: none;
-	border-bottom: 1px solid rgba(52, 63, 69, .3);
-	font-size: 1vw;
+    width: 60%;
+    padding: 10px 10px;
+    margin: 8px 0;
+    display: inline-block;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid rgba(52, 63, 69, 0.3);
+    font-size: 1vw;
 }
 .submitButton {
-	height: 4vh;
-	width: 60%;
-	border: 1px solid rgba(52, 63, 69, .3);
-	border-radius: 7px;
-	margin-bottom: 20px;
-	font-size: 20px;
-	margin-top: 3vh;
-	box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.75);
-	text-align: center;
-	margin: auto;
-	padding-top: 9px;
-	font-size: larger;
-	margin-bottom: 10px;
-	display: inline-block;
-	cursor: pointer;
+    height: 4vh;
+    width: 60%;
+    border: 1px solid rgba(52, 63, 69, 0.3);
+    border-radius: 7px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    margin-top: 3vh;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    text-align: center;
+    margin: auto;
+    padding-top: 9px;
+    font-size: larger;
+    margin-bottom: 10px;
+    display: inline-block;
+    cursor: pointer;
 }
-.buttonTemp{
-	visibility: hidden;
-	border: none;
-	font-size: 13px;
-	background-color: white;
-	color: black;
+.buttonTemp {
+    visibility: hidden;
+    border: none;
+    font-size: 13px;
+    background-color: white;
+    color: black;
 }
 .hiddenButtonContainer {
-	visibility: hidden;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
+    visibility: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 /* main container */
 .containerMain {
-	border-radius: 30px;
-	box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.75);
+    border-radius: 30px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 /* focus */
-input:focus {outline:0;}
-button:focus {outline:0;}
+input:focus {
+    outline: 0;
+}
+button:focus {
+    outline: 0;
+}
 
 /* media querries */
-@media (max-width : 600px){
-	.containerLeft{
-		display: none;
-	}
-	.containerRight{
-		width: 70vw;
-		border-radius: 30px;
-	}
-	.leftPara{
-		opacity: 0;
-	}
-	.buttonContainer{
-		opacity: 0;
-	}
-	.button{
-		display: none;
-	}
-	.submitButton{
-		font-size: 20px;
-		padding-top: 15px;
-	}
-	.resetPassword {
-		color:rgba(50, 50, 50, 1);
-	}
-	.buttonTemp{
-		height: 5vh;
-		width: 60%;
-		visibility: visible;
-		height: 4vh;
-		border-radius: 7px;
-		margin-bottom: 20px;
-		font-size: 16px;
-	}
-	.hiddenButtonContainer {
-		visibility: visible;
-	}
-	.inputText{
-		font-size: 3vw;
-	}
-	.rightHeader{
-		margin-top: 8vh;
-	}
+@media (max-width: 600px) {
+    .containerLeft {
+        display: none;
+    }
+    .containerRight {
+        width: 70vw;
+        border-radius: 30px;
+    }
+    .leftPara {
+        opacity: 0;
+    }
+    .buttonContainer {
+        opacity: 0;
+    }
+    .button {
+        display: none;
+    }
+    .submitButton {
+        font-size: 20px;
+        padding-top: 15px;
+    }
+    .resetPassword {
+        color: rgba(50, 50, 50, 1);
+    }
+    .buttonTemp {
+        height: 5vh;
+        width: 60%;
+        visibility: visible;
+        height: 4vh;
+        border-radius: 7px;
+        margin-bottom: 20px;
+        font-size: 16px;
+    }
+    .hiddenButtonContainer {
+        visibility: visible;
+    }
+    .inputText {
+        font-size: 3vw;
+    }
+    .rightHeader {
+        margin-top: 8vh;
+    }
 }

@@ -59,7 +59,7 @@ const RequestForm = (props) => {
                     value={jobId}
                     style={{
                         backgroundColor: colors.background,
-                        color: colors.fontcolor1
+                        color: colors.fontcolorBlack
                     }}
                     type="text"
                     placeholder="Job Id"
@@ -70,7 +70,7 @@ const RequestForm = (props) => {
                     value={jobUrl}
                     style={{
                         backgroundColor: colors.background,
-                        color: colors.fontcolor1
+                        color: colors.fontcolorBlack
                     }}
                     type="text"
                     placeholder="Job URL"
@@ -81,7 +81,7 @@ const RequestForm = (props) => {
                     value={comments}
                     style={{
                         backgroundColor: colors.background,
-                        color: colors.fontcolor1
+                        color: colors.fontcolorBlack
                     }}
                     type="text"
                     placeholder="Comments"
@@ -89,8 +89,8 @@ const RequestForm = (props) => {
                 <div
                     className={styles.requestButton}
                     style={{
-                        backgroundColor: colors.dark,
-                        color: colors.fontcolor2,
+                        backgroundColor: colors.blue,
+                        color: colors.fontcolorWhite,
                         borderRadius: inlineStyles.borderRadius,
                         cursor: 'pointer'
                     }}

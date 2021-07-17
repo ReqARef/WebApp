@@ -195,7 +195,7 @@ class UserInfoModal extends PureComponent {
                 ariaHideApp={false}
                 style={{
                     content: {
-                        color: colors.fontcolor1,
+                        color: colors.fontcolorBlack,
                         height: '60%',
                         width: '30%',
                         margin: 'auto',
@@ -220,8 +220,8 @@ class UserInfoModal extends PureComponent {
                         style={{
                             marginRight: '16px',
                             marginTop: '16px',
-                            backgroundColor: colors.dark,
-                            color: colors.fontcolor2,
+                            backgroundColor: colors.blue,
+                            color: colors.fontcolorWhite,
                             height: '32px',
                             width: '32px',
                             borderRadius: '32px',

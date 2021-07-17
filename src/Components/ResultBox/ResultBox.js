@@ -28,7 +28,7 @@ class ResultBox extends PureComponent {
                     name={`${result.first_name} ${result.last_name}`}
                     avatar={result.avatar}
                     key={result.email}
-                    designation={result.designation || 'Designation unknown'}
+                    designation={result.job_role || 'Designation unknown'}
                     company={result.company}
                     click={this.submitButtonHandler}
                     resultEmail={result.email}
@@ -73,7 +73,10 @@ class ResultBox extends PureComponent {
                     }}
                 >
                     <h1
-                        style={{ marginLeft: '25vw', color: colors.fontcolor1 }}
+                        style={{
+                            marginLeft: '25vw',
+                            color: colors.fontColorBlue
+                        }}
                     >
                         {companyName + ' Employees'}
                     </h1>

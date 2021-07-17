@@ -48,7 +48,7 @@ class Stats extends PureComponent {
 
         const renderNoStats = () => {
             return (
-                <div style={{ color: colors.fontcolor1 }}>
+                <div style={{ color: colors.fontcolorBlack }}>
                     Nothing to display
                 </div>
             )
@@ -63,7 +63,8 @@ class Stats extends PureComponent {
                     borderRadius,
                     backgroundColor: colors.white,
                     textAlign: 'center',
-                    paddingBottom: '15px'
+                    paddingBottom: '15px',
+                    height: '55.5vh'
                 }}
             >
                 {showLoader && (
@@ -80,7 +81,7 @@ class Stats extends PureComponent {
                     </div>
                 )}
                 {!showLoader && (
-                    <h2 style={{ color: colors.fontcolor1 }}>
+                    <h2 style={{ color: colors.fontColorBlue }}>
                         Request Statistics
                     </h2>
                 )}

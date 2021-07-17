@@ -4,7 +4,7 @@
     float: left;
     height: 75vh;
     border-radius: 30px 0 0 30px;
-    box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.75);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 .leftHeading {
     margin-top: 15vh;
@@ -24,7 +24,7 @@
 .button {
     height: 5vh;
     width: 7vw;
-    border-radius: 15px;
+    border-radius: 10px;
     border-style: solid;
     font-size: 13px;
 }
@@ -42,7 +42,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.75);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 .rightHeader {
     margin-bottom: 7vh;
@@ -121,7 +121,7 @@
     margin-bottom: 20px;
     font-size: 20px;
     margin-top: 3vh;
-    box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.75);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     text-align: center;
     margin: auto;
     padding-top: 9px;
@@ -134,7 +134,7 @@
 /* main container */
 .containerMain {
     border-radius: 30px;
-    box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.75);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 /* focus */

@@ -5,11 +5,17 @@ import Select from 'react-select'
 import { connect } from 'react-redux'
 import { getCompaniesList } from '../../store/actions/Company'
 import { withRouter } from 'react-router-dom'
+import { setNavbarSelection } from '../../store/actions/Navbar'
 
 class CompanySearch extends PureComponent {
-    state = {
-        selectedOption: null,
-        showLoader: false
+    constructor(props) {
+        super(props)
+        this.state = {
+            selectedOption: null,
+            showLoader: false
+        }
+        const { setNavbarButtonSelection } = props
+        setNavbarButtonSelection('COMPANY_SEARCH')
     }
 
     componentDidMount() {
@@ -50,18 +56,18 @@ class CompanySearch extends PureComponent {
         const boxStyles = {
             option: (provided) => ({
                 ...provided,
-                color: colors.fontcolor1
+                color: colors.fontcolorBlack
             }),
             control: (base) => ({
                 ...base,
                 border: 0,
-                // This line disable the blue border
-                boxShadow: 'none',
-                color: colors.fontcolor1
+                boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px',
+                color: colors.fontcolorBlack
             }),
             singleValue: (provided) => ({
                 ...provided,
-                color: colors.fontcolor1
+                color: colors.fontcolorBlack,
+                fontSize: 'larger'
             })
         }
         const theme = (theme) => ({
@@ -69,7 +75,7 @@ class CompanySearch extends PureComponent {
             colors: {
                 ...theme.colors,
                 primary25: colors.background,
-                primary: colors.dark
+                primary: colors.blue
             }
         })
         const { companyList, companyListDownloading } = this.props
@@ -91,7 +97,7 @@ class CompanySearch extends PureComponent {
                 }}
             >
                 <div
-                    style={{ color: colors.fontcolor1 }}
+                    style={{ color: colors.fontColorBlue }}
                     className={styles.searchHeading}
                 >
                     Referrals just a search away
@@ -112,7 +118,7 @@ class CompanySearch extends PureComponent {
     renderSearchButton = () => {
         const { selectedOption } = this.state
         const backgroundColor = selectedOption
-            ? colors.dark
+            ? colors.blue
             : 'rgba(50, 50, 50, 0.75)'
         return (
             <div
@@ -130,7 +136,7 @@ class CompanySearch extends PureComponent {
                     onClick={() => this.onSearchClickHandler()}
                     className={styles.submitButton}
                     style={{
-                        color: colors.fontcolor2,
+                        color: colors.fontcolorWhite,
                         backgroundColor,
                         cursor: 'pointer'
                     }}
@@ -166,7 +172,7 @@ class CompanySearch extends PureComponent {
                 className={styles.mainContainer}
             >
                 <div
-                    style={{ background: colors.dark }}
+                    style={{ background: colors.blue }}
                     className={styles.containerHeader}
                 />
                 {this.renderSearchBar()}
@@ -190,7 +196,8 @@ function mapDispatchToProps(dispatch) {
     return {
         downloadList: (token) => {
             return dispatch(getCompaniesList(token))
-        }
+        },
+        setNavbarButtonSelection: (value) => dispatch(setNavbarSelection(value))
     }
 }
 

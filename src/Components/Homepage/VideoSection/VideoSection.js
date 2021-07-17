@@ -7,8 +7,8 @@ export default class VideoSection extends PureComponent {
         return (
             <div className={styles.heroContainer}>
                 <video src={this.props.src} autoPlay loop muted />
-                <h1 style={{ color: colors.fontcolor2 }}>ReqARef</h1>
-                <p style={{ color: colors.fontcolor2 }}>
+                <h1 style={{ color: colors.fontcolorWhite }}>ReqARef</h1>
+                <p style={{ color: colors.fontcolorWhite }}>
                     Referals await. What are you waiting for?
                 </p>
             </div>

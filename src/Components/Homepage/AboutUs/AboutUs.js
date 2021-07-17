@@ -12,7 +12,10 @@ export default class AboutUs extends PureComponent {
             'This is a very long text. This is a very long text. This is a very long text. This is a very long text. This is a very long text. This is a very long text. This is a very long text. '
         text = text + text + text + text
         return (
-            <div style={{ color: colors.fontcolor2 }} className={styles.text}>
+            <div
+                style={{ color: colors.fontcolorWhite }}
+                className={styles.text}
+            >
                 {text}
             </div>
         )
@@ -21,12 +24,12 @@ export default class AboutUs extends PureComponent {
     renderInnerBox = () => {
         return (
             <div
-                style={{ backgroundColor: colors.dark }}
+                style={{ backgroundColor: colors.blue }}
                 className={styles.innerBox}
             >
                 <div className={styles.textSection}>
                     <h1
-                        style={{ color: colors.fontcolor2 }}
+                        style={{ color: colors.fontcolorWhite }}
                         className={styles.heading}
                     >
                         About Us

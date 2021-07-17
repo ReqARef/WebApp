@@ -37,21 +37,21 @@ class Result extends PureComponent {
                     onClick={this.imageOnClickHandler}
                     style={{ cursor: 'pointer' }}
                 />
-                <h2 style={{ margin: 0, color: colors.fontcolor1 }}>
+                <h2 style={{ margin: 0, color: colors.fontcolorBlack }}>
                     {this.props.name}
                 </h2>
-                <p style={{ margin: 1, color: colors.fontcolor1 }}>
+                <p style={{ margin: 1, color: colors.fontcolorBlack }}>
                     {this.props.designation}
                 </p>
-                <p style={{ margin: 1, color: colors.fontcolor1 }}>
+                <p style={{ margin: 1, color: colors.fontcolorBlack }}>
                     {this.props.company}
                 </p>
                 <div
                     className={style.RequestButton}
                     style={{
-                        backgroundColor: colors.dark,
+                        backgroundColor: colors.blue,
                         borderRadius: inlineStyles.borderRadius,
-                        color: colors.fontcolor2,
+                        color: colors.fontcolorWhite,
                         cursor: 'pointer'
                     }}
                     onClick={() => this.props.showModal(this.props.resultEmail)}

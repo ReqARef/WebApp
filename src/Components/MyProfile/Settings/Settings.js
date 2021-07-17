@@ -121,7 +121,7 @@ class Settings extends PureComponent {
             <div style={{ borderRadius }} className={styles.headerContainer}>
                 <div
                     className={styles.headerText}
-                    style={{ color: colors.fontcolor1 }}
+                    style={{ color: colors.fontColorBlue }}
                 >
                     My account
                 </div>
@@ -135,10 +135,10 @@ class Settings extends PureComponent {
 
     renderInputField = (label, heading, disabled = false) => {
         return (
-            <div style={{}}>
+            <div>
                 <div
                     className={styles.inputTextHeading}
-                    style={{ color: colors.fontcolor1 }}
+                    style={{ color: colors.fontcolorBlack }}
                 >
                     {heading}
                 </div>
@@ -151,7 +151,7 @@ class Settings extends PureComponent {
                     onChange={(e) => this.handleInput(e, label)}
                     style={{
                         backgroundColor: colors.white,
-                        color: colors.fontcolor1,
+                        color: colors.fontcolorBlack,
                         borderRadius: 5
                     }}
                     disabled={disabled}
@@ -258,7 +258,7 @@ class Settings extends PureComponent {
             <div style={{ width: '50%' }}>
                 <div
                     className={styles.inputTextHeading}
-                    style={{ color: colors.fontcolor1 }}
+                    style={{ color: colors.fontcolorBlack }}
                 >
                     Country
                 </div>
@@ -270,7 +270,7 @@ class Settings extends PureComponent {
                         }}
                         style={{
                             backgroundColor: colors.white,
-                            color: colors.fontcolor1,
+                            color: colors.fontcolorBlack,
                             width: '92%',
                             borderRadius: 5
                         }}
@@ -288,7 +288,7 @@ class Settings extends PureComponent {
             <div style={{ width: '50%' }}>
                 <div
                     className={styles.inputTextHeading}
-                    style={{ color: colors.fontcolor1 }}
+                    style={{ color: colors.fontcolorBlack }}
                 >
                     Role
                 </div>
@@ -300,7 +300,7 @@ class Settings extends PureComponent {
                         }}
                         style={{
                             backgroundColor: colors.white,
-                            color: colors.fontcolor1,
+                            color: colors.fontcolorBlack,
                             width: '92%',
                             borderRadius: 5
                         }}
@@ -340,7 +340,7 @@ class Settings extends PureComponent {
             <div style={{ width: '100%' }} className={styles.bioContainer}>
                 <div
                     className={styles.inputTextHeading}
-                    style={{ color: colors.fontcolor1 }}
+                    style={{ color: colors.fontcolorBlack }}
                 >
                     {'About Me'}
                 </div>
@@ -354,7 +354,7 @@ class Settings extends PureComponent {
                     className={styles.inputTextBio}
                     style={{
                         backgroundColor: colors.white,
-                        color: colors.fontcolor1,
+                        color: colors.fontcolorBlack,
                         borderRadius: 5
                     }}
                 />
@@ -379,8 +379,8 @@ class Settings extends PureComponent {
                     onClick={this.handleOnSaveClicked}
                     className={styles.submitButton}
                     style={{
-                        backgroundColor: colors.dark,
-                        color: colors.fontcolor2,
+                        backgroundColor: colors.blue,
+                        color: colors.fontcolorWhite,
                         cursor: 'pointer'
                     }}
                 />
@@ -396,7 +396,8 @@ class Settings extends PureComponent {
             <div
                 style={{
                     backgroundColor: colors.white,
-                    borderRadius
+                    borderRadius,
+                    height: '100vh'
                 }}
                 className={styles.containerMain}
             >

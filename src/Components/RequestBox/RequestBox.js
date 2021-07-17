@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import { getRequestListAsync } from '../../store/actions/Request'
 import UserInfoModal from '../UserInfoModal/UserInfoModal'
 import Loader from '../Loader/Loader'
+import { setNavbarSelection } from '../../store/actions/Navbar'
 
 class RequestBox extends Component {
     constructor(props) {
@@ -20,6 +21,8 @@ class RequestBox extends Component {
             showModal: false,
             showLoader: true
         }
+        const { setNavbarButtonSelection } = props
+        setNavbarButtonSelection('REQUESTS')
     }
 
     listUpdated = () => {
@@ -99,7 +102,7 @@ class RequestBox extends Component {
                     <h1
                         style={{
                             marginLeft: '22.5vw',
-                            color: colors.fontcolor1
+                            color: colors.fontColorBlue
                         }}
                     >
                         Requests
@@ -112,7 +115,7 @@ class RequestBox extends Component {
                         borderRadius: inlineStyles.borderRadius,
                         backgroundColor: colors.background,
                         margin: 'auto',
-                        color: colors.fontcolor1,
+                        color: colors.fontcolorBlack,
                         paddingBottom: '70px',
                         display: 'flex',
                         flexDirection: 'column',
@@ -142,7 +145,8 @@ function mapDispatchToProps(dispatch) {
     return {
         searchUsers: (token, callback) => {
             return dispatch(getRequestListAsync(token, callback))
-        }
+        },
+        setNavbarButtonSelection: (value) => dispatch(setNavbarSelection(value))
     }
 }
 

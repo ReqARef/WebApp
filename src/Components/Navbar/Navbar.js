@@ -28,16 +28,35 @@ class Navbar extends PureComponent {
         return (
             <Link to="/" className={styles.link}>
                 <div className={styles.logoContainer}>
-                    <div style={{ color: colors.fontcolor2 }}>ReqARef</div>
+                    <div style={{ color: colors.fontcolorBlack }}>Req</div>
+                    <div
+                        style={{
+                            color: colors.blue,
+                            fontSize: 'larger',
+                            fontWeight: '500'
+                        }}
+                    >
+                        A
+                    </div>
+                    <div style={{ color: colors.fontcolorBlack }}>Ref</div>
                 </div>
             </Link>
         )
     }
 
-    renderButton = (text, link, color, borderColor) => {
+    renderButton = (text, link, color, borderColor, background) => {
+        const backgroundColor = background || colors.white
         return (
             <Link to={link} className={styles.link}>
-                <div className={styles.button} style={{ color, borderColor }}>
+                <div
+                    className={styles.button}
+                    style={{
+                        color,
+                        borderColor,
+                        fontSize: 'larger',
+                        backgroundColor
+                    }}
+                >
                     {text}
                 </div>
             </Link>
@@ -51,8 +70,9 @@ class Navbar extends PureComponent {
                 <div
                     className={styles.button}
                     style={{
-                        color: colors.fontcolor2,
-                        borderColor: colors.white
+                        color: colors.fontcolorBlack,
+                        borderColor: colors.blue,
+                        fontSize: 'larger'
                     }}
                     onClick={logoutAction}
                 >
@@ -63,47 +83,72 @@ class Navbar extends PureComponent {
     }
 
     renderNavLinksWhenLoggedIn = () => {
+        const { selected } = this.props
         return (
             <div className={styles.navlinks}>
                 {this.renderLogoutButton()}
                 {this.renderButton(
                     'My Profile',
                     '/myprofile',
-                    colors.fontcolor2,
-                    colors.white
+                    selected === 'PROFILE'
+                        ? colors.fontcolorWhite
+                        : colors.fontcolorBlack,
+                    selected === 'PROFILE' ? colors.black : colors.blue,
+                    selected === 'PROFILE' ? colors.blue : colors.white
                 )}
                 {this.renderButton(
                     'Search',
                     '/companysearch',
-                    colors.fontcolor2,
-                    colors.white
+                    selected === 'COMPANY_SEARCH'
+                        ? colors.fontcolorWhite
+                        : colors.fontcolorBlack,
+                    selected === 'COMPANY_SEARCH' ? colors.black : colors.blue,
+                    selected === 'COMPANY_SEARCH' ? colors.blue : colors.white
                 )}
                 {this.renderButton(
                     'Requests',
                     '/request',
-                    colors.fontcolor2,
-                    colors.white
+                    selected === 'REQUESTS'
+                        ? colors.fontcolorWhite
+                        : colors.fontcolorBlack,
+                    selected === 'REQUESTS' ? colors.black : colors.blue,
+                    selected === 'REQUESTS' ? colors.blue : colors.white
                 )}
                 {this.renderButton(
                     'Home',
                     '/',
-                    colors.fontcolor2,
-                    colors.white
+                    selected === 'HOME'
+                        ? colors.fontcolorWhite
+                        : colors.fontcolorBlack,
+                    selected === 'HOME' ? colors.black : colors.blue,
+                    selected === 'HOME' ? colors.blue : colors.white
                 )}
             </div>
         )
     }
 
     renderNavLinksWhenNotLoggedIn = () => {
+        const { selected } = this.props
         return (
             <div className={styles.navlinks}>
                 {this.renderButton(
                     'Login/Signup',
                     '/auth',
-                    colors.white,
-                    colors.white
+                    selected === 'AUTH'
+                        ? colors.fontcolorWhite
+                        : colors.fontcolorBlack,
+                    selected === 'AUTH' ? colors.black : colors.blue,
+                    selected === 'AUTH' ? colors.blue : colors.white
                 )}
-                {this.renderButton('Home', '/', colors.white, colors.white)}
+                {this.renderButton(
+                    'Home',
+                    '/',
+                    selected === 'HOME'
+                        ? colors.fontcolorWhite
+                        : colors.fontcolorBlack,
+                    selected === 'HOME' ? colors.black : colors.blue,
+                    selected === 'HOME' ? colors.blue : colors.white
+                )}
             </div>
         )
     }
@@ -113,7 +158,7 @@ class Navbar extends PureComponent {
         return (
             <div
                 className={styles.navbar}
-                style={{ backgroundColor: colors.dark }}
+                style={{ backgroundColor: colors.white }}
             >
                 {this.renderReqarefLogo()}
                 {authToken && this.renderNavLinksWhenLoggedIn()}
@@ -133,7 +178,7 @@ class Navbar extends PureComponent {
         return (
             <div
                 style={{
-                    color: colors.fontcolor1,
+                    color: colors.fontcolorBlack,
                     marginLeft: '1vw',
                     fontSize: '2.2vh'
                 }}
@@ -215,8 +260,8 @@ class Navbar extends PureComponent {
                 <div
                     className={styles.button}
                     style={{
-                        color: colors.fontcolor1,
-                        borderColor: colors.dark,
+                        color: colors.fontcolorBlack,
+                        borderColor: colors.blue,
                         marginRight: '1vw'
                     }}
                     onClick={onClick}
@@ -259,7 +304,7 @@ class Navbar extends PureComponent {
             )
         const disabled = resendCounter !== 0
         const backgroundColor =
-            resendCounter === 0 ? colors.dark : 'rgba(50, 50, 50, 0.75)'
+            resendCounter === 0 ? colors.blue : 'rgba(50, 50, 50, 0.75)'
         const handleOTPChange = (otp) => {
             this.setState({ otp })
         }
@@ -313,7 +358,7 @@ class Navbar extends PureComponent {
             >
                 <div
                     style={{
-                        color: colors.fontcolor1,
+                        color: colors.fontcolorBlack,
                         fontSize: '22px',
                         marginBottom: '16px'
                     }}
@@ -330,15 +375,15 @@ class Navbar extends PureComponent {
                         height: '5vh',
                         width: '5vh',
                         fontSize: '3vh',
-                        color: colors.fontcolor1
+                        color: colors.fontcolorBlack
                     }}
                 />
                 <div style={{ display: 'flex' }}>
                     <div
                         className={styles.otpSubmitButton}
                         style={{
-                            backgroundColor: colors.dark,
-                            color: colors.fontcolor2,
+                            backgroundColor: colors.blue,
+                            color: colors.fontcolorWhite,
                             marginTop: '16px',
                             marginRight: '8px'
                         }}
@@ -350,7 +395,7 @@ class Navbar extends PureComponent {
                         className={styles.otpSubmitButton}
                         style={{
                             backgroundColor,
-                            color: colors.fontcolor2,
+                            color: colors.fontcolorWhite,
                             marginTop: '16px',
                             marginLeft: '8px'
                         }}
@@ -410,7 +455,8 @@ class Navbar extends PureComponent {
 const mapStateToProps = (state) => {
     return {
         authToken: state.User.authToken,
-        user: state.User.user
+        user: state.User.user,
+        selected: state.Navbar.selected
     }
 }
 

@@ -1,5 +1,5 @@
 .containerMain {
-    min-height: 35vw;
+    /* min-height: 35vw; */
     height: 47%;
     width: 100%;
     margin-top: 1vw;
@@ -8,7 +8,7 @@
     flex-direction: column;
     align-items: center;
     margin-bottom: 3vh;
-    box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.4);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 .avatarContainer {
     height: 15vw;
