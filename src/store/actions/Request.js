@@ -79,7 +79,7 @@ export function getRequestListAsync(token, callback) {
         }
         const reject = (e) => {
             callback()
-            return dispatch(logout())
+            alert('Something went wrong')
         }
         return getRequest('/request', resolve, reject, headers, dispatch, true)
     }
@@ -89,17 +89,17 @@ export function handleRequestAsync(token, requestId, action, unshowLoader) {
     const auth = 'Bearer '.concat(token)
     const headers = { Authorization: auth }
     return function (dispatch) {
-        dispatch(showLoader(true));
+        dispatch(showLoader(true))
         const resolve = (json) => {
             if (!json.status) {
                 throw new Error(json.error)
             }
-            unshowLoader();
+            unshowLoader()
             return dispatch(getRequests(json))
         }
         const reject = (e) => {
-            unshowLoader();
-            return dispatch(logout())
+            unshowLoader()
+            alert('Something went wrong')
         }
 
         const body = { requestId, action }

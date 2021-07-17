@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import style from './Result.module.css'
 import inlineStyles from '../../../utils/styleConstants'
 import colors from '../../../utils/colors'
+import { imagePlaceHolder } from '../../../utils/constants'
 
 class Result extends PureComponent {
     imageOnClickHandler = () => {
@@ -10,6 +11,18 @@ class Result extends PureComponent {
     }
 
     render() {
+        const { avatar } = this.props
+        const img =
+            avatar &&
+            btoa(
+                new Uint8Array(avatar.data).reduce(function (data, byte) {
+                    return data + String.fromCharCode(byte)
+                }, '')
+            )
+        const imageTemplateURL = imagePlaceHolder
+        const source = avatar
+            ? `data:image/png;base64,${img}`
+            : imageTemplateURL
         return (
             <div
                 className={style.Result}
@@ -18,8 +31,8 @@ class Result extends PureComponent {
                 }}
             >
                 <img
-                    src="https://png.pngtree.com/png-clipart/20190520/original/pngtree-business-male-icon-vector-png-image_4187852.jpg"
-                    alt="user"
+                    src={source}
+                    alt="Profile Picture"
                     className={style.UserImage}
                     onClick={this.imageOnClickHandler}
                     style={{ cursor: 'pointer' }}

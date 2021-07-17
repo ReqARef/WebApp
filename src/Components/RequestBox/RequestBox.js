@@ -11,6 +11,10 @@ import Loader from '../Loader/Loader'
 class RequestBox extends Component {
     constructor(props) {
         super(props)
+        const { authToken, searchUsers } = props
+        searchUsers(authToken, () => {
+            this.setState({ showLoader: false })
+        })
         this.state = {
             modalEmail: null,
             showModal: false,
@@ -19,20 +23,11 @@ class RequestBox extends Component {
     }
 
     listUpdated = () => {
-        console.log('popup')
         this.setState({ showLoader: true })
     }
 
     hideLoader = () => {
-        console.log('hide')
         this.setState({ showLoader: false })
-    }
-
-    componentDidMount() {
-        const { authToken, searchUsers } = this.props
-        searchUsers(authToken, () => {
-            this.setState({ showLoader: false })
-        })
     }
 
     renderLoader = () => {
@@ -59,6 +54,7 @@ class RequestBox extends Component {
                             request.job_url ? request.job_url : 'url not found'
                         }
                         email={request.user.email}
+                        avatar={request.user.avatar}
                         openModal={(modalEmail) => {
                             this.setState({ modalEmail, showModal: true })
                         }}

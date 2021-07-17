@@ -26,6 +26,7 @@ class ResultBox extends PureComponent {
                 <Result
                     showModal={this.togglePopup}
                     name={`${result.first_name} ${result.last_name}`}
+                    avatar={result.avatar}
                     key={result.email}
                     designation={result.designation || 'Designation unknown'}
                     company={result.company}

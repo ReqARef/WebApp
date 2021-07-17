@@ -6,6 +6,7 @@ import Loader from '../Loader/Loader'
 import './UserInfoModal.css'
 import { countryCodeToCountry } from '../../utils/helperFunctions'
 import { connect } from 'react-redux'
+import { imagePlaceHolder } from '../../utils/constants'
 
 class UserInfoModal extends PureComponent {
     constructor(props) {
@@ -52,13 +53,26 @@ class UserInfoModal extends PureComponent {
     }
 
     renderImagePlaceholder = () => {
+        const { avatar } = this.state.data
+        const img =
+            avatar &&
+            btoa(
+                new Uint8Array(avatar.data).reduce(function (data, byte) {
+                    return data + String.fromCharCode(byte)
+                }, '')
+            )
+        const imageTemplateURL = imagePlaceHolder
+        const source = avatar
+            ? `data:image/png;base64,${img}`
+            : imageTemplateURL
         return (
-            <div
+            <img
+                src={source}
+                alt="user"
                 style={{
                     height: '160px',
                     width: '160px',
-                    borderRadius: '200px',
-                    backgroundColor: colors.dark
+                    borderRadius: '160px'
                 }}
             />
         )
