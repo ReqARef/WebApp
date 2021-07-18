@@ -93,7 +93,13 @@ export function getRequestListAsync(token, page, callback) {
     }
 }
 
-export function handleRequestAsync(token, requestId, action, unshowLoader) {
+export function handleRequestAsync(
+    token,
+    page,
+    requestId,
+    action,
+    unshowLoader
+) {
     const auth = 'Bearer '.concat(token)
     const headers = { Authorization: auth }
     return function (dispatch) {
@@ -110,7 +116,7 @@ export function handleRequestAsync(token, requestId, action, unshowLoader) {
             alert('Something went wrong')
         }
 
-        const body = { requestId, action }
+        const body = { requestId, action, page }
         return postRequest(
             'handlerequest',
             resolve,

@@ -30,9 +30,9 @@ export default class Companies extends PureComponent {
         return (
             <div
                 className={styles.container}
-                style={{ backgroundColor: colors.background }}
+                style={{ backgroundColor: colors.blue }}
             >
-                <h1 style={{ color: colors.fontcolorBlack }}>
+                <h1 style={{ color: colors.fontcolorWhite }}>
                     Get referred to companies like
                 </h1>
                 {this.renderImages()}

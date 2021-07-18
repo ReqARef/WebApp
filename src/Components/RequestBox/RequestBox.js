@@ -8,6 +8,8 @@ import { getRequestListAsync } from '../../store/actions/Request'
 import UserInfoModal from '../UserInfoModal/UserInfoModal'
 import Loader from '../Loader/Loader'
 import { setNavbarSelection } from '../../store/actions/Navbar'
+import { withRouter } from 'react-router'
+const qs = require('qs')
 
 class RequestBox extends Component {
     constructor(props) {
@@ -17,7 +19,11 @@ class RequestBox extends Component {
             showModal: false,
             showLoader: true
         }
-        this.page = 1
+        this.page = parseInt(
+            qs.parse(props.location.search, {
+                ignoreQueryPrefix: true
+            }).page
+        )
         this.getDataPerPage()
         const { setNavbarButtonSelection } = props
         setNavbarButtonSelection('REQUESTS')
@@ -27,6 +33,10 @@ class RequestBox extends Component {
         const { authToken, getRequests } = this.props
         getRequests(authToken, this.page - 1, () => {
             this.setState({ showLoader: false })
+        })
+        this.props.history.push({
+            pathname: '/request',
+            search: '?page=' + this.page
         })
     }
 
@@ -87,7 +97,7 @@ class RequestBox extends Component {
                 >
                     Previous
                 </div>
-                <div>{`Page: ${this.page}`}</div>
+                <div>{`Page: ${this.page} of ${totalPages}`}</div>
                 <div
                     className={styles.button}
                     style={{
@@ -115,6 +125,7 @@ class RequestBox extends Component {
                             ' ' +
                             request.user.last_name
                         }
+                        page={this.page - 1}
                         jobId={request.job_id ? request.job_id : ''}
                         country={
                             request.job_url ? request.job_url : 'url not found'
@@ -245,4 +256,7 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RequestBox)
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(withRouter(RequestBox))
