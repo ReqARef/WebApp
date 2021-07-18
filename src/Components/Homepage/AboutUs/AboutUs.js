@@ -45,7 +45,7 @@ export default class AboutUs extends PureComponent {
         return (
             <div
                 className={styles.mainContainer}
-                style={{ backgroundColor: colors.background }}
+                style={{ backgroundColor: colors.blue }}
             >
                 {this.renderInnerBox()}
             </div>

@@ -2,7 +2,17 @@ const initialState = {
     requestTo: '',
     requests: [],
     showLoader: false,
-    showPopUp: false
+    showPopUp: false,
+    totalPages: 1
+}
+
+const handleGetRequest = (state, payload, totalPageCount) => {
+    const newState = { ...state }
+    newState.requests = payload
+    if (totalPageCount) {
+        newState.totalPages = totalPageCount
+    }
+    return newState
 }
 
 const popupReducer = (state = initialState, action) => {
@@ -16,10 +26,11 @@ const popupReducer = (state = initialState, action) => {
         case 'SENDREQUEST':
             return state
         case 'GETREQUEST':
-            return {
-                ...state,
-                requests: action.request
-            }
+            return handleGetRequest(
+                state,
+                action.payload,
+                action.totalPageCount
+            )
         case 'SHOWREQUESTLOADER':
             return {
                 ...state,

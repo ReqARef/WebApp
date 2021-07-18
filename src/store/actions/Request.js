@@ -15,7 +15,8 @@ export function sendRequest() {
 export function getRequests(payload) {
     return {
         type: 'GETREQUEST',
-        request: payload.requests
+        payload: payload.requests,
+        totalPageCount: payload.totalPageCount
     }
 }
 
@@ -66,7 +67,7 @@ export function makeRequestAsync(
     }
 }
 
-export function getRequestListAsync(token, callback) {
+export function getRequestListAsync(token, page, callback) {
     const auth = 'Bearer '.concat(token)
     const headers = { Authorization: auth }
     return function (dispatch) {
@@ -79,13 +80,26 @@ export function getRequestListAsync(token, callback) {
         }
         const reject = (e) => {
             callback()
-            alert('Something went wrong')
+            alert('Something went wrong ' + e)
         }
-        return getRequest('/request', resolve, reject, headers, dispatch, true)
+        return getRequest(
+            `/request/${page}`,
+            resolve,
+            reject,
+            headers,
+            dispatch,
+            true
+        )
     }
 }
 
-export function handleRequestAsync(token, requestId, action, unshowLoader) {
+export function handleRequestAsync(
+    token,
+    page,
+    requestId,
+    action,
+    unshowLoader
+) {
     const auth = 'Bearer '.concat(token)
     const headers = { Authorization: auth }
     return function (dispatch) {
@@ -102,7 +116,7 @@ export function handleRequestAsync(token, requestId, action, unshowLoader) {
             alert('Something went wrong')
         }
 
-        const body = { requestId, action }
+        const body = { requestId, action, page }
         return postRequest(
             'handlerequest',
             resolve,

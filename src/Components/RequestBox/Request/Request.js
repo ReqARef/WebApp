@@ -8,7 +8,7 @@ import { imagePlaceHolder } from '../../../utils/constants'
 
 const request = (props) => {
     const dispatch = useDispatch()
-    const { isVerified } = props
+    const { isVerified, page } = props
 
     const handleAcceptOnClick = () => {
         if (!isVerified) {
@@ -18,6 +18,7 @@ const request = (props) => {
             dispatch(
                 handleRequestAsync(
                     props.token,
+                    page,
                     props.requestId,
                     'accept',
                     props.hideLoader
@@ -34,6 +35,7 @@ const request = (props) => {
             dispatch(
                 handleRequestAsync(
                     props.token,
+                    page,
                     props.requestId,
                     'reject',
                     props.hideLoader

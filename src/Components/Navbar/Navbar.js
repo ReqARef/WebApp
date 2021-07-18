@@ -44,7 +44,7 @@ class Navbar extends PureComponent {
         )
     }
 
-    renderButton = (text, link, color, borderColor, background) => {
+    renderButton = (text, link, color, borderColor, background, style) => {
         const backgroundColor = background || colors.white
         return (
             <Link to={link} className={styles.link}>
@@ -54,7 +54,8 @@ class Navbar extends PureComponent {
                         color,
                         borderColor,
                         fontSize: 'larger',
-                        backgroundColor
+                        backgroundColor,
+                        ...style
                     }}
                 >
                     {text}
@@ -72,7 +73,8 @@ class Navbar extends PureComponent {
                     style={{
                         color: colors.fontcolorBlack,
                         borderColor: colors.blue,
-                        fontSize: 'larger'
+                        fontSize: 'larger',
+                        border: '2px solid ' + colors.black
                     }}
                     onClick={logoutAction}
                 >
@@ -107,7 +109,7 @@ class Navbar extends PureComponent {
                 )}
                 {this.renderButton(
                     'Requests',
-                    '/request',
+                    '/request?page=1',
                     selected === 'REQUESTS'
                         ? colors.fontcolorWhite
                         : colors.fontcolorBlack,
@@ -132,13 +134,14 @@ class Navbar extends PureComponent {
         return (
             <div className={styles.navlinks}>
                 {this.renderButton(
-                    'Login/Signup',
+                    'Login',
                     '/auth',
                     selected === 'AUTH'
                         ? colors.fontcolorWhite
                         : colors.fontcolorBlack,
-                    selected === 'AUTH' ? colors.black : colors.blue,
-                    selected === 'AUTH' ? colors.blue : colors.white
+                    colors.black,
+                    selected === 'AUTH' ? colors.blue : colors.white,
+                    { border: '2px solid ' + colors.black }
                 )}
                 {this.renderButton(
                     'Home',
