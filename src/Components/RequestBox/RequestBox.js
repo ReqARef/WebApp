@@ -12,17 +12,22 @@ import { setNavbarSelection } from '../../store/actions/Navbar'
 class RequestBox extends Component {
     constructor(props) {
         super(props)
-        const { authToken, searchUsers } = props
-        searchUsers(authToken, () => {
-            this.setState({ showLoader: false })
-        })
         this.state = {
             modalEmail: null,
             showModal: false,
             showLoader: true
         }
+        this.page = 1
+        this.getDataPerPage()
         const { setNavbarButtonSelection } = props
         setNavbarButtonSelection('REQUESTS')
+    }
+
+    getDataPerPage() {
+        const { authToken, getRequests } = this.props
+        getRequests(authToken, this.page - 1, () => {
+            this.setState({ showLoader: false })
+        })
     }
 
     listUpdated = () => {
@@ -37,6 +42,64 @@ class RequestBox extends Component {
         return (
             <div style={{ marginTop: '30vh' }}>
                 <Loader height="50px" width="50px" />
+            </div>
+        )
+    }
+
+    handlePrevClick = () => {
+        if (this.page === 1) return
+        this.page = this.page - 1
+        this.setState({ showLoader: true })
+        this.getDataPerPage()
+    }
+
+    handleNexClick = () => {
+        const { totalPages } = this.props
+        if (totalPages === this.page) return
+        this.page = this.page + 1
+        this.setState({ showLoader: true })
+        this.getDataPerPage()
+    }
+
+    renderPaginator = () => {
+        const { totalPages } = this.props
+        const prevBackground = this.page === 1 ? 'lightgray' : colors.blue
+        const nextBackground =
+            totalPages === this.page ? 'lightgray' : colors.blue
+        return (
+            <div
+                style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    marginTop: '3vh'
+                }}
+            >
+                <div
+                    className={styles.button}
+                    style={{
+                        backgroundColor: prevBackground,
+                        borderRadius: '10px',
+                        cursor: 'pointer',
+                        color: colors.white
+                    }}
+                    onClick={this.handlePrevClick}
+                >
+                    Previous
+                </div>
+                <div>{`Page: ${this.page}`}</div>
+                <div
+                    className={styles.button}
+                    style={{
+                        backgroundColor: nextBackground,
+                        borderRadius: '10px',
+                        cursor: 'pointer',
+                        color: colors.white
+                    }}
+                    onClick={this.handleNexClick}
+                >
+                    Next
+                </div>
             </div>
         )
     }
@@ -75,10 +138,47 @@ class RequestBox extends Component {
         })
     }
 
+    renderHeading = () => {
+        return (
+            <div
+                style={{
+                    width: '100%'
+                }}
+            >
+                <h1
+                    style={{
+                        marginLeft: '19vw',
+                        color: colors.fontColorBlue
+                    }}
+                >
+                    Requests
+                </h1>
+            </div>
+        )
+    }
+
+    renderNoRequestsFoundText = () => {
+        return (
+            <div
+                style={{
+                    color: colors.black,
+                    width: '100%',
+                    marginTop: '20vh',
+                    fontSize: '3vh',
+                    display: 'flex',
+                    justifyContent: 'center'
+                }}
+            >
+                No requests found
+            </div>
+        )
+    }
+
     render() {
         const { authToken } = this.props
         const { modalEmail, showModal, showLoader } = this.state
         const requests = this.getRequestData()
+
         return (
             <div
                 style={{
@@ -93,20 +193,7 @@ class RequestBox extends Component {
                         this.setState({ showModal: false, modalEmail: null })
                     }}
                 />
-                <div
-                    style={{
-                        width: '100%'
-                    }}
-                >
-                    <h1
-                        style={{
-                            marginLeft: '19vw',
-                            color: colors.fontColorBlue
-                        }}
-                    >
-                        Requests
-                    </h1>
-                </div>
+                {this.renderHeading()}
                 {showLoader && this.renderLoader()}
                 <div
                     className={styles.RequestBox}
@@ -123,6 +210,14 @@ class RequestBox extends Component {
                     }}
                 >
                     {!showLoader && requests}
+                    {requests &&
+                        requests.length > 0 &&
+                        !showLoader &&
+                        this.renderPaginator()}
+                    {requests &&
+                        requests.length === 0 &&
+                        !showLoader &&
+                        this.renderNoRequestsFoundText()}
                 </div>
             </div>
         )
@@ -136,14 +231,15 @@ const mapStateToProps = (state) => {
         isVerified:
             state.User && state.User.user
                 ? state.User.user.email_verified
-                : false
+                : false,
+        totalPages: state.requestReducer.totalPages
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        searchUsers: (token, callback) => {
-            return dispatch(getRequestListAsync(token, callback))
+        getRequests: (token, page, callback) => {
+            return dispatch(getRequestListAsync(token, page, callback))
         },
         setNavbarButtonSelection: (value) => dispatch(setNavbarSelection(value))
     }
