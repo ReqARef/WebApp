@@ -1,9 +1,9 @@
 .mainContainer {
-    height: 45vh;
+    height: 60vh;
     width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    /*justify-content: center;
+    align-items: center; */
 }
 
 .mainContainer > h1 {
@@ -24,6 +24,7 @@
 
 .textSection {
     width: 70%;
+    margin-top: 10vh;
 }
 
 .imageContainer {

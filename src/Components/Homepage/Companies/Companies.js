@@ -1,18 +1,32 @@
 import React, { PureComponent } from 'react'
 import colors from '../../../utils/colors'
 import styles from './Companies.module.css'
+import { companyLogoArray } from '../../../utils/constants'
 
-const LOGO_URLS = [
-    'https://1000logos.net/wp-content/uploads/2016/11/Cisco-logo.png',
-    'https://logos-download.com/wp-content/uploads/2019/06/Amdocs_Logo.png',
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/RBL_Bank_SVG_Logo.svg/1280px-RBL_Bank_SVG_Logo.svg.png',
-    'https://smartenergycc.org/wp-content/uploads/2019/11/SEW-Logo-MS19.jpg'
-]
 export default class Companies extends PureComponent {
+    renderHeading = () => {
+        return (
+            <div
+                style={{
+                    color: colors.fontcolorWhite,
+                    width: '100%',
+                    textAlign: 'center',
+                    fontSize: '3.5vh'
+                }}
+            >
+                Get referred to companies like
+            </div>
+        )
+    }
+
     renderImages = () => {
         return (
-            <div>
-                {LOGO_URLS.map((url, index) => {
+            <div
+                className={styles.navItems}
+                ref={this.navRef}
+                style={{ backgroundColor: colors.blue }}
+            >
+                {companyLogoArray.map((url, index) => {
                     return (
                         <img
                             src={url}
@@ -32,10 +46,10 @@ export default class Companies extends PureComponent {
                 className={styles.container}
                 style={{ backgroundColor: colors.blue }}
             >
-                <h1 style={{ color: colors.fontcolorWhite }}>
-                    Get referred to companies like
-                </h1>
-                {this.renderImages()}
+                {this.renderHeading()}
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                    {this.renderImages()}
+                </div>
             </div>
         )
     }

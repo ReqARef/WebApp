@@ -69,6 +69,44 @@ const request = (props) => {
         )
     }
 
+    const renderNameAndDetails = () => {
+        let url = props.url
+        if (url) {
+            if (!url.includes('http')) {
+                url = 'http://' + url
+            }
+            if (url.charAt(url.length - 1) !== '/') {
+                url = url + '/'
+            }
+        }
+        const comment = props.comment || ''
+        return (
+            <div className={style.UserData}>
+                <h3 className={style.userDataPara}>{props.userName}</h3>
+
+                {props.url ? (
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <p className={style.userDataPara}>{'Job Id:'}</p>
+                        <a
+                            className={style.url}
+                            href={url}
+                            style={{ color: colors.blue, marginLeft: '2px' }}
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            {props.jobId}
+                        </a>
+                    </div>
+                ) : (
+                    <p className={style.userDataPara}>
+                        {'Job Id: ' + props.jobId}
+                    </p>
+                )}
+                <p className={style.userDataPara}>{comment}</p>
+            </div>
+        )
+    }
+
     return (
         <div
             style={{
@@ -83,11 +121,7 @@ const request = (props) => {
         >
             <div style={{ display: 'flex', flex: 1 }}>
                 {renderAvatar()}
-                <div className={style.UserData}>
-                    <h3 className={style.userDataPara}>{props.userName}</h3>
-                    <p className={style.userDataPara}>{props.jobId}</p>
-                    <a className={style.userDataCountry}>{props.country}</a>
-                </div>
+                {renderNameAndDetails()}
             </div>
             <div className={style.ButtonDiv}>
                 <div

@@ -116,6 +116,7 @@ class RequestBox extends Component {
 
     getRequestData = () => {
         return (this.props.requests || []).map((request) => {
+            console.log(request)
             if (request.referral_status === 0) {
                 return (
                     <Request
@@ -126,10 +127,9 @@ class RequestBox extends Component {
                             request.user.last_name
                         }
                         page={this.page - 1}
-                        jobId={request.job_id ? request.job_id : ''}
-                        country={
-                            request.job_url ? request.job_url : 'url not found'
-                        }
+                        jobId={request.job_id ? request.job_id : 'Not Found'}
+                        url={request.job_url}
+                        comment={request.referee_comment}
                         email={request.user.email}
                         avatar={request.user.avatar}
                         openModal={(modalEmail) => {

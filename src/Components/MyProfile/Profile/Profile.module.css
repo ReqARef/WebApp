@@ -11,9 +11,9 @@
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 .avatarContainer {
-    height: 15vw;
-    width: 15vw;
-    border-radius: 15vw;
+    height: 12vw;
+    width: 12vw;
+    border-radius: 10px;
     margin-top: -2vw;
     box-shadow: rgba(100, 100, 111, 0.1) 0px 7px 29px 0px;
 }

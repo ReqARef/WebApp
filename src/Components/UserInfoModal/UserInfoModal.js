@@ -72,7 +72,7 @@ class UserInfoModal extends PureComponent {
                 style={{
                     height: '160px',
                     width: '160px',
-                    borderRadius: '160px'
+                    borderRadius: '10px'
                 }}
             />
         )
@@ -146,7 +146,9 @@ class UserInfoModal extends PureComponent {
         const {
             data: { resume }
         } = this.state
-        if (!resume) return null
+        if (!resume) {
+            return <div style={{ marginTop: '10px' }}>Resume not uploaded</div>
+        }
         return (
             // eslint-disable-next-line react/jsx-no-target-blank
             <a
@@ -220,7 +222,7 @@ class UserInfoModal extends PureComponent {
                         style={{
                             marginRight: '16px',
                             marginTop: '16px',
-                            backgroundColor: colors.blue,
+                            backgroundColor: colors.black,
                             color: colors.fontcolorWhite,
                             height: '32px',
                             width: '32px',
@@ -228,7 +230,9 @@ class UserInfoModal extends PureComponent {
                             cursor: 'pointer',
                             display: 'flex',
                             justifyContent: 'center',
-                            alignItems: 'center'
+                            alignItems: 'center',
+                            boxShadow:
+                                'rgba(100, 100, 111, 0.75) 0px 10px 29px 0px'
                         }}
                     >
                         X

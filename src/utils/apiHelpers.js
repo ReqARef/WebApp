@@ -29,6 +29,10 @@ export function getRequest(
     }
     extraHeaders = extraHeaders || {}
     path = path[0] === '/' ? path.substring(1) : path
+
+    if (!navigator.onLine) {
+        return alert('You are not connected to internet')
+    }
     return fetch(server.concat(`/${path}`), {
         method: 'GET',
         credentials: 'include',
@@ -45,6 +49,7 @@ export function getRequest(
             return resolve(json)
         })
         .catch((e) => {
+            if (e.toString() === 'TypeError: Failed to fetch') return
             return reject(e)
         })
 }
@@ -65,6 +70,11 @@ export function postRequest(
     }
     extraHeaders = extraHeaders || {}
     path = path[0] === '/' ? path.substring(1) : path
+
+    if (!navigator.onLine) {
+        return alert('You are not connected to internet')
+    }
+
     return fetch(server.concat(`/${path}`), {
         method: 'POST',
         credentials: 'include',
@@ -84,6 +94,7 @@ export function postRequest(
             return resolve(json)
         })
         .catch((e) => {
+            if (e.toString() === 'TypeError: Failed to fetch') return
             return reject(e)
         })
 }
@@ -105,6 +116,10 @@ export function putRequest(
     extraHeaders = extraHeaders || {}
     path = path[0] === '/' ? path.substring(1) : path
 
+    if (!navigator.onLine) {
+        return alert('You are not connected to internet')
+    }
+
     return fetch(server.concat(`/${path}`), {
         method: 'PUT',
         credentials: 'include',
@@ -124,6 +139,7 @@ export function putRequest(
             return resolve(json)
         })
         .catch((e) => {
+            if (e.toString() === 'TypeError: Failed to fetch') return
             return reject(e)
         })
 }
@@ -142,6 +158,11 @@ export function formDataPostRequest(
     }
     extraHeaders = extraHeaders || {}
     path = path[0] === '/' ? path.substring(1) : path
+
+    if (!navigator.onLine) {
+        return alert('You are not connected to internet')
+    }
+
     return fetch(server.concat(`/${path}`), {
         method: 'POST',
         credentials: 'include',
@@ -159,6 +180,7 @@ export function formDataPostRequest(
             return resolve(json)
         })
         .catch((e) => {
+            if (e.toString() === 'TypeError: Failed to fetch') return
             return reject(e)
         })
 }
