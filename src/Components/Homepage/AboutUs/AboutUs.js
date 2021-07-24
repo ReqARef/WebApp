@@ -13,7 +13,7 @@ export default class AboutUs extends PureComponent {
         text = text + text + text + text
         return (
             <div
-                style={{ color: colors.fontcolorWhite }}
+                style={{ color: colors.fontcolorBlack, fontWeight: '500' }}
                 className={styles.text}
             >
                 {text}
@@ -24,12 +24,12 @@ export default class AboutUs extends PureComponent {
     renderInnerBox = () => {
         return (
             <div
-                style={{ backgroundColor: colors.blue }}
+                style={{ backgroundColor: colors.white }}
                 className={styles.innerBox}
             >
                 <div className={styles.textSection}>
                     <h1
-                        style={{ color: colors.fontcolorWhite }}
+                        style={{ color: colors.fontColorBlue }}
                         className={styles.heading}
                     >
                         About Us
@@ -45,7 +45,7 @@ export default class AboutUs extends PureComponent {
         return (
             <div
                 className={styles.mainContainer}
-                style={{ backgroundColor: colors.blue }}
+                style={{ backgroundColor: colors.white }}
             >
                 {this.renderInnerBox()}
             </div>

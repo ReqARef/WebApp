@@ -18,8 +18,12 @@ const RequestForm = (props) => {
     const buttonText = showLoader ? <Loader /> : 'Submit'
 
     function onSubmitHandler(event) {
-        if (!jobId || !jobUrl) {
+        if (!jobId) {
             alert('missing job id or job url')
+            return
+        }
+        if (comments && comments.length > 250) {
+            alert('Comment should have less than 250 characters')
             return
         }
         setLoader(true)
