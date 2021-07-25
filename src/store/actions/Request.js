@@ -67,7 +67,7 @@ export function makeRequestAsync(
     }
 }
 
-export function getRequestListAsync(token, page, callback) {
+export function getRequestListAsync(token, page, type, callback) {
     const auth = 'Bearer '.concat(token)
     const headers = { Authorization: auth }
     return function (dispatch) {
@@ -83,7 +83,7 @@ export function getRequestListAsync(token, page, callback) {
             alert('Something went wrong ' + e)
         }
         return getRequest(
-            `/request/${page}`,
+            `/request/${page}/${type}`,
             resolve,
             reject,
             headers,

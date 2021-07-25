@@ -14,16 +14,16 @@ const qs = require('qs')
 class RequestBox extends Component {
     constructor(props) {
         super(props)
+        const qsObject = qs.parse(props.location.search, {
+            ignoreQueryPrefix: true
+        })
+        this.page = parseInt(qsObject.page)
         this.state = {
             modalEmail: null,
+            requestType: qsObject.type,
             showModal: false,
             showLoader: true
         }
-        this.page = parseInt(
-            qs.parse(props.location.search, {
-                ignoreQueryPrefix: true
-            }).page
-        )
         this.getDataPerPage()
         const { setNavbarButtonSelection } = props
         setNavbarButtonSelection('REQUESTS')
@@ -31,12 +31,14 @@ class RequestBox extends Component {
 
     getDataPerPage() {
         const { authToken, getRequests } = this.props
-        getRequests(authToken, this.page - 1, () => {
+        const { requestType } = this.state
+        this.setState({ showLoader: true })
+        getRequests(authToken, this.page - 1, requestType, () => {
             this.setState({ showLoader: false })
         })
         this.props.history.push({
             pathname: '/request',
-            search: '?page=' + this.page
+            search: `?type=${requestType}&page=${this.page}`
         })
     }
 
@@ -59,7 +61,6 @@ class RequestBox extends Component {
     handlePrevClick = () => {
         if (this.page === 1) return
         this.page = this.page - 1
-        this.setState({ showLoader: true })
         this.getDataPerPage()
     }
 
@@ -67,7 +68,6 @@ class RequestBox extends Component {
         const { totalPages } = this.props
         if (totalPages === this.page) return
         this.page = this.page + 1
-        this.setState({ showLoader: true })
         this.getDataPerPage()
     }
 
@@ -82,7 +82,7 @@ class RequestBox extends Component {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    marginTop: '3vh'
+                    marginTop: '4vh'
                 }}
             >
                 <div
@@ -91,20 +91,26 @@ class RequestBox extends Component {
                         backgroundColor: prevBackground,
                         borderRadius: '10px',
                         cursor: 'pointer',
-                        color: colors.white
+                        color: colors.white,
+                        marginRight: '3vw'
                     }}
                     onClick={this.handlePrevClick}
                 >
                     Previous
                 </div>
-                <div>{`Page: ${this.page} of ${totalPages}`}</div>
+                <div
+                    style={{
+                        textAlign: 'center'
+                    }}
+                >{`Page: ${this.page} of ${totalPages}`}</div>
                 <div
                     className={styles.button}
                     style={{
                         backgroundColor: nextBackground,
                         borderRadius: '10px',
                         cursor: 'pointer',
-                        color: colors.white
+                        color: colors.white,
+                        marginLeft: '3vw'
                     }}
                     onClick={this.handleNexClick}
                 >
@@ -117,52 +123,99 @@ class RequestBox extends Component {
     getRequestData = () => {
         return (this.props.requests || []).map((request) => {
             console.log(request)
-            if (request.referral_status === 0) {
-                return (
-                    <Request
-                        key={request.id}
-                        userName={
-                            request.user.first_name +
-                            ' ' +
-                            request.user.last_name
-                        }
-                        page={this.page - 1}
-                        jobId={request.job_id ? request.job_id : 'Not Found'}
-                        url={request.job_url}
-                        comment={request.referee_comment}
-                        email={request.user.email}
-                        avatar={request.user.avatar}
-                        openModal={(modalEmail) => {
-                            this.setState({ modalEmail, showModal: true })
-                        }}
-                        isVerified={this.props.isVerified}
-                        requestId={request.id}
-                        token={this.props.authToken}
-                        updated={this.listUpdated}
-                        hideLoader={() => {
-                            this.setState({ showLoader: false })
-                        }}
-                    />
-                )
-            }
-            return null
+            return (
+                <Request
+                    key={request.id}
+                    userName={
+                        request.user.first_name + ' ' + request.user.last_name
+                    }
+                    page={this.page - 1}
+                    jobId={request.job_id ? request.job_id : 'Not Found'}
+                    url={request.job_url}
+                    comment={request.referee_comment}
+                    email={request.user.email}
+                    avatar={request.user.avatar}
+                    openModal={(modalEmail) => {
+                        this.setState({ modalEmail, showModal: true })
+                    }}
+                    isVerified={this.props.isVerified}
+                    requestId={request.id}
+                    token={this.props.authToken}
+                    updated={this.listUpdated}
+                    hideLoader={() => {
+                        this.setState({ showLoader: false })
+                    }}
+                    requestType={this.state.requestType}
+                />
+            )
+        })
+    }
+
+    changeRequestType = (requestType) => {
+        if (this.state.requestType === requestType) return
+
+        this.setState({ requestType }, () => {
+            this.page = 1
+            this.getDataPerPage()
+            this.props.history.push({
+                pathname: '/request',
+                search: `?type=${requestType}&page=${this.page}`
+            })
         })
     }
 
     renderHeading = () => {
+        const { requestType } = this.state
         return (
             <div
                 style={{
-                    width: '100%'
+                    display: 'flex',
+                    justifyContent: 'center'
                 }}
             >
                 <h1
                     style={{
-                        marginLeft: '19vw',
-                        color: colors.fontColorBlue
+                        color:
+                            requestType === 'pending'
+                                ? colors.blue
+                                : colors.black,
+                        marginRight: '14vw',
+                        cursor: 'pointer'
+                    }}
+                    onClick={() => {
+                        this.changeRequestType('pending')
                     }}
                 >
-                    Requests
+                    Pending
+                </h1>
+                <h1
+                    style={{
+                        color:
+                            requestType === 'accepted'
+                                ? colors.blue
+                                : colors.black,
+                        cursor: 'pointer'
+                    }}
+                    onClick={() => {
+                        this.changeRequestType('accepted')
+                    }}
+                >
+                    Accepted
+                </h1>
+                <h1
+                    style={{
+                        color:
+                            requestType === 'rejected'
+                                ? colors.blue
+                                : colors.black,
+                        marginLeft: '14vw',
+                        cursor: 'pointer'
+                    }}
+                    onClick={() => {
+                        this.changeRequestType('rejected')
+                    }}
+                >
+                    Rejected
                 </h1>
             </div>
         )
@@ -185,10 +238,40 @@ class RequestBox extends Component {
         )
     }
 
+    renderRequestsList = () => {
+        const requests = this.getRequestData()
+        const { showLoader } = this.state
+        return (
+            <div
+                className={styles.RequestBox}
+                style={{
+                    width: '100%',
+                    borderRadius: inlineStyles.borderRadius,
+                    backgroundColor: colors.background,
+                    color: colors.fontcolorBlack,
+                    paddingBottom: '70px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}
+            >
+                {!showLoader && requests}
+                {requests &&
+                    requests.length > 0 &&
+                    !showLoader &&
+                    this.renderPaginator()}
+                {requests &&
+                    requests.length === 0 &&
+                    !showLoader &&
+                    this.renderNoRequestsFoundText()}
+            </div>
+        )
+    }
+
     render() {
         const { authToken } = this.props
         const { modalEmail, showModal, showLoader } = this.state
-        const requests = this.getRequestData()
 
         return (
             <div
@@ -206,30 +289,7 @@ class RequestBox extends Component {
                 />
                 {this.renderHeading()}
                 {showLoader && this.renderLoader()}
-                <div
-                    className={styles.RequestBox}
-                    style={{
-                        borderRadius: inlineStyles.borderRadius,
-                        backgroundColor: colors.background,
-                        margin: 'auto',
-                        color: colors.fontcolorBlack,
-                        paddingBottom: '70px',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                        overflow: 'auto'
-                    }}
-                >
-                    {!showLoader && requests}
-                    {requests &&
-                        requests.length > 0 &&
-                        !showLoader &&
-                        this.renderPaginator()}
-                    {requests &&
-                        requests.length === 0 &&
-                        !showLoader &&
-                        this.renderNoRequestsFoundText()}
-                </div>
+                {this.renderRequestsList()}
             </div>
         )
     }
@@ -249,8 +309,8 @@ const mapStateToProps = (state) => {
 
 function mapDispatchToProps(dispatch) {
     return {
-        getRequests: (token, page, callback) => {
-            return dispatch(getRequestListAsync(token, page, callback))
+        getRequests: (token, page, type, callback) => {
+            return dispatch(getRequestListAsync(token, page, type, callback))
         },
         setNavbarButtonSelection: (value) => dispatch(setNavbarSelection(value))
     }
