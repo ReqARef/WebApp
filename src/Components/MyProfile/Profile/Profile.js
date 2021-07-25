@@ -18,6 +18,11 @@ class Profile extends PureComponent {
 
     onImageUpload = (event) => {
         event.preventDefault()
+        const { email_verified: emailVerified } = this.props
+        if (!emailVerified) {
+            alert('Please verify your email to continue using ReqARef')
+            return
+        }
         if (event.target.files && event.target.files[0]) {
             const { sendAvatarChangeReq, authToken } = this.props
             const img = event.target.files[0]

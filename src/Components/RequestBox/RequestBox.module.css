@@ -7,10 +7,8 @@
     height: 4vh;
     width: 8vw;
     border: 1px solid rgba(52, 63, 69, 0.3);
-    margin: auto;
     padding-top: 5px;
     padding-bottom: 5px;
-    margin-bottom: 10px;
     display: inline-block;
     display: flex;
     justify-content: center;

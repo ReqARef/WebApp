@@ -107,22 +107,8 @@ const request = (props) => {
         )
     }
 
-    return (
-        <div
-            style={{
-                backgroundColor: colors.white,
-                borderRadius: inlineStyles.borderRadius,
-                border: '0px solid ' + 'orange',
-                display: 'flex',
-                alignItems: 'center',
-                flex: 1
-            }}
-            className={style.Request}
-        >
-            <div style={{ display: 'flex', flex: 1 }}>
-                {renderAvatar()}
-                {renderNameAndDetails()}
-            </div>
+    const renderAcceptRejectButtons = () => {
+        return (
             <div className={style.ButtonDiv}>
                 <div
                     className={style.AcceptDiv}
@@ -149,6 +135,29 @@ const request = (props) => {
                     Reject
                 </div>
             </div>
+        )
+    }
+
+    const { requestType } = props
+    const width = requestType === 'pending' ? '60vw' : '45vw'
+    return (
+        <div
+            style={{
+                backgroundColor: colors.white,
+                borderRadius: inlineStyles.borderRadius,
+                border: '0px solid ' + 'orange',
+                display: 'flex',
+                alignItems: 'center',
+                flex: 1,
+                width
+            }}
+            className={style.Request}
+        >
+            <div style={{ display: 'flex', flex: 1 }}>
+                {renderAvatar()}
+                {renderNameAndDetails()}
+            </div>
+            {requestType === 'pending' && renderAcceptRejectButtons()}
         </div>
     )
 }

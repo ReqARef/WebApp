@@ -109,7 +109,7 @@ class Navbar extends PureComponent {
                 )}
                 {this.renderButton(
                     'Requests',
-                    '/request?page=1',
+                    '/request?type=pending&page=1',
                     selected === 'REQUESTS'
                         ? colors.fontcolorWhite
                         : colors.fontcolorBlack,

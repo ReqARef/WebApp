@@ -23,7 +23,7 @@ class Settings extends PureComponent {
             // role: 1->Referer, 0 Referee
             role: '',
             bio: '',
-            verified: ''
+            resume: ''
         }
         const { getData, authToken } = this.props
         getData(authToken)
@@ -48,7 +48,7 @@ class Settings extends PureComponent {
                     country,
                     role,
                     bio,
-                    email_verified: verified
+                    resume
                 } = user
                 const roleIntegerToString =
                     role === 0 || role === 1
@@ -69,7 +69,7 @@ class Settings extends PureComponent {
                     role: roleIntegerToString,
                     bio: bio || '',
                     errorOccurred: false,
-                    verified: verified ? 'Yes' : 'No'
+                    resume: resume || ''
                 })
             }
         }
@@ -92,7 +92,8 @@ class Settings extends PureComponent {
             experience,
             country,
             role,
-            bio
+            bio,
+            resume
         } = this.state
         const roleToInteger = role === 'referee' ? 0 : 1
         const body = {
@@ -106,7 +107,8 @@ class Settings extends PureComponent {
             experience,
             country,
             role: roleToInteger,
-            bio
+            bio,
+            resume
         }
         const { setData, authToken } = this.props
         if (!firstName.trim() || !lastName.trim()) {
@@ -195,7 +197,7 @@ class Settings extends PureComponent {
                     {this.renderInputField('email', 'Email Address', true)}
                 </div>
                 <div style={{ width: '50%' }}>
-                    {this.renderInputField('verified', 'Email Verified', true)}
+                    {this.renderInputField('resume', 'Resume Link', false)}
                 </div>
             </div>
         )
