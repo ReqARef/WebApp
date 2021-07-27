@@ -8,8 +8,7 @@ import colors from '../../utils/colors'
 import Loader from '../Loader/Loader'
 
 class Stats extends PureComponent {
-    constructor(props) {
-        super(props)
+    componentDidMount() {
         const { getStats, authToken } = this.props
         getStats(authToken)
     }

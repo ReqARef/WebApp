@@ -14,19 +14,25 @@ const qs = require('qs')
 class RequestBox extends Component {
     constructor(props) {
         super(props)
+
         const qsObject = qs.parse(props.location.search, {
             ignoreQueryPrefix: true
         })
         this.page = parseInt(qsObject.page)
+
         this.state = {
             modalEmail: null,
             requestType: qsObject.type,
             showModal: false,
             showLoader: true
         }
-        this.getDataPerPage()
+
         const { setNavbarButtonSelection } = props
         setNavbarButtonSelection('REQUESTS')
+    }
+
+    componentDidMount() {
+        this.getDataPerPage()
     }
 
     getDataPerPage() {
