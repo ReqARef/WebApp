@@ -12,7 +12,8 @@ class Login extends PureComponent {
         super(props)
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            showLoader: false
         }
     }
 
@@ -94,7 +95,10 @@ class Login extends PureComponent {
             return
         }
         const { sendLoginReq } = this.props
-        sendLoginReq(this.state.email, this.state.password)
+        this.setState({ showLoader: true })
+        sendLoginReq(this.state.email, this.state.password, () => {
+            this.setState({ showLoader: false })
+        })
     }
 
     renderLoader = () => {
@@ -114,7 +118,7 @@ class Login extends PureComponent {
                     marginTop: '10px'
                 }}
             >
-                {this.props.showLoader ? this.renderLoader() : 'Login'}
+                {this.state.showLoader ? this.renderLoader() : 'Login'}
             </div>
         )
     }
@@ -205,8 +209,8 @@ const mapStateToProps = (state) => {
 
 function mapDispatchToProps(dispatch) {
     return {
-        sendLoginReq: (username, password) => {
-            return dispatch(loginAsync(username, password))
+        sendLoginReq: (username, password, callback) => {
+            return dispatch(loginAsync(username, password, callback))
         }
     }
 }

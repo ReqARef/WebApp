@@ -135,7 +135,7 @@ class Navbar extends PureComponent {
             <div className={styles.navlinks}>
                 {this.renderButton(
                     'Login',
-                    '/auth',
+                    '/',
                     selected === 'AUTH'
                         ? colors.fontcolorWhite
                         : colors.fontcolorBlack,
@@ -145,7 +145,7 @@ class Navbar extends PureComponent {
                 )}
                 {this.renderButton(
                     'Home',
-                    '/',
+                    '/home',
                     selected === 'HOME'
                         ? colors.fontcolorWhite
                         : colors.fontcolorBlack,

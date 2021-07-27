@@ -18,7 +18,7 @@ class App extends PureComponent {
             <div>
                 <Navbar />
                 <Switch>
-                    <Route exact path="/" component={Homepage} />
+                    <Route exact path="/home" component={Homepage} />
                     <Route
                         exact
                         path="/resetPassword"

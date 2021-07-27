@@ -12,7 +12,8 @@ class Password extends PureComponent {
         super(props)
         this.state = {
             password1: '',
-            password2: ''
+            password2: '',
+            showLoader: false
         }
     }
 
@@ -52,7 +53,10 @@ class Password extends PureComponent {
             return
         }
         const { changePassword } = this.props
-        changePassword(email, password1)
+        this.setState({ showLoader: true })
+        changePassword(email, password1, () => {
+            this.setState({ showLoader: false })
+        })
     }
 
     renderLoader = () => {
@@ -70,7 +74,7 @@ class Password extends PureComponent {
                     cursor: 'pointer'
                 }}
             >
-                {this.props.showLoader ? this.renderLoader() : 'Reset'}
+                {this.state.showLoader ? this.renderLoader() : 'Reset'}
             </div>
         )
     }
@@ -145,15 +149,13 @@ class Password extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
-    return {
-        showLoader: state.User.showLoader
-    }
+    return {}
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        changePassword: (email, password) => {
-            return dispatch(changePassword(email, password))
+        changePassword: (email, password, callback) => {
+            return dispatch(changePassword(email, password, callback))
         }
     }
 }

@@ -23,15 +23,20 @@ class Settings extends PureComponent {
             // role: 1->Referer, 0 Referee
             role: '',
             bio: '',
-            resume: ''
+            resume: '',
+            showLoader: true
         }
         const { getData, authToken } = this.props
-        getData(authToken)
+        getData(authToken, () => {
+            this.setState({ showLoader: false })
+        })
     }
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps !== this.props) {
-            const { showLoader, user } = this.props
+            const { user } = this.props
+            const { showLoader } = this.state
+
             if (!showLoader && !user) {
                 this.setState({ errorOccurred: true })
                 alert('Something went wrong')
@@ -115,7 +120,10 @@ class Settings extends PureComponent {
             alert('Name cannot be empty')
             return
         }
-        setData(authToken, body)
+        this.setState({ showLoader: true })
+        setData(authToken, body, () => {
+            this.setState({ showLoader: false })
+        })
     }
 
     renderHeader = () => {
@@ -395,7 +403,7 @@ class Settings extends PureComponent {
     }
 
     render() {
-        let { showLoader } = this.props
+        let { showLoader } = this.state
         const { errorOccurred } = this.state
         showLoader = showLoader || errorOccurred
         return (
@@ -429,11 +437,11 @@ const mapStateToProps = (state) => {
 
 function mapDispatchToProps(dispatch) {
     return {
-        getData: (token) => {
-            return dispatch(getUserData(token))
+        getData: (token, callback) => {
+            return dispatch(getUserData(token, callback))
         },
-        setData: (token, body) => {
-            return dispatch(updateUserData(token, body))
+        setData: (token, body, callback) => {
+            return dispatch(updateUserData(token, body, callback))
         }
     }
 }
