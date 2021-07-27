@@ -122,7 +122,6 @@ class RequestBox extends Component {
 
     getRequestData = () => {
         return (this.props.requests || []).map((request) => {
-            console.log(request)
             return (
                 <Request
                     key={request.id}
