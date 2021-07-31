@@ -239,6 +239,7 @@ class Profile extends PureComponent {
 const mapStateToProps = (state) => {
     return {
         ...state.User.user,
+        authToken: state.User.authToken,
         showLoader: state.User.showLoader
     }
 }

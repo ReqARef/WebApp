@@ -13,6 +13,7 @@ class EmailAndOtp extends PureComponent {
         this.state = {
             email: '',
             isOtpSent: false,
+            showLoader: false,
             otp: ''
         }
     }
@@ -46,18 +47,34 @@ class EmailAndOtp extends PureComponent {
         e.preventDefault()
         if (isOtpSent) {
             setParentEmail(email)
-            verifyOTP(email, otp, () => {
-                this.props.handleFlip(e)
-            })
+            this.setState({ showLoader: true })
+            verifyOTP(
+                email,
+                otp,
+                () => {
+                    this.setState({ showLoader: false })
+                    this.props.handleFlip(e)
+                },
+                () => {
+                    this.setState({ showLoader: false })
+                }
+            )
         } else {
             if (email === '') {
                 alert('Email is empty')
                 return
             }
             const { sendOTP } = this.props
-            sendOTP(email, () => {
-                this.setState({ isOtpSent: true })
-            })
+            this.setState({ showLoader: true })
+            sendOTP(
+                email,
+                () => {
+                    this.setState({ isOtpSent: true, showLoader: false })
+                },
+                () => {
+                    this.setState({ showLoader: false })
+                }
+            )
         }
     }
 
@@ -68,8 +85,7 @@ class EmailAndOtp extends PureComponent {
     }
 
     renderSubmitButton = () => {
-        const { isOtpSent } = this.state
-        const { showLoader } = this.props
+        const { isOtpSent, showLoader } = this.state
         const text = isOtpSent ? 'Verify' : 'Send OTP'
         return (
             <div
@@ -159,18 +175,18 @@ class EmailAndOtp extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
-    return {
-        showLoader: state.User.showLoader
-    }
+    return {}
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        sendOTP: (email, callback) => {
-            return dispatch(sendOTP(email, callback))
+        sendOTP: (email, successCallback, errorCallback) => {
+            return dispatch(sendOTP(email, successCallback, errorCallback))
         },
-        verifyOTP: (email, otp, callback) => {
-            return dispatch(verifyOTP(email, otp, callback))
+        verifyOTP: (email, otp, successCallback, errorCallback) => {
+            return dispatch(
+                verifyOTP(email, otp, successCallback, errorCallback)
+            )
         }
     }
 }

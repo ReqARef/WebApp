@@ -58,16 +58,17 @@ export function unsetUserData(payLoad) {
     }
 }
 
-export function loginAsync(email, password) {
+export function loginAsync(email, password, callback) {
     return function (dispatch) {
-        dispatch(showLoader())
         const resolve = (json) => {
             if (!json.status) {
                 throw new Error(json.error)
             }
+            callback()
             return dispatch(login(json))
         }
         const reject = (e) => {
+            callback()
             alert('Invalid credentials')
             return dispatch(logout())
         }
@@ -76,16 +77,24 @@ export function loginAsync(email, password) {
     }
 }
 
-export function signupAsync(firstName, lastName, email, password, role) {
+export function signupAsync(
+    firstName,
+    lastName,
+    email,
+    password,
+    role,
+    callback
+) {
     return function (dispatch) {
-        dispatch(showLoader())
         const resolve = (json) => {
             if (!json.status) {
                 throw new Error(json.error)
             }
+            callback()
             return dispatch(signup(json))
         }
         const reject = (e) => {
+            callback()
             return dispatch(logout())
         }
         const body = {
@@ -99,7 +108,7 @@ export function signupAsync(firstName, lastName, email, password, role) {
     }
 }
 
-export function updateUserData(token, body) {
+export function updateUserData(token, body, callback) {
     return function (dispatch) {
         const auth = 'Bearer '.concat(token)
         const headers = { Authorization: auth }
@@ -107,13 +116,13 @@ export function updateUserData(token, body) {
             if (!json.status) {
                 throw new Error(json.error)
             }
+            callback()
             return dispatch(setUserData(json.user))
         }
         const reject = (e) => {
-            dispatch(unshowLoader())
+            callback()
             alert('Update failed\n' + e)
         }
-        dispatch(showLoader())
         return putRequest(
             'user/profile',
             resolve,
@@ -126,7 +135,7 @@ export function updateUserData(token, body) {
     }
 }
 
-export function getUserData(token) {
+export function getUserData(token, callback) {
     return function (dispatch) {
         const auth = 'Bearer '.concat(token)
         const headers = { Authorization: auth }
@@ -134,13 +143,13 @@ export function getUserData(token) {
             if (!json.status) {
                 throw new Error(json.error)
             }
+            callback()
             return dispatch(setUserData(json.user))
         }
         const reject = (e) => {
-            dispatch(unshowLoader())
+            callback()
             alert('Unable to fetch latest user data\n' + e)
         }
-        dispatch(showLoader())
         return getRequest(
             'user/profile',
             resolve,
@@ -152,18 +161,16 @@ export function getUserData(token) {
     }
 }
 
-export function sendOTP(email, callback) {
+export function sendOTP(email, successCallback, errorCallback) {
     return function (dispatch) {
-        dispatch(showLoader())
         const resolve = (json) => {
             if (!json.status) {
                 throw new Error(json.error)
             }
-            callback()
-            dispatch(unshowLoader())
+            successCallback()
         }
         const reject = (e) => {
-            dispatch(unshowLoader())
+            errorCallback()
             alert(e)
         }
         const body = {
@@ -235,18 +242,16 @@ export function verifyEmailOTP(token, OTP, callback, errorCallback) {
     }
 }
 
-export function verifyOTP(email, OTP, callback) {
+export function verifyOTP(email, OTP, successCallback, errorCallback) {
     return function (dispatch) {
-        dispatch(showLoader())
         const resolve = (json) => {
             if (!json.status) {
                 throw new Error(json.error)
             }
-            callback()
-            dispatch(unshowLoader())
+            successCallback()
         }
         const reject = (e) => {
-            dispatch(unshowLoader())
+            errorCallback()
             alert('Something went wrong')
         }
         const body = {
@@ -265,17 +270,17 @@ export function verifyOTP(email, OTP, callback) {
     }
 }
 
-export function changePassword(email, password) {
+export function changePassword(email, password, callback) {
     return function (dispatch) {
-        dispatch(showLoader())
         const resolve = (json) => {
             if (!json.status) {
                 throw new Error(json.error)
             }
+            callback()
             return dispatch(login(json))
         }
         const reject = (e) => {
-            dispatch(unshowLoader())
+            callback()
             alert('Something went wrong')
         }
         const body = {

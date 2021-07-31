@@ -1,7 +1,6 @@
 const initialState = {
     authToken: null,
-    user: null,
-    showLoader: false
+    user: null
 }
 
 const login = (state, payLoad) => {
@@ -11,7 +10,6 @@ const login = (state, payLoad) => {
     if (user.refresh_token) delete user.refresh_token
     newState.user = user
     newState.authToken = authToken
-    newState.showLoader = false
     return newState
 }
 
@@ -20,27 +18,23 @@ const signup = (state, payLoad) => {
     const { user, authToken } = payLoad
     newState.user = user
     newState.authToken = authToken
-    newState.showLoader = false
     return newState
 }
 
 const logout = (state) => {
     return {
         authToken: null,
-        user: null,
-        showLoader: false
+        user: null
     }
 }
 
 const showLoader = (state) => {
     const newState = { ...state }
-    newState.showLoader = true
     return newState
 }
 
 const unshowLoader = (state) => {
     const newState = { ...state }
-    newState.showLoader = false
     return newState
 }
 
@@ -58,14 +52,12 @@ const setAuthToken = (state, payLoad) => {
 
 const setUserData = (state, payLoad) => {
     const newState = { ...state }
-    newState.showLoader = false
     newState.user = payLoad
     return newState
 }
 
 const unsetUserData = (state, payLoad) => {
     const newState = { ...state }
-    newState.showLoader = false
     newState.user = null
     return newState
 }

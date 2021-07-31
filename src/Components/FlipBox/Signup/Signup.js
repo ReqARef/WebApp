@@ -16,7 +16,8 @@ class Signup extends PureComponent {
             email: '',
             password: '',
             // role: 1->Referer, 0 Referee
-            role: 1
+            role: 1,
+            showLoader: false
         }
     }
 
@@ -151,7 +152,10 @@ class Signup extends PureComponent {
             return
         }
         const { sendSignUpReq } = this.props
-        sendSignUpReq(firstName, lastName, email, password, role)
+        this.setState({ showLoader: true })
+        sendSignUpReq(firstName, lastName, email, password, role, () => {
+            this.setState({ showLoader: false })
+        })
     }
 
     renderSubmitButton = () => {
@@ -165,7 +169,7 @@ class Signup extends PureComponent {
                     cursor: 'pointer'
                 }}
             >
-                {this.props.showLoader ? this.renderLoader() : 'Signup'}
+                {this.state.showLoader ? this.renderLoader() : 'Signup'}
             </div>
         )
     }
@@ -277,9 +281,23 @@ const mapStateToProps = (state) => {
 
 function mapDispatchToProps(dispatch) {
     return {
-        sendSignUpReq: (firstName, lastName, email, password, role) => {
+        sendSignUpReq: (
+            firstName,
+            lastName,
+            email,
+            password,
+            role,
+            callback
+        ) => {
             return dispatch(
-                signupAsync(firstName, lastName, email, password, role)
+                signupAsync(
+                    firstName,
+                    lastName,
+                    email,
+                    password,
+                    role,
+                    callback
+                )
             )
         }
     }
