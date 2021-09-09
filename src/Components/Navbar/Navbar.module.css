@@ -27,6 +27,10 @@
     justify-content: center;
 }
 
+.logo {
+    height: 6vw;
+}
+
 .button {
     font-size: 2.2vh;
     padding: 1vh;

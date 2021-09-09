@@ -8,6 +8,7 @@ import { logout, sendEmailOTP, verifyEmailOTP } from '../../store/actions/User'
 import AnimateHeight from 'react-animate-height'
 import OtpInput from 'react-otp-input'
 import Loader from '../Loader/Loader'
+import logoImage from '../../Assets/images/logo.png'
 
 class Navbar extends PureComponent {
     constructor(props) {
@@ -28,17 +29,7 @@ class Navbar extends PureComponent {
         return (
             <Link to="/" className={styles.link}>
                 <div className={styles.logoContainer}>
-                    <div style={{ color: colors.fontcolorBlack }}>Req</div>
-                    <div
-                        style={{
-                            color: colors.blue,
-                            fontSize: 'larger',
-                            fontWeight: '500'
-                        }}
-                    >
-                        A
-                    </div>
-                    <div style={{ color: colors.fontcolorBlack }}>Ref</div>
+                    <img src={logoImage} className={styles.logo} />
                 </div>
             </Link>
         )
