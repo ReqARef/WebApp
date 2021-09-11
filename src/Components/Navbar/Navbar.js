@@ -9,6 +9,7 @@ import AnimateHeight from 'react-animate-height'
 import OtpInput from 'react-otp-input'
 import Loader from '../Loader/Loader'
 import logoImage from '../../Assets/images/logo.png'
+import dropdownImage from '../../Assets/images/dropdown.jpeg'
 
 class Navbar extends PureComponent {
     constructor(props) {
@@ -65,7 +66,8 @@ class Navbar extends PureComponent {
                         color: colors.fontcolorBlack,
                         borderColor: colors.blue,
                         fontSize: 'larger',
-                        border: '2px solid ' + colors.black
+                        borderBottom: '0px solid ' + colors.black,
+                        marginLeft: '10px'
                     }}
                     onClick={logoutAction}
                 >
@@ -79,7 +81,21 @@ class Navbar extends PureComponent {
         const { selected } = this.props
         return (
             <div className={styles.navlinks}>
-                {this.renderLogoutButton()}
+                <div className={styles.dropdown}>
+                    <img src={dropdownImage} className={styles.dropdownIcon} />
+                    <div className={styles.dropdown_content}>
+                        <div
+                            style={{
+                                paddingTop: '0.5vh',
+                                backgroundColor: colors.white,
+                                borderRadius: '10px'
+                            }}
+                        >
+                            {this.renderLogoutButton()}
+                        </div>
+                    </div>
+                </div>
+
                 {this.renderButton(
                     'My Profile',
                     '/myprofile',

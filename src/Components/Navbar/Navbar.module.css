@@ -58,6 +58,7 @@
 .navlinks {
     display: flex;
     flex-direction: row-reverse;
+    justify-content: center;
     align-items: center;
     width: 100%;
     height: 100%;
@@ -66,4 +67,20 @@
 
 .link {
     text-decoration: none;
+}
+
+.dropdown_content {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    border-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.dropdown:hover .dropdown_content {
+    display: block;
+}
+
+.dropdownIcon {
+    height: 3.5vh;
 }

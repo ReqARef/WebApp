@@ -82,11 +82,19 @@ const request = (props) => {
         const comment = props.comment || ''
         return (
             <div className={style.UserData}>
-                <h3 className={style.userDataPara}>{props.userName}</h3>
+                <h3
+                    className={style.userDataPara}
+                    onClick={() => {
+                        props.openModal(props.email)
+                    }}
+                    style={{ cursor: 'pointer' }}
+                >
+                    {props.userName}
+                </h3>
 
                 {props.url ? (
                     <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <p className={style.userDataPara}>{'Job Id:'}</p>
+                        <div className={style.userDataPara}>{'Job Id:'}</div>
                         <a
                             className={style.url}
                             href={url}
@@ -98,9 +106,9 @@ const request = (props) => {
                         </a>
                     </div>
                 ) : (
-                    <p className={style.userDataPara}>
+                    <div className={style.userDataPara}>
                         {'Job Id: ' + props.jobId}
-                    </p>
+                    </div>
                 )}
                 <p className={style.userDataPara}>{comment}</p>
             </div>

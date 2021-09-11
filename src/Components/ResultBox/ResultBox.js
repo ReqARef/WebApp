@@ -69,19 +69,25 @@ class ResultBox extends PureComponent {
                 />
                 <div
                     style={{
-                        width: '100%'
+                        width: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center'
                     }}
                 >
-                    <h1
+                    <div
                         style={{
-                            marginLeft: '25vw',
-                            color: colors.fontColorBlue
+                            color: colors.fontColorBlue,
+                            marginTop: '3vh',
+                            marginBottom: '6vh',
+                            fontSize: '30px'
                         }}
                     >
                         {companyName + ' Employees'}
-                    </h1>
+                    </div>
+                    <div className={styles.ResultBox}>{resultData}</div>
                 </div>
-                <div className={styles.ResultBox}>{resultData}</div>
             </Aux>
         )
     }

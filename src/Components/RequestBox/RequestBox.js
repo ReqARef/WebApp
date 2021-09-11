@@ -178,13 +178,15 @@ class RequestBox extends Component {
                     justifyContent: 'center'
                 }}
             >
-                <h1
+                <div
                     style={{
                         color:
                             requestType === 'pending'
                                 ? colors.blue
                                 : colors.black,
                         marginRight: '14vw',
+                        marginTop: '3vh',
+                        fontSize: '30px',
                         cursor: 'pointer'
                     }}
                     onClick={() => {
@@ -192,36 +194,40 @@ class RequestBox extends Component {
                     }}
                 >
                     Pending
-                </h1>
-                <h1
+                </div>
+                <div
                     style={{
                         color:
                             requestType === 'accepted'
                                 ? colors.blue
                                 : colors.black,
-                        cursor: 'pointer'
+                        cursor: 'pointer',
+                        marginTop: '3vh',
+                        fontSize: '30px'
                     }}
                     onClick={() => {
                         this.changeRequestType('accepted')
                     }}
                 >
                     Accepted
-                </h1>
-                <h1
+                </div>
+                <div
                     style={{
                         color:
                             requestType === 'rejected'
                                 ? colors.blue
                                 : colors.black,
                         marginLeft: '14vw',
-                        cursor: 'pointer'
+                        cursor: 'pointer',
+                        marginTop: '3vh',
+                        fontSize: '30px'
                     }}
                     onClick={() => {
                         this.changeRequestType('rejected')
                     }}
                 >
                     Rejected
-                </h1>
+                </div>
             </div>
         )
     }
