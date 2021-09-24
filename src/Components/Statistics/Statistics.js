@@ -81,7 +81,7 @@ class Stats extends PureComponent {
                 )}
                 {!showLoader && (
                     <h2 style={{ color: colors.fontColorBlue }}>
-                        Request Statistics
+                        Requests Statistics
                     </h2>
                 )}
                 {!showLoader &&
