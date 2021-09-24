@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
-import styles from './ResultBox.module.css'
-import Result from './Result/Result'
+import styles from './SearchResults.module.css'
+import ResultBox from './ResultBox/ResultBox'
 import Modal from '../Modal/Modal'
 import Aux from '../../Hoc/Auxiliary'
 import { connect } from 'react-redux'
@@ -8,7 +8,7 @@ import RequestForm from '../RequestForm/RequestForm'
 import UserInfoModal from '../UserInfoModal/UserInfoModal'
 import colors from '../../utils/colors'
 
-class ResultBox extends PureComponent {
+class SearchResults extends PureComponent {
     state = {
         modalEmail: null,
         showUserInfoModal: false,
@@ -23,7 +23,7 @@ class ResultBox extends PureComponent {
     getResultData = () => {
         return (this.props.searchResult || []).map((result) => {
             return (
-                <Result
+                <ResultBox
                     showModal={this.togglePopup}
                     name={`${result.first_name} ${result.last_name}`}
                     avatar={result.avatar}
@@ -105,4 +105,4 @@ const mapDispatchToProps = (dispatch) => {
             dispatch({ type: 'SETREQUESTTO', email: email })
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(ResultBox)
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResults)

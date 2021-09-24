@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import colors from '../../utils/colors'
 import styles from './CompanySearchResult.module.css'
-import ResultBox from '../../Components/ResultBox/ResultBox'
+import SearchResults from '../../Components/SearchResults/SearchResults'
 import qs from 'qs'
 import { connect } from 'react-redux'
 import { getUsersOfCompanySearchList } from '../../store/actions/Search'
@@ -52,7 +52,7 @@ class CompanySearchResult extends PureComponent {
                     }}
                 />
                 <div>
-                    <ResultBox
+                    <SearchResults
                         searchResult={usersOfCompanySearch}
                         companyName={companyName}
                     />

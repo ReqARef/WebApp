@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
-import styles from './RequestBox.module.css'
-import inlineStyles from '../../utils/styleConstants'
-import colors from '../../utils/colors'
-import Request from './Request/Request'
+import styles from './RefereeRequests.module.css'
+import inlineStyles from '../../../utils/styleConstants'
+import colors from '../../../utils/colors'
+import RequestBox from '../RequestBox/RequestBox'
 import { connect } from 'react-redux'
-import { getRequestListAsync } from '../../store/actions/Request'
-import UserInfoModal from '../UserInfoModal/UserInfoModal'
-import Loader from '../Loader/Loader'
-import { setNavbarSelection } from '../../store/actions/Navbar'
+import { getRequestListAsync } from '../../../store/actions/Request'
+import UserInfoModal from '../../UserInfoModal/UserInfoModal'
+import Loader from '../../Loader/Loader'
+import { setNavbarSelection } from '../../../store/actions/Navbar'
 import { withRouter } from 'react-router'
 const qs = require('qs')
 
-class RequestBox extends Component {
+class RefereeRequests extends Component {
     constructor(props) {
         super(props)
 
@@ -128,8 +128,9 @@ class RequestBox extends Component {
 
     getRequestData = () => {
         return (this.props.requests || []).map((request) => {
+            console.log(JSON.stringify(request))
             return (
-                <Request
+                <RequestBox
                     key={request.id}
                     userName={
                         request.user.first_name + ' ' + request.user.last_name
@@ -151,6 +152,7 @@ class RequestBox extends Component {
                         this.setState({ showLoader: false })
                     }}
                     requestType={this.state.requestType}
+                    role={this.props.role}
                 />
             )
         })
@@ -310,6 +312,7 @@ const mapStateToProps = (state) => {
     return {
         authToken: state.User.authToken,
         requests: state.requestReducer.requests,
+        role: state.User.user.role,
         isVerified:
             state.User && state.User.user
                 ? state.User.user.email_verified
@@ -330,4 +333,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(withRouter(RequestBox))
+)(withRouter(RefereeRequests))

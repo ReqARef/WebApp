@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react'
-import style from './Result.module.css'
+import style from './ResultBox.module.css'
 import inlineStyles from '../../../utils/styleConstants'
 import colors from '../../../utils/colors'
 import { imagePlaceHolder } from '../../../utils/constants'
 
-class Result extends PureComponent {
+class ResultBox extends PureComponent {
     imageOnClickHandler = () => {
         const { openUserInfoModal, resultEmail } = this.props
         openUserInfoModal(resultEmail)
@@ -69,4 +69,4 @@ class Result extends PureComponent {
     }
 }
 
-export default Result
+export default ResultBox

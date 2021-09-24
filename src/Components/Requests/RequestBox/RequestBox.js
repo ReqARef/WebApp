@@ -1,12 +1,12 @@
 import React from 'react'
 import colors from '../../../utils/colors'
 import inlineStyles from '../../../utils/styleConstants'
-import style from './Request.module.css'
+import style from './RequestBox.module.css'
 import { handleRequestAsync } from '../../../store/actions/Request'
 import { useDispatch } from 'react-redux'
 import { imagePlaceHolder } from '../../../utils/constants'
 
-const request = (props) => {
+const requestBox = (props) => {
     const dispatch = useDispatch()
     const { isVerified, page } = props
 
@@ -146,8 +146,8 @@ const request = (props) => {
         )
     }
 
-    const { requestType } = props
-    const width = requestType === 'pending' ? '60vw' : '45vw'
+    const { requestType, role } = props
+    const width = requestType === 'pending' && role == 1 ? '60vw' : '45vw'
     return (
         <div
             style={{
@@ -165,9 +165,11 @@ const request = (props) => {
                 {renderAvatar()}
                 {renderNameAndDetails()}
             </div>
-            {requestType === 'pending' && renderAcceptRejectButtons()}
+            {role == 1 &&
+                requestType === 'pending' &&
+                renderAcceptRejectButtons()}
         </div>
     )
 }
 
-export default request
+export default requestBox

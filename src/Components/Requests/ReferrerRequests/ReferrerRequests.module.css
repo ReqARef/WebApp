@@ -1,0 +1,17 @@
+.RequestBox {
+    width: 65vw;
+    display: flex;
+}
+
+.button {
+    height: 4vh;
+    width: 8vw;
+    border: 1px solid rgba(52, 63, 69, 0.3);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+}
