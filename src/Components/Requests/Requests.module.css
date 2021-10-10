@@ -17,7 +17,6 @@
 }
 
 .headingText {
-    margin-top: 3vh;
     font-size: 30px;
     cursor: pointer;
 }
@@ -25,5 +24,10 @@
 @media (max-width: 600px) {
     .headingText {
         font-size: 25px;
+    }
+    .button {
+        height: 20px;
+        width: 72px;
+        font-size: 12px;
     }
 }

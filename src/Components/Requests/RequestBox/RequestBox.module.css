@@ -113,4 +113,10 @@
     .userDataPara {
         font-size: smaller;
     }
+
+    .button {
+        height: 16px;
+        width: 54px;
+        font-size: small;
+    }
 }

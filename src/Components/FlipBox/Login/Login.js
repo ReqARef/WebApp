@@ -46,8 +46,11 @@ class Login extends PureComponent {
 
     renderViewChangingButtonHidden = () => {
         return (
-            <div className={styles.hiddenButtonContainer}>
-                <button
+            <div
+                className={styles.hiddenButtonContainer}
+                style={{ marginTop: '16px' }}
+            >
+                <div
                     onClick={this.props.handleFlip}
                     className={styles.buttonTemp}
                     style={{
@@ -57,7 +60,7 @@ class Login extends PureComponent {
                     }}
                 >
                     To SignUp
-                </button>
+                </div>
                 {this.renderResetPassword()}
             </div>
         )
@@ -155,7 +158,11 @@ class Login extends PureComponent {
 
     renderResetPassword = () => {
         return (
-            <a href={'/resetPassword'} className={styles.resetPassword}>
+            <a
+                href={'/resetPassword'}
+                className={styles.resetPassword}
+                style={{ color: colors.fontcolorBlack }}
+            >
                 Reset password
             </a>
         )

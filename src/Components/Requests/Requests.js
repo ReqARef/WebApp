@@ -88,7 +88,7 @@ class Requests extends Component {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    marginTop: '4vh'
+                    marginTop: '32px'
                 }}
             >
                 <div
@@ -177,7 +177,8 @@ class Requests extends Component {
             <div
                 style={{
                     display: 'flex',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+                    marginTop: '32px'
                 }}
             >
                 <div

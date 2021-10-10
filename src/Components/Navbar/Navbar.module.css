@@ -1,7 +1,12 @@
+.containerMain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .navbar {
     width: 100%;
     height: 10vh;
-    position: fixed;
+    /* position: fixed; */
     display: flex;
     align-items: center;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -15,9 +20,9 @@
 
 .responsiveDropdown {
     display: none;
-    position: fixed;
-    right: 8px;
-    top: auto;
+    /* position: fixed; */
+    /* right: 8px; */
+    /* top: auto; */
 }
 
 .responsiveNavbarContentHide {
@@ -135,6 +140,9 @@
 
 /* media querries */
 @media (max-width: 800px) {
+    .containerMain {
+        flex-direction: row;
+    }
     .button {
         display: none;
     }

@@ -1,9 +1,6 @@
 .mainContainer {
     height: 100vh;
 }
-.containerHeader {
-    height: 10vh;
-}
 .searchHeading {
     margin-top: 10vh;
     font-size: 32px;

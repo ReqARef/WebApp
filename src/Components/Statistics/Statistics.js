@@ -44,8 +44,8 @@ class Stats extends PureComponent {
             if (refStats.requestCount > 0) {
                 userStats = (
                     <Chart
-                        width={'100%'}
-                        height={'280px'}
+                        width={'300px'}
+                        height={'300px'}
                         chartType="PieChart"
                         data={[
                             ['RequestStatus', 'requestCount'],
@@ -56,13 +56,8 @@ class Stats extends PureComponent {
                         options={{
                             backgroundColor: colors.white,
                             legend: 'none',
-                            chartArea: {
-                                left: '10px',
-                                top: 0,
-                                bottom: 0,
-                                width: '70%',
-                                height: '70%'
-                            }
+                            chartArea: {},
+                            is3D: true
                         }}
                     />
                 )
@@ -81,10 +76,7 @@ class Stats extends PureComponent {
                 className={style.containerMain}
                 style={{
                     borderRadius,
-                    backgroundColor: colors.white,
-                    textAlign: 'center',
-                    paddingBottom: '15px',
-                    height: '46.5vh'
+                    backgroundColor: colors.white
                 }}
             >
                 {showLoader && (

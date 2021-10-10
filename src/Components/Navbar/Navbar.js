@@ -579,14 +579,7 @@ class Navbar extends PureComponent {
         const { authToken, user } = this.props
         const emailVerified = user && user.email_verified
         return (
-            <div
-                style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    zIndex: '1000'
-                }}
-            >
+            <div className={styles.containerMain}>
                 {this.renderCompleteNavbar()}
                 {this.renderResponsiveNavbar()}
                 {authToken &&

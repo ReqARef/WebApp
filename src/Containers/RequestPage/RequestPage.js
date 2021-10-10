@@ -8,8 +8,7 @@ class RequestPage extends PureComponent {
             <div
                 style={{
                     backgroundColor: colors.background,
-                    height: 'auto',
-                    paddingTop: '100px'
+                    height: 'auto'
                 }}
             >
                 <Requests />
