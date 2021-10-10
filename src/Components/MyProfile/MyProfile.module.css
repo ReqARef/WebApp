@@ -1,20 +1,14 @@
 .containerHeader {
-	height: 40vh;
+    height: 40vh;
 }
 .componentContainer {
-	margin-top: -20vh;
+    margin-top: -20vh;
 }
 .flexReverse {
-	display: flex;
-	flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
-@media (max-width : 600px){
-	.containerHeader {
-		height: 30vh;
-	}
-}
-
-.RightContainer{
-	width: 400px;
+.RightContainer {
+    width: 400px;
 }

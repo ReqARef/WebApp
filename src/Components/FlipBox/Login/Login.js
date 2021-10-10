@@ -195,9 +195,7 @@ class Login extends PureComponent {
                 pathname: '/'
             })
         }
-        return (
-            <div className={styles.containerMain}>{this.renderWholeCard()}</div>
-        )
+        return <div>{this.renderWholeCard()}</div>
     }
 }
 

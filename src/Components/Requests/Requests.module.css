@@ -4,8 +4,8 @@
 }
 
 .button {
-    height: 4vh;
-    width: 8vw;
+    height: 32px;
+    width: 80px;
     border: 1px solid rgba(52, 63, 69, 0.3);
     padding-top: 5px;
     padding-bottom: 5px;
@@ -14,4 +14,16 @@
     justify-content: center;
     align-items: center;
     font-size: large;
+}
+
+.headingText {
+    margin-top: 3vh;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .headingText {
+        font-size: 25px;
+    }
 }

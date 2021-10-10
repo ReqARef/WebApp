@@ -59,7 +59,7 @@
     margin-bottom: 1.5vh;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     .containerMain {
         height: 0%;
         width: 0%;

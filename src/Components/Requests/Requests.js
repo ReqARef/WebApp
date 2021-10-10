@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
-import styles from './RefereeRequests.module.css'
-import inlineStyles from '../../../utils/styleConstants'
-import colors from '../../../utils/colors'
-import RequestBox from '../RequestBox/RequestBox'
+import styles from './Requests.module.css'
+import inlineStyles from '../../utils/styleConstants'
+import colors from '../../utils/colors'
+import RequestBox from './RequestBox/RequestBox'
 import { connect } from 'react-redux'
-import { getRequestListAsync } from '../../../store/actions/Request'
-import UserInfoModal from '../../UserInfoModal/UserInfoModal'
-import Loader from '../../Loader/Loader'
-import { setNavbarSelection } from '../../../store/actions/Navbar'
+import { getRequestListAsync } from '../../store/actions/Request'
+import UserInfoModal from '../UserInfoModal/UserInfoModal'
+import Loader from '../Loader/Loader'
+import { setNavbarSelection } from '../../store/actions/Navbar'
 import { withRouter } from 'react-router'
 const qs = require('qs')
 
-class RefereeRequests extends Component {
+class Requests extends Component {
     constructor(props) {
         super(props)
 
@@ -181,15 +181,13 @@ class RefereeRequests extends Component {
                 }}
             >
                 <div
+                    className={styles.headingText}
                     style={{
                         color:
                             requestType === 'pending'
                                 ? colors.blue
                                 : colors.black,
-                        marginRight: '14vw',
-                        marginTop: '3vh',
-                        fontSize: '30px',
-                        cursor: 'pointer'
+                        marginRight: '14vw'
                     }}
                     onClick={() => {
                         this.changeRequestType('pending')
@@ -198,14 +196,12 @@ class RefereeRequests extends Component {
                     Pending
                 </div>
                 <div
+                    className={styles.headingText}
                     style={{
                         color:
                             requestType === 'accepted'
                                 ? colors.blue
-                                : colors.black,
-                        cursor: 'pointer',
-                        marginTop: '3vh',
-                        fontSize: '30px'
+                                : colors.black
                     }}
                     onClick={() => {
                         this.changeRequestType('accepted')
@@ -214,15 +210,13 @@ class RefereeRequests extends Component {
                     Accepted
                 </div>
                 <div
+                    className={styles.headingText}
                     style={{
                         color:
                             requestType === 'rejected'
                                 ? colors.blue
                                 : colors.black,
-                        marginLeft: '14vw',
-                        cursor: 'pointer',
-                        marginTop: '3vh',
-                        fontSize: '30px'
+                        marginLeft: '14vw'
                     }}
                     onClick={() => {
                         this.changeRequestType('rejected')
@@ -333,4 +327,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(withRouter(RefereeRequests))
+)(withRouter(Requests))

@@ -75,7 +75,7 @@ select:focus {
     margin-top: 7%;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     .containerMain {
         padding: 0px 10%;
         width: 70%;

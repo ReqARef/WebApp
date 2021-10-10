@@ -10,6 +10,7 @@ import OtpInput from 'react-otp-input'
 import Loader from '../Loader/Loader'
 import logoImage from '../../Assets/images/logo.png'
 import dropdownImage from '../../Assets/images/dropdown.jpeg'
+import navbarIcon from '../../Assets/images/navbar.jpg'
 
 class Navbar extends PureComponent {
     constructor(props) {
@@ -20,7 +21,8 @@ class Navbar extends PureComponent {
             resendCounter: 0,
             verifyingOTP: false,
             sendingOTPRequest: false,
-            resendingOTPRequest: false
+            resendingOTPRequest: false,
+            responsiveNavbarClick: false
         }
     }
 
@@ -56,12 +58,43 @@ class Navbar extends PureComponent {
         )
     }
 
-    renderLogoutButton = () => {
+    renderResponsiveButton = (
+        text,
+        link,
+        color,
+        borderColor,
+        background,
+        style
+    ) => {
+        const backgroundColor = background || colors.white
+        return (
+            <Link to={link} className={styles.link}>
+                <div
+                    className={styles.responsiveButton}
+                    style={{
+                        color,
+                        borderColor,
+                        fontSize: 'larger',
+                        backgroundColor,
+                        ...style
+                    }}
+                    onClick={() => {
+                        this.setState({ responsiveNavbarClick: false })
+                    }}
+                >
+                    {text}
+                </div>
+            </Link>
+        )
+    }
+
+    renderLogoutButton = (isResponsive = false) => {
         const { logoutAction } = this.props
+        const className = isResponsive ? styles.responsiveButton : styles.button
         return (
             <Link to={'/'} className={styles.link}>
                 <div
-                    className={styles.button}
+                    className={className}
                     style={{
                         color: colors.fontcolorBlack,
                         borderColor: colors.blue,
@@ -136,6 +169,51 @@ class Navbar extends PureComponent {
         )
     }
 
+    renderNavLinksWhenLoggedInResponsive = () => {
+        const { selected } = this.props
+        return (
+            <div>
+                {this.renderResponsiveButton(
+                    'Home',
+                    '/',
+                    selected === 'HOME'
+                        ? colors.fontcolorWhite
+                        : colors.fontcolorBlack,
+                    selected === 'HOME' ? colors.black : colors.blue,
+                    selected === 'HOME' ? colors.blue : colors.white
+                )}
+                {this.renderResponsiveButton(
+                    'Requests',
+                    '/request?type=pending&page=1',
+                    selected === 'REQUESTS'
+                        ? colors.fontcolorWhite
+                        : colors.fontcolorBlack,
+                    selected === 'REQUESTS' ? colors.black : colors.blue,
+                    selected === 'REQUESTS' ? colors.blue : colors.white
+                )}
+                {this.renderResponsiveButton(
+                    'Search',
+                    '/companysearch',
+                    selected === 'COMPANY_SEARCH'
+                        ? colors.fontcolorWhite
+                        : colors.fontcolorBlack,
+                    selected === 'COMPANY_SEARCH' ? colors.black : colors.blue,
+                    selected === 'COMPANY_SEARCH' ? colors.blue : colors.white
+                )}
+                {this.renderResponsiveButton(
+                    'My Profile',
+                    '/myprofile',
+                    selected === 'PROFILE'
+                        ? colors.fontcolorWhite
+                        : colors.fontcolorBlack,
+                    selected === 'PROFILE' ? colors.black : colors.blue,
+                    selected === 'PROFILE' ? colors.blue : colors.white
+                )}
+                {this.renderLogoutButton(true)}
+            </div>
+        )
+    }
+
     renderNavLinksWhenNotLoggedIn = () => {
         const { selected } = this.props
         return (
@@ -159,6 +237,63 @@ class Navbar extends PureComponent {
                     selected === 'HOME' ? colors.black : colors.blue,
                     selected === 'HOME' ? colors.blue : colors.white
                 )}
+            </div>
+        )
+    }
+
+    renderNavLinksWhenNotLoggedInResponsive = () => {
+        const { selected } = this.props
+        return (
+            <div>
+                {this.renderResponsiveButton(
+                    'Home',
+                    '/home',
+                    selected === 'HOME'
+                        ? colors.fontcolorWhite
+                        : colors.fontcolorBlack,
+                    selected === 'HOME' ? colors.black : colors.blue,
+                    selected === 'HOME' ? colors.blue : colors.white
+                )}
+                {this.renderResponsiveButton(
+                    'Login',
+                    '/',
+                    selected === 'AUTH'
+                        ? colors.fontcolorWhite
+                        : colors.fontcolorBlack,
+                    colors.black,
+                    selected === 'AUTH' ? colors.blue : colors.white,
+                    { border: '2px solid ' + colors.black }
+                )}
+            </div>
+        )
+    }
+
+    renderResponsiveNavbar = () => {
+        const onClick = () => {
+            this.setState({
+                responsiveNavbarClick: !this.state.responsiveNavbarClick
+            })
+        }
+        const className = this.state.responsiveNavbarClick
+            ? styles.responsiveNavbarContentShow
+            : styles.responsiveNavbarContentHide
+        const { authToken } = this.props
+        return (
+            <div className={styles.responsiveDropdown}>
+                <img
+                    src={navbarIcon}
+                    className={styles.responsiveNavbarIcon}
+                    onClick={onClick}
+                    style={{ cursor: 'pointer' }}
+                />
+                <div
+                    className={className}
+                    style={{ backgroundColor: colors.white }}
+                >
+                    {authToken && this.renderNavLinksWhenLoggedInResponsive()}
+                    {!authToken &&
+                        this.renderNavLinksWhenNotLoggedInResponsive()}
+                </div>
             </div>
         )
     }
@@ -193,7 +328,7 @@ class Navbar extends PureComponent {
                     fontSize: '2.2vh'
                 }}
             >
-                Please verify your email to start using ReqARef
+                Please verify your email
             </div>
         )
     }
@@ -268,11 +403,9 @@ class Navbar extends PureComponent {
                 }}
             >
                 <div
-                    className={styles.button}
+                    className={styles.verifyButton}
                     style={{
-                        color: colors.fontcolorBlack,
-                        borderColor: colors.blue,
-                        marginRight: '1vw'
+                        color: colors.fontcolorBlack
                     }}
                     onClick={onClick}
                 >
@@ -384,7 +517,7 @@ class Navbar extends PureComponent {
                     inputStyle={{
                         height: '5vh',
                         width: '5vh',
-                        fontSize: '3vh',
+                        fontSize: '16px',
                         color: colors.fontcolorBlack
                     }}
                 />
@@ -455,6 +588,7 @@ class Navbar extends PureComponent {
                 }}
             >
                 {this.renderCompleteNavbar()}
+                {this.renderResponsiveNavbar()}
                 {authToken &&
                     !emailVerified &&
                     this.renderCompleteVerificationBar()}

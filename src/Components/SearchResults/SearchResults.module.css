@@ -1,7 +1,25 @@
 .ResultBox {
-    margin: auto;
-    min-height: 30vh;
-    width: 51vw;
-    color: black;
+    width: 880px;
     text-align: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 1000px) {
+    .ResultBox {
+        width: 664px;
+    }
+}
+
+@media (max-width: 800px) {
+    .ResultBox {
+        width: 432px;
+    }
+}
+
+@media (max-width: 600px) {
+    .ResultBox {
+        width: 216px;
+    }
 }

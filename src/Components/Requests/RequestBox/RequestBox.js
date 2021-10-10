@@ -5,6 +5,7 @@ import style from './RequestBox.module.css'
 import { handleRequestAsync } from '../../../store/actions/Request'
 import { useDispatch } from 'react-redux'
 import { imagePlaceHolder } from '../../../utils/constants'
+import styles from './RequestBox.module.css'
 
 const requestBox = (props) => {
     const dispatch = useDispatch()
@@ -110,7 +111,7 @@ const requestBox = (props) => {
                         {'Job Id: ' + props.jobId}
                     </div>
                 )}
-                <p className={style.userDataPara}>{comment}</p>
+                <div className={style.userDataPara}>{comment}</div>
             </div>
         )
     }
@@ -119,7 +120,7 @@ const requestBox = (props) => {
         return (
             <div className={style.ButtonDiv}>
                 <div
-                    className={style.AcceptDiv}
+                    className={style.button}
                     style={{
                         backgroundColor: colors.blue,
                         color: colors.fontcolorWhite,
@@ -137,7 +138,7 @@ const requestBox = (props) => {
                         borderRadius: inlineStyles.borderRadius,
                         cursor: 'pointer'
                     }}
-                    className={style.RejectDiv}
+                    className={style.button}
                     onClick={handleRejectOnClick}
                 >
                     Reject
@@ -147,7 +148,10 @@ const requestBox = (props) => {
     }
 
     const { requestType, role } = props
-    const width = requestType === 'pending' && role == 1 ? '60vw' : '45vw'
+    const className =
+        requestType === 'pending' && role == 1
+            ? styles.RequestWide
+            : styles.Request
     return (
         <div
             style={{
@@ -156,10 +160,9 @@ const requestBox = (props) => {
                 border: '0px solid ' + 'orange',
                 display: 'flex',
                 alignItems: 'center',
-                flex: 1,
-                width
+                flex: 1
             }}
-            className={style.Request}
+            className={className}
         >
             <div style={{ display: 'flex', flex: 1 }}>
                 {renderAvatar()}

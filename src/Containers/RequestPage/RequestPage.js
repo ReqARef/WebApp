@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react'
-// import ReferrerRequests from '../../Components/Requests/ReferrerRequests/ReferrerRequests'
-import RefereeRequests from '../../Components/Requests/RefereeRequests/RefereeRequests'
+import Requests from '../../Components/Requests/Requests'
 import colors from '../../utils/colors'
 
 class RequestPage extends PureComponent {
@@ -13,8 +12,7 @@ class RequestPage extends PureComponent {
                     paddingTop: '100px'
                 }}
             >
-                <RefereeRequests />
-                {/* <ReferrerRequests /> */}
+                <Requests />
             </div>
         )
     }
