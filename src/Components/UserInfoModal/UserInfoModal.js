@@ -229,7 +229,7 @@ class UserInfoModal extends PureComponent {
                     content: {
                         color: colors.fontcolorBlack,
                         height: '400px',
-                        width: '300px',
+                        width: '280px',
                         margin: 'auto',
                         display: 'flex',
                         alignItems: 'center',

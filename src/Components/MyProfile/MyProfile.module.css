@@ -31,6 +31,7 @@
     }
     .hiddenContainer {
         display: flex;
+        justify-content: center;
         width: 100%;
     }
     .RightContainer {
@@ -41,6 +42,7 @@
 @media (max-width: 850px) {
     .hiddenContainer {
         flex-direction: column;
+        justify-content: center;
         height: auto;
         align-items: center;
     }

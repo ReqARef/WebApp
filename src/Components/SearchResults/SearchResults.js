@@ -78,11 +78,9 @@ class SearchResults extends PureComponent {
                 >
                     <div
                         style={{
-                            color: colors.fontColorBlue,
-                            marginTop: '3vh',
-                            marginBottom: '6vh',
-                            fontSize: '30px'
+                            color: colors.fontColorBlue
                         }}
+                        className={styles.heading}
                     >
                         {companyName + ' Employees'}
                     </div>

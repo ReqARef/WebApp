@@ -16,7 +16,7 @@ class MyProfile extends PureComponent {
 
     render() {
         return (
-            <div style={{ backgroundColor: colors.background }}>
+            <div style={{ backgroundColor: colors.background, width: '100%' }}>
                 <div
                     style={{ background: colors.white }}
                     className={styles.containerHeader}

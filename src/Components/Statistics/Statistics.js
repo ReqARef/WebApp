@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { getUserStats } from '../../store/actions/Statistics'
 import { Chart } from 'react-google-charts'
-import { borderRadius } from '../../utils/styleConstants'
+import styles, { borderRadius } from '../../utils/styleConstants'
 import style from './Statistics.module.css'
 import colors from '../../utils/colors'
 import Loader from '../Loader/Loader'
@@ -93,10 +93,16 @@ class Stats extends PureComponent {
                     </div>
                 )}
                 {!showLoader && (
-                    <h2 style={{ color: colors.fontColorBlue }}>
+                    <h3
+                        style={{
+                            color: colors.fontColorBlue,
+                            marginTop: '32px'
+                        }}
+                        className={styles.heading}
+                    >
                         {'Statistics of Requests ' +
                             (role == 0 ? 'Sent' : 'Received')}
-                    </h2>
+                    </h3>
                 )}
                 {!showLoader &&
                     (userStats != null ? userStats : this.renderNoStats())}

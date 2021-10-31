@@ -164,7 +164,7 @@ const requestBox = (props) => {
             }}
             className={className}
         >
-            <div style={{ display: 'flex', flex: 1 }}>
+            <div style={{ display: 'flex', flex: 1, alignItems: 'center' }}>
                 {renderAvatar()}
                 {renderNameAndDetails()}
             </div>

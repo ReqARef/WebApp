@@ -13,5 +13,18 @@
 @media (max-width: 1200px) {
     .containerMain {
         height: 400px;
+        margin-left: 8px;
+    }
+}
+
+@media (max-width: 850px) {
+    .containerMain {
+        margin-left: 0px;
+    }
+}
+
+@media (max-width: 450px) {
+    .containerMain {
+        width: 80%;
     }
 }

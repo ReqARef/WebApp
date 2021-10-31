@@ -3,7 +3,6 @@
     max-height: 500px;
     margin-top: 16px;
     width: 400px;
-    margin-right: 16px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -58,5 +57,20 @@
     margin-bottom: 8px;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1200px) {
+    .containerMain {
+        margin-right: 8px;
+    }
+}
+
+@media (max-width: 850px) {
+    .containerMain {
+        margin-right: 0px;
+    }
+}
+
+@media (max-width: 450px) {
+    .containerMain {
+        width: 80%;
+    }
 }
