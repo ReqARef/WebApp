@@ -299,13 +299,17 @@ class Navbar extends PureComponent {
     }
 
     renderCompleteNavbar = () => {
-        const { authToken } = this.props
+        const { authToken, user } = this.props
+        const emailVerified = user && user.email_verified
         return (
             <div
                 className={styles.navbar}
                 style={{ backgroundColor: colors.white }}
             >
                 {this.renderReqarefLogo()}
+                {authToken &&
+                    !emailVerified &&
+                    this.renderCompleteVerificationBar()}
                 {authToken && this.renderNavLinksWhenLoggedIn()}
                 {!authToken && this.renderNavLinksWhenNotLoggedIn()}
             </div>
@@ -503,7 +507,8 @@ class Navbar extends PureComponent {
                     style={{
                         color: colors.fontcolorBlack,
                         fontSize: '22px',
-                        marginBottom: '16px'
+                        marginBottom: '16px',
+                        textAlign: 'center'
                     }}
                 >
                     Please enter OTP recieved on your email
@@ -558,6 +563,7 @@ class Navbar extends PureComponent {
     renderCompleteVerificationBar = () => {
         const { verifyEmail } = this.state
         const height = verifyEmail ? '30%' : '10%'
+
         return (
             <AnimateHeight
                 id="example-panel"
@@ -566,7 +572,8 @@ class Navbar extends PureComponent {
                 easing="ease-in"
                 className={styles.verificationBar}
                 style={{
-                    backgroundColor: colors.background
+                    backgroundColor: colors.background,
+                    padding: verifyEmail ? '16px' : '0px'
                 }}
             >
                 {verifyEmail && this.renderOTPBox()}
@@ -576,15 +583,10 @@ class Navbar extends PureComponent {
     }
 
     render() {
-        const { authToken, user } = this.props
-        const emailVerified = user && user.email_verified
         return (
             <div className={styles.containerMain}>
                 {this.renderCompleteNavbar()}
                 {this.renderResponsiveNavbar()}
-                {authToken &&
-                    !emailVerified &&
-                    this.renderCompleteVerificationBar()}
             </div>
         )
     }
