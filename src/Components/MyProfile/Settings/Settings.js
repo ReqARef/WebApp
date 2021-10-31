@@ -372,7 +372,7 @@ class Settings extends PureComponent {
         return (
             <div
                 style={{
-                    backgroundColor: colors.white,
+                    backgroundColor: colors.background,
                     borderRadius,
                     height: '100vh'
                 }}

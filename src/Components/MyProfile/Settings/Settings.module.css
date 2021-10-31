@@ -44,7 +44,6 @@
     margin-bottom: 8px;
     font-weight: 600;
     width: 104px;
-    margin-right: 500px;
 }
 .inputText {
     width: 280px;
@@ -86,10 +85,18 @@ select:focus {
     text-align: center;
 }
 
+@media (max-width: 1200px) {
+    .containerMain {
+        margin-right: 0px;
+    }
+    .inputTextHeadingBio {
+        margin-right: 0px;
+    }
+}
+
 @media (max-width: 850px) {
     .containerMain {
-        width: 100%;
-        margin: auto;
+        width: 400px;
         margin-top: 16px;
     }
     .dualContainer {
@@ -102,7 +109,22 @@ select:focus {
         width: 350px;
         margin: auto;
     }
-    .bioContainer {
-        width: 375px;
+}
+
+@media (max-width: 500px) {
+    .containerMain {
+        width: 70%;
+        margin: auto;
+        margin-top: 16px;
+    }
+    .dualContainer {
+        width: 300px;
+    }
+    .inputText {
+        width: 120px;
+    }
+    .inputTextBio {
+        width: 220px;
+        margin: auto;
     }
 }
