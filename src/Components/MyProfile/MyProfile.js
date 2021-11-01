@@ -16,24 +16,18 @@ class MyProfile extends PureComponent {
 
     render() {
         return (
-            <div style={{ backgroundColor: colors.background }}>
+            <div style={{ backgroundColor: colors.background, width: '100%' }}>
                 <div
                     style={{ background: colors.white }}
                     className={styles.containerHeader}
                 />
-                <div
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        justifyContent: 'center'
-                    }}
-                    className={styles.componentContainer}
-                >
+                <div className={styles.hiddenContainer}>
+                    <Profile />
+                    <Stats />
+                </div>
+                <div className={styles.componentContainer}>
                     <Settings />
-                    <div
-                        style={{ display: 'flex', flexDirection: 'column' }}
-                        className={styles.RightContainer}
-                    >
+                    <div className={styles.RightContainer}>
                         <Profile />
                         <Stats />
                     </div>

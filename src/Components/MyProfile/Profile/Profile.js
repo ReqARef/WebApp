@@ -223,8 +223,7 @@ class Profile extends PureComponent {
             <div
                 style={{
                     backgroundColor: colors.white,
-                    borderRadius,
-                    height: '65vh'
+                    borderRadius
                 }}
                 className={styles.containerMain}
             >

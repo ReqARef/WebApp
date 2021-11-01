@@ -1,0 +1,31 @@
+.ResultBox {
+    width: 880px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-bottom: 5vh;
+}
+
+.heading {
+    margin-bottom: 6vh;
+    font-size: 30px;
+}
+
+@media (max-width: 1000px) {
+    .ResultBox {
+        width: 664px;
+    }
+}
+
+@media (max-width: 800px) {
+    .ResultBox {
+        width: 432px;
+    }
+}
+
+@media (max-width: 600px) {
+    .ResultBox {
+        width: 216px;
+    }
+}

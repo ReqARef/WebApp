@@ -2,68 +2,81 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { getUserStats } from '../../store/actions/Statistics'
 import { Chart } from 'react-google-charts'
-import { borderRadius } from '../../utils/styleConstants'
+import styles, { borderRadius } from '../../utils/styleConstants'
 import style from './Statistics.module.css'
 import colors from '../../utils/colors'
 import Loader from '../Loader/Loader'
 
 class Stats extends PureComponent {
-    componentDidMount() {
-        const { getStats, authToken } = this.props
-        getStats(authToken)
+    constructor(props) {
+        super(props)
+        this.state = {
+            showLoader: true
+        }
+        this.getUserStats()
     }
 
-    render() {
+    componentDidUpdate(prevProps) {
+        if (prevProps.role !== this.props.role) {
+            this.getUserStats()
+        }
+    }
+
+    getUserStats = () => {
+        const { getStats, authToken } = this.props
+        getStats(authToken, () => {
+            this.setState({ showLoader: false })
+        })
+    }
+
+    renderNoStats = () => {
+        return (
+            <div style={{ color: colors.fontcolorBlack }}>
+                Nothing to display
+            </div>
+        )
+    }
+
+    renderChart = () => {
         let userStats = null
         const refStats = this.props.userStats
         if (refStats) {
             if (refStats.requestCount > 0) {
                 userStats = (
                     <Chart
-                        width={'100%'}
-                        height={'285px'}
+                        width={'300px'}
+                        height={'300px'}
                         chartType="PieChart"
                         data={[
                             ['RequestStatus', 'requestCount'],
-                            ['Accepted Request', refStats.acceptedRequests],
-                            ['Pending Request', refStats.pendingRequests],
-                            ['Rejected Request', refStats.rejectedRequests]
+                            ['Accepted', refStats.acceptedRequests],
+                            ['Pending', refStats.pendingRequests],
+                            ['Rejected', refStats.rejectedRequests]
                         ]}
                         options={{
                             backgroundColor: colors.white,
                             legend: 'none',
-                            chartArea: {
-                                left: '10px',
-                                top: 0,
-                                bottom: 0,
-                                width: '70%',
-                                height: '70%'
-                            }
+                            chartArea: {},
+                            is3D: true
                         }}
                     />
                 )
             }
         }
+        return userStats
+    }
 
-        const renderNoStats = () => {
-            return (
-                <div style={{ color: colors.fontcolorBlack }}>
-                    Nothing to display
-                </div>
-            )
-        }
-
-        const { showLoader } = this.props
+    render() {
+        const { showLoader } = this.state
+        const { role } = this.props
+        const userStats = this.renderChart()
 
         return (
             <div
                 className={style.containerMain}
                 style={{
                     borderRadius,
-                    backgroundColor: colors.white,
-                    textAlign: 'center',
-                    paddingBottom: '15px',
-                    height: '46.5vh'
+                    backgroundColor: colors.white
                 }}
             >
                 {showLoader && (
@@ -80,12 +93,19 @@ class Stats extends PureComponent {
                     </div>
                 )}
                 {!showLoader && (
-                    <h2 style={{ color: colors.fontColorBlue }}>
-                        Request Statistics
-                    </h2>
+                    <h3
+                        style={{
+                            color: colors.fontColorBlue,
+                            marginTop: '32px'
+                        }}
+                        className={styles.heading}
+                    >
+                        {'Statistics of Requests ' +
+                            (role == 0 ? 'Sent' : 'Received')}
+                    </h3>
                 )}
                 {!showLoader &&
-                    (userStats != null ? userStats : renderNoStats())}
+                    (userStats != null ? userStats : this.renderNoStats())}
             </div>
         )
     }
@@ -95,13 +115,13 @@ const mapStateToProps = (state) => {
     return {
         authToken: state.User.authToken,
         userStats: state.StatsReducer.userStats,
-        showLoader: state.User.showLoader
+        role: state.User.user.role
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getStats: (token) => dispatch(getUserStats(token))
+        getStats: (token, callback) => dispatch(getUserStats(token, callback))
     }
 }
 

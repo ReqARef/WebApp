@@ -1,0 +1,133 @@
+.Request {
+    margin-top: 36px;
+    overflow: auto;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    width: 540px;
+}
+
+.RequestWide {
+    margin-top: 36px;
+    overflow: auto;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    width: 700px;
+}
+
+.UserImage {
+    height: 150px;
+    width: 150px;
+    border-radius: 10px;
+    float: left;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.UserData {
+    margin-left: 16px;
+    float: left;
+    width: 60%;
+}
+
+.ButtonDiv {
+    float: right;
+    cursor: pointer;
+    margin-right: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    height: 32px;
+    width: 72px;
+    border: 1px solid rgba(52, 63, 69, 0.3);
+    margin: auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+}
+
+.userDataPara {
+    word-wrap: break-word;
+    margin: 4px;
+}
+
+@media (max-width: 800px) {
+    .Request {
+        overflow: auto;
+        width: 480px;
+    }
+
+    .RequestWide {
+        width: 600px;
+        overflow: auto;
+    }
+
+    .UserData {
+        margin-left: 12px;
+        width: 50%;
+    }
+
+    .UserImage {
+        height: 125px;
+        width: 125px;
+        margin-left: 4px;
+    }
+
+    .ButtonDiv {
+        display: flex;
+        margin-top: 16px;
+        height: 100%;
+        margin-right: 12px;
+    }
+
+    .button {
+        height: 30px;
+        width: 80px;
+    }
+
+    .userDataPara {
+        font-size: 16px;
+    }
+
+    .url {
+        visibility: hidden;
+    }
+}
+
+@media (max-width: 600px) {
+    .Request {
+        width: 80%;
+    }
+
+    .RequestWide {
+        width: 90%;
+    }
+
+    .userDataPara {
+        font-size: smaller;
+    }
+
+    .button {
+        height: 16px;
+        width: 54px;
+        font-size: small;
+    }
+}
+
+@media (max-width: 450px) {
+    .UserImage {
+        height: 75px;
+        width: 75px;
+        margin-left: 4px;
+    }
+
+    .UserData {
+        margin-left: 8px;
+    }
+}

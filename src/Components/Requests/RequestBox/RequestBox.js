@@ -1,12 +1,13 @@
 import React from 'react'
 import colors from '../../../utils/colors'
 import inlineStyles from '../../../utils/styleConstants'
-import style from './Request.module.css'
+import style from './RequestBox.module.css'
 import { handleRequestAsync } from '../../../store/actions/Request'
 import { useDispatch } from 'react-redux'
 import { imagePlaceHolder } from '../../../utils/constants'
+import styles from './RequestBox.module.css'
 
-const request = (props) => {
+const requestBox = (props) => {
     const dispatch = useDispatch()
     const { isVerified, page } = props
 
@@ -82,11 +83,19 @@ const request = (props) => {
         const comment = props.comment || ''
         return (
             <div className={style.UserData}>
-                <h3 className={style.userDataPara}>{props.userName}</h3>
+                <h3
+                    className={style.userDataPara}
+                    onClick={() => {
+                        props.openModal(props.email)
+                    }}
+                    style={{ cursor: 'pointer' }}
+                >
+                    {props.userName}
+                </h3>
 
                 {props.url ? (
                     <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <p className={style.userDataPara}>{'Job Id:'}</p>
+                        <div className={style.userDataPara}>{'Job Id:'}</div>
                         <a
                             className={style.url}
                             href={url}
@@ -98,11 +107,11 @@ const request = (props) => {
                         </a>
                     </div>
                 ) : (
-                    <p className={style.userDataPara}>
+                    <div className={style.userDataPara}>
                         {'Job Id: ' + props.jobId}
-                    </p>
+                    </div>
                 )}
-                <p className={style.userDataPara}>{comment}</p>
+                <div className={style.userDataPara}>{comment}</div>
             </div>
         )
     }
@@ -111,7 +120,7 @@ const request = (props) => {
         return (
             <div className={style.ButtonDiv}>
                 <div
-                    className={style.AcceptDiv}
+                    className={style.button}
                     style={{
                         backgroundColor: colors.blue,
                         color: colors.fontcolorWhite,
@@ -129,7 +138,7 @@ const request = (props) => {
                         borderRadius: inlineStyles.borderRadius,
                         cursor: 'pointer'
                     }}
-                    className={style.RejectDiv}
+                    className={style.button}
                     onClick={handleRejectOnClick}
                 >
                     Reject
@@ -138,8 +147,11 @@ const request = (props) => {
         )
     }
 
-    const { requestType } = props
-    const width = requestType === 'pending' ? '60vw' : '45vw'
+    const { requestType, role } = props
+    const className =
+        requestType === 'pending' && role == 1
+            ? styles.RequestWide
+            : styles.Request
     return (
         <div
             style={{
@@ -148,18 +160,19 @@ const request = (props) => {
                 border: '0px solid ' + 'orange',
                 display: 'flex',
                 alignItems: 'center',
-                flex: 1,
-                width
+                flex: 1
             }}
-            className={style.Request}
+            className={className}
         >
-            <div style={{ display: 'flex', flex: 1 }}>
+            <div style={{ display: 'flex', flex: 1, alignItems: 'center' }}>
                 {renderAvatar()}
                 {renderNameAndDetails()}
             </div>
-            {requestType === 'pending' && renderAcceptRejectButtons()}
+            {role == 1 &&
+                requestType === 'pending' &&
+                renderAcceptRejectButtons()}
         </div>
     )
 }
 
-export default request
+export default requestBox

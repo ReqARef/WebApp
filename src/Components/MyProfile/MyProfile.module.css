@@ -1,20 +1,49 @@
 .containerHeader {
-	height: 40vh;
+    height: 32px;
 }
 .componentContainer {
-	margin-top: -20vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 .flexReverse {
-	display: flex;
-	flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
-@media (max-width : 600px){
-	.containerHeader {
-		height: 30vh;
-	}
+.RightContainer {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
 }
 
-.RightContainer{
-	width: 400px;
+.hiddenContainer {
+    width: 100%;
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+}
+
+@media (max-width: 1200px) {
+    .componentContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+    .hiddenContainer {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    .RightContainer {
+        display: none;
+    }
+}
+
+@media (max-width: 850px) {
+    .hiddenContainer {
+        flex-direction: column;
+        justify-content: center;
+        height: auto;
+        align-items: center;
+    }
 }

@@ -1,15 +1,27 @@
 .container {
     width: 100vw;
+    height: 25vh;
     padding-top: 1vh;
 }
 
 .image {
-    height: 200px;
-    width: 200px;
+    height: 140px;
+    width: 140px;
     margin-right: 3vw;
 }
 
 .navItems {
     overflow: auto;
     white-space: nowrap;
+}
+
+@media (max-width: 800px) {
+    .container {
+        min-height: 20vh;
+    }
+
+    .image {
+        height: 125px;
+        width: 125px;
+    }
 }

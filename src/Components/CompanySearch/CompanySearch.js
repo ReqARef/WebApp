@@ -171,10 +171,6 @@ class CompanySearch extends PureComponent {
                 style={{ backgroundColor: colors.background }}
                 className={styles.mainContainer}
             >
-                <div
-                    style={{ background: colors.blue }}
-                    className={styles.containerHeader}
-                />
                 {this.renderSearchBar()}
                 {this.renderSearchButton()}
             </div>

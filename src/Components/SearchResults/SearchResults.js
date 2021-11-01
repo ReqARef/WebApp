@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
-import styles from './ResultBox.module.css'
-import Result from './Result/Result'
+import styles from './SearchResults.module.css'
+import ResultBox from './ResultBox/ResultBox'
 import Modal from '../Modal/Modal'
 import Aux from '../../Hoc/Auxiliary'
 import { connect } from 'react-redux'
@@ -8,7 +8,7 @@ import RequestForm from '../RequestForm/RequestForm'
 import UserInfoModal from '../UserInfoModal/UserInfoModal'
 import colors from '../../utils/colors'
 
-class ResultBox extends PureComponent {
+class SearchResults extends PureComponent {
     state = {
         modalEmail: null,
         showUserInfoModal: false,
@@ -23,7 +23,7 @@ class ResultBox extends PureComponent {
     getResultData = () => {
         return (this.props.searchResult || []).map((result) => {
             return (
-                <Result
+                <ResultBox
                     showModal={this.togglePopup}
                     name={`${result.first_name} ${result.last_name}`}
                     avatar={result.avatar}
@@ -69,19 +69,23 @@ class ResultBox extends PureComponent {
                 />
                 <div
                     style={{
-                        width: '100%'
+                        width: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center'
                     }}
                 >
-                    <h1
+                    <div
                         style={{
-                            marginLeft: '25vw',
                             color: colors.fontColorBlue
                         }}
+                        className={styles.heading}
                     >
                         {companyName + ' Employees'}
-                    </h1>
+                    </div>
+                    <div className={styles.ResultBox}>{resultData}</div>
                 </div>
-                <div className={styles.ResultBox}>{resultData}</div>
             </Aux>
         )
     }
@@ -99,4 +103,4 @@ const mapDispatchToProps = (dispatch) => {
             dispatch({ type: 'SETREQUESTTO', email: email })
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(ResultBox)
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResults)

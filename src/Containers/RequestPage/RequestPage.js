@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import RequestBox from '../../Components/RequestBox/RequestBox'
+import Requests from '../../Components/Requests/Requests'
 import colors from '../../utils/colors'
 
 class RequestPage extends PureComponent {
@@ -8,11 +8,10 @@ class RequestPage extends PureComponent {
             <div
                 style={{
                     backgroundColor: colors.background,
-                    height: 'auto',
-                    paddingTop: '100px'
+                    height: 'auto'
                 }}
             >
-                <RequestBox />
+                <Requests />
             </div>
         )
     }

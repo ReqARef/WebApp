@@ -141,12 +141,12 @@ class EmailAndOtp extends PureComponent {
                 className={styles.containerRight}
                 style={{ backgroundColor: colors.white }}
             >
-                <h1
+                <div
                     className={styles.rightHeader}
-                    style={{ color: colors.fontcolorBlack }}
+                    style={{ color: colors.blue }}
                 >
                     Reset Password
-                </h1>
+                </div>
                 {this.renderForm()}
             </div>
         )

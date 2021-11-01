@@ -1,53 +1,51 @@
 .containerMain {
-    /* min-height: 35vw; */
-    height: 47%;
-    width: 100%;
-    margin-top: 1vw;
-    margin-right: 1vw;
+    min-height: 400px;
+    max-height: 500px;
+    margin-top: 16px;
+    width: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 3vh;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    overflow: scroll;
 }
 .avatarContainer {
-    height: 12vw;
-    width: 12vw;
+    height: 180px;
+    width: 180px;
     border-radius: 10px;
     margin-top: -2vw;
     box-shadow: rgba(100, 100, 111, 0.1) 0px 7px 29px 0px;
 }
 .nameText {
-    font-size: 2vw;
-    /* margin-top: 1vh; */
-    font-weight: 700;
+    font-size: 28px;
+    font-weight: 600;
     text-align: center;
 }
 .locationText {
-    font-size: 1.3vw;
-    margin-top: 1vh;
+    font-size: 18px;
+    margin-top: 8px;
     font-weight: 300;
     text-align: center;
 }
 .designationText {
-    font-size: 1.7vw;
-    margin-top: 1vh;
+    font-size: 24px;
+    margin-top: 8px;
     font-weight: 400;
     text-align: center;
 }
 .collegeText {
-    font-size: 1.3vw;
-    margin-top: 2vh;
+    font-size: 18px;
+    margin-top: 8px;
     font-weight: 300;
-    padding-left: 0.2vw;
-    padding-right: 0.2vw;
+    padding-left: 2px;
+    padding-right: 2px;
     text-align: center;
 }
 .br {
     height: 1.5px;
     width: 70%;
-    margin-top: 2.5vh;
-    margin-bottom: 2.5vh;
+    margin-top: 16px;
+    margin-bottom: 16px;
     background-color: rgba(50, 50, 50, 0.5);
 }
 .detailsContainer {
@@ -56,28 +54,23 @@
     align-items: center;
 }
 .marginDown {
-    margin-bottom: 1.5vh;
+    margin-bottom: 8px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1200px) {
     .containerMain {
-        height: 0%;
-        width: 0%;
+        margin-right: 8px;
     }
-    .avatarContainer {
-        height: 0%;
-        width: 0%;
+}
+
+@media (max-width: 850px) {
+    .containerMain {
+        margin-right: 0px;
     }
-    .nameText {
-        font-size: 0px;
-    }
-    .locationText {
-        font-size: 0px;
-    }
-    .designationText {
-        font-size: 0px;
-    }
-    .collegeText {
-        font-size: 0px;
+}
+
+@media (max-width: 450px) {
+    .containerMain {
+        width: 80%;
     }
 }

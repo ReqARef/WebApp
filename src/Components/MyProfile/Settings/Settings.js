@@ -172,14 +172,7 @@ class Settings extends PureComponent {
 
     renderName = () => {
         return (
-            <div
-                style={{
-                    width: '100%',
-                    display: 'flex',
-                    flexDirection: 'row',
-                    justifyContent: 'center'
-                }}
-            >
+            <div className={styles.dualContainer}>
                 <div style={{ width: '50%' }}>
                     {this.renderInputField('firstName', 'First Name')}
                 </div>
@@ -192,15 +185,7 @@ class Settings extends PureComponent {
 
     renderEmail = () => {
         return (
-            <div
-                style={{
-                    width: '100%',
-                    display: 'flex',
-                    flexDirection: 'row',
-                    justifyContent: 'center'
-                }}
-                className={styles.dualContainer}
-            >
+            <div className={styles.dualContainer}>
                 <div style={{ width: '50%' }}>
                     {this.renderInputField('email', 'Email Address', true)}
                 </div>
@@ -213,15 +198,7 @@ class Settings extends PureComponent {
 
     renderCompanyAndPosition = () => {
         return (
-            <div
-                style={{
-                    width: '100%',
-                    display: 'flex',
-                    flexDirection: 'row',
-                    justifyContent: 'center'
-                }}
-                className={styles.dualContainer}
-            >
+            <div className={styles.dualContainer}>
                 <div style={{ width: '50%' }}>
                     {this.renderInputField('company', 'Company Name')}
                 </div>
@@ -234,15 +211,7 @@ class Settings extends PureComponent {
 
     renderCollegeAndExperience = () => {
         return (
-            <div
-                style={{
-                    width: '100%',
-                    display: 'flex',
-                    flexDirection: 'row',
-                    justifyContent: 'center'
-                }}
-                className={styles.dualContainer}
-            >
+            <div className={styles.dualContainer}>
                 <div style={{ width: '50%' }}>
                     {this.renderInputField('college', 'College/University')}
                 </div>
@@ -330,15 +299,7 @@ class Settings extends PureComponent {
 
     renderCountryAndRole = () => {
         return (
-            <div
-                style={{
-                    width: '100%',
-                    display: 'flex',
-                    flexDirection: 'row',
-                    justifyContent: 'center'
-                }}
-                className={styles.dualContainer}
-            >
+            <div className={styles.dualContainer}>
                 {this.renderCountry()}
                 {this.renderRole()}
             </div>
@@ -347,10 +308,12 @@ class Settings extends PureComponent {
 
     renderBio = () => {
         return (
-            <div style={{ width: '100%' }} className={styles.bioContainer}>
+            <div className={styles.bioContainer}>
                 <div
-                    className={styles.inputTextHeading}
-                    style={{ color: colors.fontcolorBlack }}
+                    className={styles.inputTextHeadingBio}
+                    style={{
+                        color: colors.fontcolorBlack
+                    }}
                 >
                     {'About Me'}
                 </div>
@@ -409,7 +372,7 @@ class Settings extends PureComponent {
         return (
             <div
                 style={{
-                    backgroundColor: colors.white,
+                    backgroundColor: colors.background,
                     borderRadius,
                     height: '100vh'
                 }}

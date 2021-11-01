@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import styles from './RequestBox.module.css'
+import styles from './Requests.module.css'
 import inlineStyles from '../../utils/styleConstants'
 import colors from '../../utils/colors'
-import Request from './Request/Request'
+import RequestBox from './RequestBox/RequestBox'
 import { connect } from 'react-redux'
 import { getRequestListAsync } from '../../store/actions/Request'
 import UserInfoModal from '../UserInfoModal/UserInfoModal'
@@ -11,7 +11,7 @@ import { setNavbarSelection } from '../../store/actions/Navbar'
 import { withRouter } from 'react-router'
 const qs = require('qs')
 
-class RequestBox extends Component {
+class Requests extends Component {
     constructor(props) {
         super(props)
 
@@ -88,7 +88,7 @@ class RequestBox extends Component {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    marginTop: '4vh'
+                    marginTop: '32px'
                 }}
             >
                 <div
@@ -128,8 +128,9 @@ class RequestBox extends Component {
 
     getRequestData = () => {
         return (this.props.requests || []).map((request) => {
+            console.log(JSON.stringify(request))
             return (
-                <Request
+                <RequestBox
                     key={request.id}
                     userName={
                         request.user.first_name + ' ' + request.user.last_name
@@ -151,6 +152,7 @@ class RequestBox extends Component {
                         this.setState({ showLoader: false })
                     }}
                     requestType={this.state.requestType}
+                    role={this.props.role}
                 />
             )
         })
@@ -175,53 +177,54 @@ class RequestBox extends Component {
             <div
                 style={{
                     display: 'flex',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+                    marginTop: '32px'
                 }}
             >
-                <h1
+                <div
+                    className={styles.headingText}
                     style={{
                         color:
                             requestType === 'pending'
                                 ? colors.blue
                                 : colors.black,
-                        marginRight: '14vw',
-                        cursor: 'pointer'
+                        marginRight: '14vw'
                     }}
                     onClick={() => {
                         this.changeRequestType('pending')
                     }}
                 >
                     Pending
-                </h1>
-                <h1
+                </div>
+                <div
+                    className={styles.headingText}
                     style={{
                         color:
                             requestType === 'accepted'
                                 ? colors.blue
-                                : colors.black,
-                        cursor: 'pointer'
+                                : colors.black
                     }}
                     onClick={() => {
                         this.changeRequestType('accepted')
                     }}
                 >
                     Accepted
-                </h1>
-                <h1
+                </div>
+                <div
+                    className={styles.headingText}
                     style={{
                         color:
                             requestType === 'rejected'
                                 ? colors.blue
                                 : colors.black,
-                        marginLeft: '14vw',
-                        cursor: 'pointer'
+                        marginLeft: '14vw'
                     }}
                     onClick={() => {
                         this.changeRequestType('rejected')
                     }}
                 >
                     Rejected
-                </h1>
+                </div>
             </div>
         )
     }
@@ -304,6 +307,7 @@ const mapStateToProps = (state) => {
     return {
         authToken: state.User.authToken,
         requests: state.requestReducer.requests,
+        role: state.User.user.role,
         isVerified:
             state.User && state.User.user
                 ? state.User.user.email_verified
@@ -324,4 +328,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(withRouter(RequestBox))
+)(withRouter(Requests))

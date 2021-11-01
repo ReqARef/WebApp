@@ -1,0 +1,33 @@
+.Result {
+    width: 200px;
+    height: 300px;
+    float: left;
+    margin-right: 8px;
+    margin-left: 8px;
+    margin-bottom: 8px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.UserImage {
+    height: 150px;
+    width: 150px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.RequestButton {
+    padding: 10px;
+    border-radius: 7px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
