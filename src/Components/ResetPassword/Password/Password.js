@@ -115,12 +115,12 @@ class Password extends PureComponent {
                 className={styles.containerRight}
                 style={{ backgroundColor: colors.white }}
             >
-                <h2
+                <div
                     className={styles.rightHeader}
-                    style={{ color: colors.fontcolorBlack }}
+                    style={{ color: colors.blue }}
                 >
                     Enter New Password
-                </h2>
+                </div>
                 {this.renderForm()}
             </div>
         )

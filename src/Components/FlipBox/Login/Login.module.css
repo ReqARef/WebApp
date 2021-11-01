@@ -1,47 +1,46 @@
 /* left side */
 .containerLeft {
-    width: 20vw;
+    width: 300px;
     float: left;
-    height: 75vh;
+    height: 550px;
     border-radius: 30px 0 0 30px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 .leftHeading {
-    margin-top: 15vh;
+    margin-top: 100px;
     text-align: center;
-    font-size: 3vh;
+    font-size: 32px;
 }
 .leftPara {
-    margin: 2vw;
-    margin-top: 5vh;
-    font-size: 2.5vh;
+    margin: 16px;
+    margin-top: 40px;
+    font-size: 16px;
+    text-align: center;
 }
 .buttonContainer {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-top: 10vh;
+    margin-top: 48px;
 }
 
 .button {
-    height: 5vh;
-    width: 7vw;
+    padding: 8px;
     border-radius: 10px;
     border-style: solid;
-    font-size: 13px;
+    font-size: 16px;
 }
 .resetPassword {
     text-decoration: none;
     font-size: 16px;
-    margin-left: 4px;
-    width: 150px;
+    margin-left: 8px;
 }
 
 /* right side */
 .containerRight {
-    width: 30vw;
-    height: 75vh;
+    width: 450px;
+    height: 550px;
     float: left;
     border-radius: 0 30px 30px 0;
     display: flex;
@@ -50,8 +49,8 @@
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 .rightHeader {
-    margin-bottom: 7vh;
-    margin-top: 12vh;
+    margin-bottom: 32px;
+    margin-top: 96px;
 }
 .form {
     display: flex;
@@ -60,38 +59,35 @@
     align-items: center;
 }
 .inputText {
-    width: 60%;
+    width: 256px;
     padding: 10px 10px;
     margin: 8px 0;
     display: inline-block;
     box-sizing: border-box;
     border: none;
     border-bottom: 1px solid rgba(52, 63, 69, 0.3);
-    font-size: 1vw;
+    font-size: 16px;
 }
 .submitButton {
-    height: 4vh;
-    width: 60%;
+    height: 32px;
+    width: 256px;
     border: 1px solid rgba(52, 63, 69, 0.3);
     border-radius: 7px;
     margin-bottom: 20px;
     font-size: 20px;
-    margin-top: 3vh;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    text-align: center;
     margin: auto;
-    padding-top: 9px;
-    font-size: larger;
     margin-bottom: 10px;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
 }
 .buttonTemp {
     visibility: hidden;
     border: none;
-    font-size: 13px;
-    background-color: white;
-    color: black;
+    font-size: 12px;
+    margin-right: 8px;
 }
 .hiddenButtonContainer {
     visibility: hidden;
@@ -99,6 +95,8 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin-top: 16px;
+    padding-bottom: 32px;
 }
 
 /* main container */
@@ -121,7 +119,10 @@ button:focus {
         display: none;
     }
     .containerRight {
-        width: 70vw;
+        width: fit-content;
+        padding-left: 16px;
+        padding-right: 16px;
+        height: fit-content;
         border-radius: 30px;
     }
     .leftPara {
@@ -133,29 +134,19 @@ button:focus {
     .button {
         display: none;
     }
-    .submitButton {
-        font-size: 20px;
-        padding-top: 15px;
-    }
     .resetPassword {
         color: rgba(50, 50, 50, 1);
     }
     .buttonTemp {
-        height: 5vh;
-        width: 60%;
         visibility: visible;
-        height: 4vh;
         border-radius: 7px;
-        margin-bottom: 20px;
         font-size: 16px;
     }
     .hiddenButtonContainer {
         visibility: visible;
     }
-    .inputText {
-        font-size: 3vw;
-    }
     .rightHeader {
-        margin-top: 8vh;
+        margin-top: 32px;
+        margin-bottom: 32px;
     }
 }

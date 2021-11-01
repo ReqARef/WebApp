@@ -54,7 +54,6 @@ class Login extends PureComponent {
                     onClick={this.props.handleFlip}
                     className={styles.buttonTemp}
                     style={{
-                        backgroundColor: colors.white,
                         color: colors.fontcolorBlack,
                         cursor: 'pointer'
                     }}
@@ -118,7 +117,7 @@ class Login extends PureComponent {
                 style={{
                     backgroundColor: colors.blue,
                     color: colors.fontcolorWhite,
-                    marginTop: '10px'
+                    marginTop: '16px'
                 }}
             >
                 {this.state.showLoader ? this.renderLoader() : 'Login'}

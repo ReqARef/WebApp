@@ -70,7 +70,6 @@ class Signup extends PureComponent {
                 onClick={this.props.handleFlip}
                 className={styles.buttonTemp}
                 style={{
-                    backgroundColor: colors.white,
                     color: colors.fontcolorBlack,
                     cursor: 'pointer'
                 }}
@@ -166,7 +165,8 @@ class Signup extends PureComponent {
                 style={{
                     backgroundColor: colors.blue,
                     color: colors.fontcolorWhite,
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    marginTop: '16px'
                 }}
             >
                 {this.state.showLoader ? this.renderLoader() : 'Signup'}
