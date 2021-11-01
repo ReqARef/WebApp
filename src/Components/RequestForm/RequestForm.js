@@ -56,53 +56,53 @@ const RequestForm = (props) => {
     return (
         <div className={styles.requestDiv}>
             <h2>ReqARef</h2>
-            <form>
-                <input
-                    className={styles.inputText}
-                    onChange={jobIdHandler}
-                    value={jobId}
-                    style={{
-                        backgroundColor: colors.background,
-                        color: colors.fontcolorBlack
-                    }}
-                    type="text"
-                    placeholder="Job Id"
-                ></input>
-                <input
-                    className={styles.inputText}
-                    onChange={jobUrlHandler}
-                    value={jobUrl}
-                    style={{
-                        backgroundColor: colors.background,
-                        color: colors.fontcolorBlack
-                    }}
-                    type="text"
-                    placeholder="Job URL"
-                ></input>
-                <input
-                    className={styles.inputText}
-                    onChange={commentsHandler}
-                    value={comments}
-                    style={{
-                        backgroundColor: colors.background,
-                        color: colors.fontcolorBlack
-                    }}
-                    type="text"
-                    placeholder="Comments"
-                ></input>
-                <div
-                    className={styles.requestButton}
-                    style={{
-                        backgroundColor: colors.blue,
-                        color: colors.fontcolorWhite,
-                        borderRadius: inlineStyles.borderRadius,
-                        cursor: 'pointer'
-                    }}
-                    onClick={(event) => onSubmitHandler(event)}
-                >
-                    {buttonText}
-                </div>
-            </form>
+            {/* <form> */}
+            <input
+                className={styles.inputText}
+                onChange={jobIdHandler}
+                value={jobId}
+                style={{
+                    backgroundColor: colors.background,
+                    color: colors.fontcolorBlack
+                }}
+                type="text"
+                placeholder="Job Id"
+            ></input>
+            <input
+                className={styles.inputText}
+                onChange={jobUrlHandler}
+                value={jobUrl}
+                style={{
+                    backgroundColor: colors.background,
+                    color: colors.fontcolorBlack
+                }}
+                type="text"
+                placeholder="Job URL"
+            ></input>
+            <input
+                className={styles.inputText}
+                onChange={commentsHandler}
+                value={comments}
+                style={{
+                    backgroundColor: colors.background,
+                    color: colors.fontcolorBlack
+                }}
+                type="text"
+                placeholder="Comments"
+            ></input>
+            <div
+                className={styles.requestButton}
+                style={{
+                    backgroundColor: colors.blue,
+                    color: colors.fontcolorWhite,
+                    borderRadius: inlineStyles.borderRadius,
+                    cursor: 'pointer'
+                }}
+                onClick={(event) => onSubmitHandler(event)}
+            >
+                {buttonText}
+            </div>
+            {/* </form>  */}
         </div>
     )
 }

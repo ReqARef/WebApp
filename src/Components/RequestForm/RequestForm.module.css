@@ -1,44 +1,28 @@
-.inputText {
-    width: 60%;
-    padding: 10px;
-    margin: 8px 0;
-    margin-bottom: 8px;
-    display: inline-block;
-    box-sizing: border-box;
-    border: 2px solid #343f45;
-    border-radius: 3px;
-    font-size: 1vw;
-    background-color: white;
-}
 .requestDiv {
     text-align: center;
+    width: 100%;
 }
-
-.requestButton {
-    height: 4vh;
-    width: 40%;
-    border: 1px solid rgba(52, 63, 69, 0.3);
-    margin-bottom: 20px;
-    font-size: 20px;
-    margin-top: 3vh;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    text-align: center;
-    margin: auto;
-    padding-top: 9px;
-    font-size: larger;
-    margin-bottom: 10px;
-    display: inline-block;
-    margin-top: 1.5vh;
-}
-
-.inputTextBox {
-    width: 60%;
-    height: 200px;
+.inputText {
     padding: 10px;
     margin: 8px 0;
     margin-bottom: 8px;
+    width: 270px;
     border: 2px solid #343f45;
     border-radius: 3px;
-    font-size: 1vw;
-    text-align: justified;
+    font-size: 16px;
+}
+.requestButton {
+    height: 32px;
+    width: 96px;
+    border: 1px solid rgba(52, 63, 69, 0.3);
+    border-radius: 7px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    margin: auto;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
