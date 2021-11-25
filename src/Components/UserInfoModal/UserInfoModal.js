@@ -103,7 +103,7 @@ class UserInfoModal extends PureComponent {
         if (country) countryName = ', ' + countryCodeToCountry(country)
         return (
             <div
-                style={{ display: 'flex', fontSize: '22px', marginTop: '8px' }}
+                style={{ display: 'flex', fontSize: '18px', marginTop: '8px' }}
             >
                 {fullname + countryName}
             </div>
@@ -118,7 +118,7 @@ class UserInfoModal extends PureComponent {
         companyName = this.capitalize(companyName)
         return (
             <div
-                style={{ display: 'flex', fontSize: '22px', marginTop: '8px' }}
+                style={{ display: 'flex', fontSize: '18px', marginTop: '8px' }}
             >
                 {companyName}
             </div>
@@ -132,9 +132,9 @@ class UserInfoModal extends PureComponent {
         if (!experience) return null
         return (
             <div
-                style={{ display: 'flex', fontSize: '22px', marginTop: '8px' }}
+                style={{ display: 'flex', fontSize: '18px', marginTop: '8px' }}
             >
-                {'Experience of ' + experience}
+                {'Experience of around ' + experience}
             </div>
         )
     }
@@ -148,7 +148,7 @@ class UserInfoModal extends PureComponent {
             <div
                 style={{
                     display: 'flex',
-                    fontSize: '22px',
+                    fontSize: '18px',
                     marginTop: '8px',
                     textAlign: 'center'
                 }}
@@ -165,7 +165,12 @@ class UserInfoModal extends PureComponent {
         if (!bio) return null
         return (
             <div
-                style={{ display: 'flex', fontSize: '22px', marginTop: '8px' }}
+                style={{
+                    display: 'flex',
+                    fontSize: '18px',
+                    marginTop: '8px',
+                    textAlign: 'center'
+                }}
             >
                 {'Bio: ' + bio}
             </div>
@@ -186,7 +191,7 @@ class UserInfoModal extends PureComponent {
                 target="_blank"
                 style={{
                     display: 'flex',
-                    fontSize: '22px',
+                    fontSize: '18px',
                     marginTop: '8px',
                     color: 'inherit',
                     fontWeight: 'bolder'
