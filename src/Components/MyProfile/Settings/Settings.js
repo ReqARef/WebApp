@@ -133,7 +133,7 @@ class Settings extends PureComponent {
                     className={styles.headerText}
                     style={{ color: colors.fontColorBlue }}
                 >
-                    My account
+                    Settings
                 </div>
             </div>
         )

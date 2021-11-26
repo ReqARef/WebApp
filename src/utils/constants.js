@@ -18,5 +18,12 @@ const companyLogoArray = [
     ciscoLogo,
     rblLogo
 ]
+const aboutUsText = `ReqARef is a dedicated platform for people who are willing to give referrals or want to get referred`
 
-export { authScreenParagraph, server, imagePlaceHolder, companyLogoArray }
+export {
+    authScreenParagraph,
+    server,
+    imagePlaceHolder,
+    companyLogoArray,
+    aboutUsText
+}
