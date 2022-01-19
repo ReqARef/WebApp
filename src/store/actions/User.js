@@ -95,6 +95,7 @@ export function signupAsync(
         }
         const reject = (e) => {
             callback()
+            alert(e)
             return dispatch(logout())
         }
         const body = {
@@ -225,6 +226,7 @@ export function verifyEmailOTP(token, OTP, callback, errorCallback) {
             return dispatch(setUserData(json.user))
         }
         const reject = (e) => {
+            alert(e)
             errorCallback()
         }
         const body = {
@@ -252,7 +254,7 @@ export function verifyOTP(email, OTP, successCallback, errorCallback) {
         }
         const reject = (e) => {
             errorCallback()
-            alert('Something went wrong')
+            alert(e)
         }
         const body = {
             email,

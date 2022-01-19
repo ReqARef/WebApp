@@ -477,17 +477,12 @@ class Navbar extends PureComponent {
                     })
                 }
                 const errorCallback = () => {
-                    this.setState(
-                        {
-                            otp: '',
-                            verifyingOTP: false,
-                            sendingOTPRequest: false,
-                            resendingOTPRequest: false
-                        },
-                        () => {
-                            alert('Invalid OTP')
-                        }
-                    )
+                    this.setState({
+                        otp: '',
+                        verifyingOTP: false,
+                        sendingOTPRequest: false,
+                        resendingOTPRequest: false
+                    })
                 }
 
                 verifyOTP(authToken, otp, successCallback, errorCallback)

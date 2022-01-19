@@ -28,9 +28,10 @@
 
 .responsiveNavbarContentShow {
     position: absolute;
-    right: -8px;
-    height: 90vh;
-    width: 100vw;
+    right: 5px;
+    border-radius: 8px;
+    height: fit-content;
+    width: fit-content;
     z-index: 1000;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
